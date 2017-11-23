@@ -1,44 +1,45 @@
 package org.usfirst.frc.team2212.robot.subsystems;
 
 import com.spikes2212.genericsubsystems.drivetrains.TankDrivetrain;
-import com.spikes2212.utils.DoubleSpeedcontroller;
 
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.PIDSource;
 import edu.wpi.first.wpilibj.SpeedController;
-import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
  *
  */
 public class Drivetrain extends TankDrivetrain {
-	
-	private DoubleSpeedcontroller leftGearbox;
-	private DoubleSpeedcontroller rightGearbox;
 
-	public Drivetrain(DoubleSpeedcontroller leftGearbox, DoubleSpeedcontroller rightGearbox) {
+	private SpeedController leftGearbox;
+	private SpeedController rightGearbox;
+	private Encoder encoderLeft;
+	private Encoder encoderRight;
+
+	public Drivetrain(SpeedController leftGearbox, SpeedController rightGearbox, Encoder encoderLeft,
+			Encoder encoderRight) {
 		this.leftGearbox = leftGearbox;
 		this.rightGearbox = rightGearbox;
+		this.encoderLeft = encoderLeft;
+		this.encoderRight = encoderRight;
 	}
-	
-	public Drivetrain(SpeedController leftFrontMotor, SpeedController leftBackMotor, SpeedController rightFrontMotor, SpeedController rightBackMotor) {
-		
+
+	public void initDefaultCommand() {
+		// TODO bom
+		// Set the default command for a subsystem here.
+		// setDefaultCommand(new MySpecialCommand());
 	}
-    public void initDefaultCommand() {
-    	//TODO bom
-        // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
-    }
 
 	@Override
 	public PIDSource getLeftPIDSource() {
 		// TODO Auto-generated method stub
-		return null;
+		return encoderLeft;
 	}
 
 	@Override
 	public PIDSource getRightPIDSource() {
 		// TODO Auto-generated method stub
-		return null;
+		return encoderRight;
 	}
 
 	@Override
@@ -51,4 +52,3 @@ public class Drivetrain extends TankDrivetrain {
 		rightGearbox.set(speed);
 	}
 }
-
