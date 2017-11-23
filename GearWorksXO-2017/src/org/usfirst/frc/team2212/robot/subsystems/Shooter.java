@@ -13,7 +13,12 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class Shooter extends LimitedSubsystem {
 
     private SpeedController shooterMotor;
-    private Encoder encoder; 
+    private Encoder shooterEncoder;
+    
+    public Shooter(SpeedController shooterMotor, Encoder shooterEncoder){
+    	this.shooterEncoder = shooterEncoder;
+    	this.shooterMotor = shooterMotor;
+    }
 
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
@@ -23,7 +28,7 @@ public class Shooter extends LimitedSubsystem {
 	@Override
 	public PIDSource getPIDSource() {
 		// TODO Auto-generated method stub
-		return null;
+		return shooterEncoder;
 	}
 
 	@Override
