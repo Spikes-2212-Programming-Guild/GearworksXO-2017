@@ -11,7 +11,11 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class FuelPicker extends LimitedSubsystem {
 	
-	private SpeedController FuelPickerMotor;
+	private SpeedController fuelPickerMotor;
+	
+	public FuelPicker(SpeedController fuelPickerMotor){
+		this.fuelPickerMotor = fuelPickerMotor;
+	}
 
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
@@ -42,7 +46,7 @@ public class FuelPicker extends LimitedSubsystem {
 	@Override
 	protected void move(double speed) {
 		// TODO Auto-generated method stub
-		FuelPickerMotor.set(speed);
+		fuelPickerMotor.set(speed);
 	}
 }
 
