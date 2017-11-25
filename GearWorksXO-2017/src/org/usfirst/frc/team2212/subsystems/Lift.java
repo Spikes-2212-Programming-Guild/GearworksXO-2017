@@ -22,7 +22,7 @@ public class Lift extends LimitedSubsystem {
 	private DigitalInput downLimit;
 	private Encoder encoder;
 	public static final Supplier<Double> SPEED = ConstantHandler.addConstantDouble("Lift-SPEED", 0.7);
-	public static /* final */ Supplier<Integer> MIDDLE; // place in encoder for
+	public static final Supplier<Integer> MIDDLE_SET_POINT = ConstantHandler.addConstantInt("lift-MIDDLE_SET_POINT", 0); // place in encoder for
 														// putting lower gear
 
 	public Lift(SpeedController motor, DigitalInput upLimit, DigitalInput downLimit, Encoder encoder) {
@@ -37,11 +37,11 @@ public class Lift extends LimitedSubsystem {
 			return LiftPosition.HIGH_LIMIT;
 		if (downLimit.get()) // The subsystem is in its lower limit
 			return LiftPosition.LOW_LIMIT;
-		if (Lift.MIDDLE.get() == this.encoder.get()) // The subsystem is in the
+		if (Lift.MIDDLE_SET_POINT.get() == this.encoder.get()) // The subsystem is in the
 														// middle ( the height of
 														// the lower gear )
 			return LiftPosition.MIDDLE;
-		if (this.encoder.get() < Lift.MIDDLE.get()) // The subsystem is between the middle and the lower limit
+		if (this.encoder.get() < Lift.MIDDLE_SET_POINT.get()) // The subsystem is between the middle and the lower limit
 			return LiftPosition.LOW;
 		return LiftPosition.HIGH; // The subsystem is between the middle and higher limit
 	}
