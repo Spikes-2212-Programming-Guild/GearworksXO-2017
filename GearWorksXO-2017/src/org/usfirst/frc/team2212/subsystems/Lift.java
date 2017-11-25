@@ -10,15 +10,16 @@ import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.PIDSource;
 import edu.wpi.first.wpilibj.SpeedController;
 
-/**
- *
- */
+
 public class Lift extends LimitedSubsystem {
 
     public SpeedController liftMotor;
     public DigitalInput upLimit;
     public DigitalInput downLimit;
     public Encoder liftEncoder;
+    public static final Supplier<Double> UP_SPEED = ConstantHandler.addConstantDouble("Lift-SPEED_UP", 0.7);
+    public static final Supplier<Double> DOWN_SPEED = ConstantHandler.addConstantDouble("Lift-DOWN_SPEED", 0.3);
+    public static /*final*/ Supplier<Integer> MIDDLE; // place in encoder for putting lower gear
     
     public Lift(SpeedController liftMotor, DigitalInput upLimit, DigitalInput downLimit, Encoder liftEncoder){
     	this.liftMotor = liftMotor;
