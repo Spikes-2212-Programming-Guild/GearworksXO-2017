@@ -17,15 +17,19 @@ public class Lift extends LimitedSubsystem {
     public DigitalInput upLimit;
     public DigitalInput downLimit;
     public Encoder liftEncoder;
-    public static final Supplier<Double> UP_SPEED = ConstantHandler.addConstantDouble("Lift-SPEED_UP", 0.7);
-    public static final Supplier<Double> DOWN_SPEED = ConstantHandler.addConstantDouble("Lift-DOWN_SPEED", 0.3);
+    public static final Supplier<Double> SPEED = ConstantHandler.addConstantDouble("Lift-SPEED", 0.7);
     public static /*final*/ Supplier<Integer> MIDDLE; // place in encoder for putting lower gear
+    public int position;
     
     public Lift(SpeedController liftMotor, DigitalInput upLimit, DigitalInput downLimit, Encoder liftEncoder){
     	this.liftMotor = liftMotor;
     	this.upLimit = upLimit;
     	this.downLimit = downLimit;
     	this.liftEncoder = liftEncoder;
+    }
+    
+    public int getPosition(){
+    	return position;
     }
 
     public void initDefaultCommand() {
