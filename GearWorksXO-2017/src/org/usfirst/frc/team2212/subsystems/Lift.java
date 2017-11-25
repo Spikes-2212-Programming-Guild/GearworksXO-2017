@@ -13,25 +13,45 @@ import edu.wpi.first.wpilibj.SpeedController;
 
 public class Lift extends LimitedSubsystem {
 
-    public SpeedController liftMotor;
-    public DigitalInput upLimit;
-    public DigitalInput downLimit;
-    public Encoder liftEncoder;
+    private SpeedController motor;
+    private DigitalInput upLimit;
+    private DigitalInput downLimit;
+    private Encoder encoder;
     public static final Supplier<Double> SPEED = ConstantHandler.addConstantDouble("Lift-SPEED", 0.7);
     public static /*final*/ Supplier<Integer> MIDDLE; // place in encoder for putting lower gear
-    public int position;
     
     public Lift(SpeedController liftMotor, DigitalInput upLimit, DigitalInput downLimit, Encoder liftEncoder){
-    	this.liftMotor = liftMotor;
+    	this.motor = liftMotor;
     	this.upLimit = upLimit;
     	this.downLimit = downLimit;
-    	this.liftEncoder = liftEncoder;
+    	this.encoder = liftEncoder;
     }
     
-    public int getPosition(){
-    	return position;
+    public LiftPosition getPosition(){
+    	if(upLimit.get())
+    		return LiftPosition.HIGH_LIMIT;
+    	if(downLimit.get())
+    		return LiftPosition.LOW_LIMIT;
+    	if(Lift.MIDDLE.get() == this.encoder.get())
+    		return LiftPosition.MIDDLE;
+    	if(this.encoder.get() < Lift.MIDDLE.get())
+    		return LiftPosition.LOW;
+    	return LiftPosition.HIGH;
     }
-
+    
+    public enum LiftPosition{
+    	LOW_LIMIT (0),
+    	LOW (1),
+    	MIDDLE (2),
+    	HIGH (3),
+    	HIGH_LIMIT (4);
+    	
+    	public int index;
+    	LiftPosition(int index){
+    		this.index = index;
+    	}
+    }
+    
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
@@ -49,13 +69,13 @@ public class Lift extends LimitedSubsystem {
 
 	@Override
 	public PIDSource getPIDSource() {
-		return liftEncoder;
+		return encoder;
 	}
 
 	@Override
 	protected void move(double speed) {
 		// TODO Auto-generated method stub
-		liftMotor.set(speed);
+		motor.set(speed);
 	}
 }
 
