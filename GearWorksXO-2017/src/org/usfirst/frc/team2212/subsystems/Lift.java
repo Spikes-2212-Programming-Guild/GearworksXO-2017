@@ -33,15 +33,17 @@ public class Lift extends LimitedSubsystem {
 	}
 
 	public LiftPosition getPosition() {
-		if (upLimit.get())
+		if (upLimit.get()) // The subsystem is in its upper limit
 			return LiftPosition.HIGH_LIMIT;
-		if (downLimit.get())
+		if (downLimit.get()) // The subsystem is in its lower limit
 			return LiftPosition.LOW_LIMIT;
-		if (Lift.MIDDLE.get() == this.encoder.get())
+		if (Lift.MIDDLE.get() == this.encoder.get()) // The subsystem is in the
+														// middle ( the height of
+														// the lower gear )
 			return LiftPosition.MIDDLE;
-		if (this.encoder.get() < Lift.MIDDLE.get())
+		if (this.encoder.get() < Lift.MIDDLE.get()) // The subsystem is between the middle and the lower limit
 			return LiftPosition.LOW;
-		return LiftPosition.HIGH;
+		return LiftPosition.HIGH; // The subsystem is between the middle and higher limit
 	}
 
 	public enum LiftPosition {
