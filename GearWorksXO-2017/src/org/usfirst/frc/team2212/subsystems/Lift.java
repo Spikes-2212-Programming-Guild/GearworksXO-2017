@@ -22,8 +22,21 @@ public class Lift extends LimitedSubsystem {
 	private DigitalInput downLimit;
 	private Encoder encoder;
 	public static final Supplier<Double> SPEED = ConstantHandler.addConstantDouble("Lift-SPEED", 0.7);
-	public static final Supplier<Integer> MIDDLE_SET_POINT = ConstantHandler.addConstantInt("lift-MIDDLE_SET_POINT", 0); // place in encoder for
-														// putting lower gear
+	public static final Supplier<Integer> MIDDLE_SET_POINT = ConstantHandler.addConstantInt("lift-MIDDLE_SET_POINT", 0); // place
+																															// in
+																															// encoder
+																															// for
+	// putting lower gear
+	
+	public enum LiftState {
+		LOW_LIMIT(0), LOW_TO_MIDDLE(1), MIDDLE(2), MIDDLE_TO_HIGH(3), HIGH_LIMIT(4);
+
+		public int index;
+
+		LiftState(int index) {
+			this.index = index;
+		}
+	}
 
 	public Lift(SpeedController motor, DigitalInput upLimit, DigitalInput downLimit, Encoder encoder) {
 		this.motor = motor;
@@ -32,28 +45,24 @@ public class Lift extends LimitedSubsystem {
 		this.encoder = encoder;
 	}
 
-	public LiftPosition getPosition() {
+	public LiftState getPosition() {
 		if (upLimit.get()) // The subsystem is in its upper limit
-			return LiftPosition.HIGH_LIMIT;
+			return LiftState.HIGH_LIMIT;
 		if (downLimit.get()) // The subsystem is in its lower limit
-			return LiftPosition.LOW_LIMIT;
-		if (Lift.MIDDLE_SET_POINT.get() == this.encoder.get()) // The subsystem is in the
-														// middle ( the height of
-														// the lower gear )
-			return LiftPosition.MIDDLE;
-		if (this.encoder.get() < Lift.MIDDLE_SET_POINT.get()) // The subsystem is between the middle and the lower limit
-			return LiftPosition.LOW;
-		return LiftPosition.HIGH; // The subsystem is between the middle and higher limit
-	}
-
-	public enum LiftPosition {
-		LOW_LIMIT(0), LOW(1), MIDDLE(2), HIGH(3), HIGH_LIMIT(4);
-
-		public int index;
-
-		LiftPosition(int index) {
-			this.index = index;
-		}
+			return LiftState.LOW_LIMIT;
+		if (Lift.MIDDLE_SET_POINT.get() == this.encoder.get()) // The subsystem
+																// is in the
+			// middle ( the height of
+			// the lower gear )
+			return LiftState.MIDDLE;
+		if (this.encoder.get() < Lift.MIDDLE_SET_POINT.get()) // The subsystem
+																// is between
+																// the middle
+																// and the lower
+																// limit
+			return LiftState.LOW_TO_MIDDLE;
+		return LiftState.MIDDLE_TO_HIGH; // The subsystem is between the middle and
+									// higher limit
 	}
 
 	public void initDefaultCommand() {

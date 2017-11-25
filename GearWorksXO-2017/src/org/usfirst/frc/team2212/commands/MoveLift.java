@@ -2,7 +2,7 @@ package org.usfirst.frc.team2212.commands;
 
 import org.usfirst.frc.team2212.robot.Robot;
 import org.usfirst.frc.team2212.subsystems.Lift;
-import org.usfirst.frc.team2212.subsystems.Lift.LiftPosition;
+import org.usfirst.frc.team2212.subsystems.Lift.LiftState;
 
 import com.spikes2212.genericsubsystems.commands.MoveLimitedSubsystem;
 
@@ -11,9 +11,9 @@ import com.spikes2212.genericsubsystems.commands.MoveLimitedSubsystem;
  */
 public class MoveLift extends MoveLimitedSubsystem {
 
-	LiftPosition target;
+	LiftState target;
 
-	public MoveLift(LiftPosition target) {
+	public MoveLift(LiftState target) {
 		super(Robot.lift, (Robot.lift.getPosition().index < target.index) ? Lift.SPEED.get() : -Lift.SPEED.get());
 	}
 
