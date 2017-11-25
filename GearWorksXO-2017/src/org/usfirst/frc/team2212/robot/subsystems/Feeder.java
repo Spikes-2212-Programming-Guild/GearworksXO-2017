@@ -14,10 +14,13 @@ import edu.wpi.first.wpilibj.SpeedController;
 public class Feeder extends LimitedSubsystem {
 
 	private SpeedController feederMotor;
-	public static final Supplier<Double> FEEDER_SPEED = ConstantHandler.addConstantDouble("FEEDER_SPEED", 0.5);
+	public SpeedController blenderMotor;
+	public static final Supplier<Double> BLENDER_SPEED = ConstantHandler.addConstantDouble("Feeder-BLENDER_SPEED", 0.5);
+	public static final Supplier<Double> SPEED = ConstantHandler.addConstantDouble("Feeder-SPEED", 0.5);
 	
-	public Feeder(SpeedController feederMotor){
+	public Feeder(SpeedController feederMotor, SpeedController blenderMotor){
 		this.feederMotor = feederMotor;
+		this.blenderMotor = blenderMotor;
 	}
 	
     public void initDefaultCommand() {
@@ -45,8 +48,14 @@ public class Feeder extends LimitedSubsystem {
 
 	@Override
 	protected void move(double speed) {
-		// TODO Auto-generated method stub
 		feederMotor.set(speed);
+		blenderMotor.set(BLENDER_SPEED.get());
+	}
+	
+	@Override
+	public void stop(){
+		super.stop();
+		blenderMotor.set(0);
 	}
 }
 
