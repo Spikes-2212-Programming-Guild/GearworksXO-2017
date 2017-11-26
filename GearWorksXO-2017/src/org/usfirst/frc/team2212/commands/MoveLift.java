@@ -11,7 +11,7 @@ import com.spikes2212.genericsubsystems.commands.MoveLimitedSubsystem;
  */
 public class MoveLift extends MoveLimitedSubsystem {
 
-	LiftState target;
+	private LiftState target;
 
 	public MoveLift(LiftState target) {
 		super(Robot.lift, (Robot.lift.getPosition().index < target.index) ? Lift.SPEED.get() : -Lift.SPEED.get());
