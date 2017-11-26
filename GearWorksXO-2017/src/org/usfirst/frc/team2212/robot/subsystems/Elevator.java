@@ -24,12 +24,12 @@ public class Elevator extends LimitedSubsystem {
 	public static final Supplier<Double> SPEED = ConstantHandler.addConstantDouble("Lift-SPEED", 0.7);
 	public static final Supplier<Integer> MIDDLE_SET_POINT = ConstantHandler.addConstantInt("lift-MIDDLE_SET_POINT", 0);
 
-	public enum LiftState {
+	public enum ElevatorState {
 		LOW_LIMIT(0), LOW_TO_MIDDLE(1), MIDDLE(2), MIDDLE_TO_HIGH(3), HIGH_LIMIT(4);
 
 		private int index;
 
-		LiftState(int index) {
+		ElevatorState(int index) {
 			this.index = index;
 		}
 
@@ -45,21 +45,21 @@ public class Elevator extends LimitedSubsystem {
 		this.encoder = encoder;
 	}
 
-	public LiftState getPosition() {
+	public ElevatorState getPosition() {
 		// The subsystem is in its upper limit
 		if (upLimit.get())
-			return LiftState.HIGH_LIMIT;
+			return ElevatorState.HIGH_LIMIT;
 		// The subsystem is in its lower limit
 		if (downLimit.get())
-			return LiftState.LOW_LIMIT;
+			return ElevatorState.LOW_LIMIT;
 		// The subsystem is in the middle ( the height of the lower gear )
 		if (Elevator.MIDDLE_SET_POINT.get() == this.encoder.get())
-			return LiftState.MIDDLE;
+			return ElevatorState.MIDDLE;
 		// The subsystem is between the middle and the lower limit
 		if (this.encoder.get() < Elevator.MIDDLE_SET_POINT.get())
-			return LiftState.LOW_TO_MIDDLE;
+			return ElevatorState.LOW_TO_MIDDLE;
 		// The subsystem is between the middle and higher limit
-		return LiftState.MIDDLE_TO_HIGH;
+		return ElevatorState.MIDDLE_TO_HIGH;
 	}
 
 	public void initDefaultCommand() {
