@@ -1,6 +1,8 @@
 
 package org.usfirst.frc.team2212.robot;
 
+import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.Encoder;
 import org.usfirst.frc.team2212.robot.subsystems.GearPicker;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -28,10 +30,10 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void robotInit() {
+		gearPicker = new GearPicker(new CANTalon(RobotMap.CAN.GEAR_PICKER),
+						new DigitalInput(RobotMap.DIO.GEAR_PICKER_DOWN), new DigitalInput(RobotMap.DIO.GEAR_PICKER_UP),
+						new Encoder(RobotMap.DIO.GEAR_PICKER_ENCODER_A, RobotMap.DIO.GEAR_PICKER_ENCODER_B));
 		oi = new OI();
-		gearPicker = new GearPicker();
-		// chooser.addObject("My Auto", new MyAutoCommand());
-
 	}
 
 	/**
