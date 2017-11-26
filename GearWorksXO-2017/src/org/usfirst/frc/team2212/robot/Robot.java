@@ -3,7 +3,6 @@ package org.usfirst.frc.team2212.robot;
 
 import org.usfirst.frc.team2212.robot.subsystems.Climber;
 import org.usfirst.frc.team2212.robot.subsystems.Drivetrain;
-import org.usfirst.frc.team2212.robot.subsystems.Feeder;
 import org.usfirst.frc.team2212.robot.subsystems.FuelPicker;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -26,7 +25,6 @@ public class Robot extends IterativeRobot {
 	public static OI oi;
 	public static Climber climber;
 	public static Drivetrain drivetrain;
-	public static Feeder feeder;
 	public static FuelPicker fuelPicker;
 
 	Command autonomousCommand;
