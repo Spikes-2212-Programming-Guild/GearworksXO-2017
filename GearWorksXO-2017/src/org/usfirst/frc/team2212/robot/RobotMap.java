@@ -14,10 +14,6 @@ public class RobotMap {
 
 	//TODO insert correct ports
 	public interface CAN{
-		public static final int DRIVE_LEFT_1 = 0;
-		public static final int DRIVE_LEFT_2 = 1;
-		public static final int DRIVE_RIGHT_1 = 2;
-		public static final int DRIVE_RIGHT_2 = 3;
 		public static final int CLIMBER = 4;
         public static final int ELEVATOR = 5;
 	}
@@ -28,14 +24,10 @@ public class RobotMap {
 
 	//TODO insert correct ports
 	public interface DIO{
-		public static final int LIFT_UP = 5;
-		public static final int LIFT_DOWN = 6;
-		public static final int LIFT_ENCODER_A = 7;
-		public static final int LIFT_ENCODER_B = 4;
-		public static final int DRIVE_ENCODER_LEFT_A = 0;
-		public static final int DRIVE_ENCODER_LEFT_B = 1;
-		public static final int DRIVE_ENCODER_RIGHT_A = 2;
-		public static final int DRIVE_ENCODER_RIGHT_B = 3;
+		public static final int ELEVATOR_UP = 5;
+		public static final int ELEVATOR_DOWN = 6;
+		public static final int ELEVATOR_ENCODER_A = 7;
+		public static final int ELEVATOR_ENCODER_B = 4;
 	}
 
 	//TODO insert correct ports
