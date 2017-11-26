@@ -1,4 +1,4 @@
-package org.usfirst.frc.team2212.subsystems;
+package org.usfirst.frc.team2212.robot.subsystems;
 
 import java.util.function.Supplier;
 
@@ -15,7 +15,7 @@ import edu.wpi.first.wpilibj.SpeedController;
  *
  */
 
-public class Lift extends LimitedSubsystem {
+public class Elevator extends LimitedSubsystem {
 
 	private SpeedController motor;
 	private DigitalInput upLimit;
@@ -38,7 +38,7 @@ public class Lift extends LimitedSubsystem {
 		}
 	}
 
-	public Lift(SpeedController motor, DigitalInput upLimit, DigitalInput downLimit, Encoder encoder) {
+	public Elevator(SpeedController motor, DigitalInput upLimit, DigitalInput downLimit, Encoder encoder) {
 		this.motor = motor;
 		this.upLimit = upLimit;
 		this.downLimit = downLimit;
@@ -53,10 +53,10 @@ public class Lift extends LimitedSubsystem {
 		if (downLimit.get())
 			return LiftState.LOW_LIMIT;
 		// The subsystem is in the middle ( the height of the lower gear )
-		if (Lift.MIDDLE_SET_POINT.get() == this.encoder.get())
+		if (Elevator.MIDDLE_SET_POINT.get() == this.encoder.get())
 			return LiftState.MIDDLE;
 		// The subsystem is between the middle and the lower limit
-		if (this.encoder.get() < Lift.MIDDLE_SET_POINT.get())
+		if (this.encoder.get() < Elevator.MIDDLE_SET_POINT.get())
 			return LiftState.LOW_TO_MIDDLE;
 		// The subsystem is between the middle and higher limit
 		return LiftState.MIDDLE_TO_HIGH;
