@@ -8,24 +8,38 @@ package org.usfirst.frc.team2212.robot;
  */
 public class RobotMap {
 	
+	//TODO
 	public interface USB{
 	}
 	
+	//TODO
 	public interface CAN{
 		public static final int LIFT = 1;
+		public static final int DRIVE_LEFT_1 = 0;
+		public static final int DRIVE_LEFT_2 = 1;
+		public static final int DRIVE_RIGHT_1 = 2;
+		public static final int DRIVE_RIGHT_2 = 3;
+		public static final int CLIMBER = 4;
 	}
 	
+	//TODO
 	public interface PWM{
 	}
 	
+	//TODO
 	public interface DIO{
 		public static final int LIFT_UP = 1;
 		public static final int LIFT_DOWN = 2;
 		public static final int LIFT_ENCODER_A = 3;
 		public static final int LIFT_ENCODER_B = 4;
+		public static final int DRIVE_ENCODER_LEFT_A = 0;
+		public static final int DRIVE_ENCODER_LEFT_B = 1;
+		public static final int DRIVE_ENCODER_RIGHT_A = 2;
+		public static final int DRIVE_ENCODER_RIGHT_B = 3;
 	}
 	
-	public interface AnalogInterface{
+	//TODO
+	public interface AnalogInput{
 	}
 	
 }
