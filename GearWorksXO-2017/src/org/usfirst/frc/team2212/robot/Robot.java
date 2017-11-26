@@ -1,7 +1,7 @@
 
 package org.usfirst.frc.team2212.robot;
 
-import org.usfirst.frc.team2212.subsystems.Lift;
+import org.usfirst.frc.team2212.robot.subsystems.Elevator;
 
 import com.ctre.CANTalon;
 
@@ -21,7 +21,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 public class Robot extends IterativeRobot {
 
 	public static OI oi;
-	public static Lift lift;
+	public static Elevator elevator;
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -29,7 +29,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void robotInit() {
-		lift = new Lift(new CANTalon(RobotMap.CAN.LIFT), new DigitalInput(RobotMap.DIO.LIFT_UP),
+		elevator = new Elevator(new CANTalon(RobotMap.CAN.LIFT), new DigitalInput(RobotMap.DIO.LIFT_UP),
 				new DigitalInput(RobotMap.DIO.LIFT_DOWN),
 				new Encoder(RobotMap.DIO.LIFT_ENCODER_A, RobotMap.DIO.LIFT_ENCODER_B));
 		oi = new OI();
