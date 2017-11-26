@@ -1,19 +1,14 @@
 
 package org.usfirst.frc.team2212.robot;
 
+import org.usfirst.frc.team2212.robot.subsystems.Climber;
 import org.usfirst.frc.team2212.robot.subsystems.Elevator;
+import org.usfirst.frc.team2212.robot.subsystems.GearPicker;
 
 import com.ctre.CANTalon;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
-import org.usfirst.frc.team2212.robot.subsystems.Climber;
-
-
-import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.Encoder;
-import org.usfirst.frc.team2212.robot.subsystems.GearPicker;
-
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -36,8 +31,8 @@ public class Robot extends IterativeRobot {
 				new Encoder(RobotMap.DIO.ELEVATOR_ENCODER_A, RobotMap.DIO.ELEVATOR_ENCODER_B));
 		climber = new Climber(new CANTalon(RobotMap.CAN.CLIMBER));
 		gearPicker = new GearPicker(new CANTalon(RobotMap.CAN.GEAR_PICKER),
-						new DigitalInput(RobotMap.DIO.GEAR_PICKER_DOWN), new DigitalInput(RobotMap.DIO.GEAR_PICKER_UP),
-						new Encoder(RobotMap.DIO.GEAR_PICKER_ENCODER_A, RobotMap.DIO.GEAR_PICKER_ENCODER_B));
+				new DigitalInput(RobotMap.DIO.GEAR_PICKER_DOWN), new DigitalInput(RobotMap.DIO.GEAR_PICKER_UP),
+				new Encoder(RobotMap.DIO.GEAR_PICKER_ENCODER_A, RobotMap.DIO.GEAR_PICKER_ENCODER_B));
 		oi = new OI();
 	}
 
