@@ -10,23 +10,20 @@ import edu.wpi.first.wpilibj.Encoder;
 import org.usfirst.frc.team2212.robot.subsystems.Climber;
 
 
+import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.Encoder;
+import org.usfirst.frc.team2212.robot.subsystems.GearPicker;
+
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
-
-/**
- * The VM is configured to automatically run this class, and to call the
- * functions corresponding to each mode, as described in the IterativeRobot
- * documentation. If you change the name of this class or the package after
- * creating this project, you must also update the manifest file in the resource
- * directory.
- */
 public class Robot extends IterativeRobot {
 
 	public static OI oi;
 	public static Elevator elevator;
 	public static Climber climber;
+	public static GearPicker gearPicker;
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -38,6 +35,9 @@ public class Robot extends IterativeRobot {
 				new DigitalInput(RobotMap.DIO.ELEVATOR_DOWN),
 				new Encoder(RobotMap.DIO.ELEVATOR_ENCODER_A, RobotMap.DIO.ELEVATOR_ENCODER_B));
 		climber = new Climber(new CANTalon(RobotMap.CAN.CLIMBER));
+		gearPicker = new GearPicker(new CANTalon(RobotMap.CAN.GEAR_PICKER),
+						new DigitalInput(RobotMap.DIO.GEAR_PICKER_DOWN), new DigitalInput(RobotMap.DIO.GEAR_PICKER_UP),
+						new Encoder(RobotMap.DIO.GEAR_PICKER_ENCODER_A, RobotMap.DIO.GEAR_PICKER_ENCODER_B));
 		oi = new OI();
 	}
 
@@ -69,6 +69,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
+
 	}
 
 	/**
@@ -81,6 +82,11 @@ public class Robot extends IterativeRobot {
 
 	@Override
 	public void teleopInit() {
+		// This makes sure that the autonomous stops running when
+		// teleop starts running. If you want the autonomous to
+		// continue until interrupted by another command, remove
+		// this line or comment it out.
+
 	}
 
 	/**
