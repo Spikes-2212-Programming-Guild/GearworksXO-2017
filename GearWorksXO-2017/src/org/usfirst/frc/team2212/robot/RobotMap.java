@@ -7,30 +7,39 @@ package org.usfirst.frc.team2212.robot;
  * floating around.
  */
 public class RobotMap {
-	
-	//TODO
+
+	//TODO insert correct ports
 	public interface USB{
 	}
-	
-	//TODO
+
+	//TODO insert correct ports
 	public interface CAN{
-		public static final int ELEVATOR = 1;
+		public static final int DRIVE_LEFT_1 = 0;
+		public static final int DRIVE_LEFT_2 = 1;
+		public static final int DRIVE_RIGHT_1 = 2;
+		public static final int DRIVE_RIGHT_2 = 3;
+		public static final int CLIMBER = 4;
+        public static final int ELEVATOR = 5;
 	}
-	
-	//TODO
+
+	//TODO insert correct ports
 	public interface PWM{
 	}
-	
-	//TODO
+
+	//TODO insert correct ports
 	public interface DIO{
-		public static final int LIFT_UP = 1;
-		public static final int LIFT_DOWN = 2;
-		public static final int LIFT_ENCODER_A = 3;
+		public static final int LIFT_UP = 5;
+		public static final int LIFT_DOWN = 6;
+		public static final int LIFT_ENCODER_A = 7;
 		public static final int LIFT_ENCODER_B = 4;
+		public static final int DRIVE_ENCODER_LEFT_A = 0;
+		public static final int DRIVE_ENCODER_LEFT_B = 1;
+		public static final int DRIVE_ENCODER_RIGHT_A = 2;
+		public static final int DRIVE_ENCODER_RIGHT_B = 3;
 	}
-	
-	//TODO
+
+	//TODO insert correct ports
 	public interface AnalogInput{
 	}
-	
+
 }
