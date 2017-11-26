@@ -32,7 +32,6 @@ public class Robot extends IterativeRobot {
 	public static OI oi;
 	public static Elevator elevator;
 	public static Climber climber;
-	public static Drivetrain drivetrain;
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -44,13 +43,6 @@ public class Robot extends IterativeRobot {
 				new DigitalInput(RobotMap.DIO.LIFT_DOWN),
 				new Encoder(RobotMap.DIO.LIFT_ENCODER_A, RobotMap.DIO.LIFT_ENCODER_B));
 		climber = new Climber(new CANTalon(RobotMap.CAN.CLIMBER));
-		drivetrain = new Drivetrain(
-				new DoubleSpeedcontroller(new CANTalon(RobotMap.CAN.DRIVE_LEFT_1),
-						new CANTalon(RobotMap.CAN.DRIVE_LEFT_2)),
-				new DoubleSpeedcontroller(new CANTalon(RobotMap.CAN.DRIVE_RIGHT_1),
-						new CANTalon(RobotMap.CAN.DRIVE_RIGHT_2)),
-				new Encoder(RobotMap.DIO.DRIVE_ENCODER_LEFT_A, RobotMap.DIO.DRIVE_ENCODER_LEFT_B),
-				new Encoder(RobotMap.DIO.DRIVE_ENCODER_RIGHT_A, RobotMap.DIO.DRIVE_ENCODER_RIGHT_B));
 		oi = new OI();
 	}
 
