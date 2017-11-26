@@ -5,7 +5,6 @@ import org.usfirst.frc.team2212.robot.subsystems.Climber;
 import org.usfirst.frc.team2212.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team2212.robot.subsystems.Feeder;
 import org.usfirst.frc.team2212.robot.subsystems.FuelPicker;
-import org.usfirst.frc.team2212.robot.subsystems.Shooter;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -29,7 +28,6 @@ public class Robot extends IterativeRobot {
 	public static Drivetrain drivetrain;
 	public static Feeder feeder;
 	public static FuelPicker fuelPicker;
-	public static Shooter shooter;
 
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
