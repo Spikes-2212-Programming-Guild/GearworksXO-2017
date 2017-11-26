@@ -34,9 +34,9 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void robotInit() {
-		elevator = new Elevator(new CANTalon(RobotMap.CAN.LIFT), new DigitalInput(RobotMap.DIO.LIFT_UP),
-				new DigitalInput(RobotMap.DIO.LIFT_DOWN),
-				new Encoder(RobotMap.DIO.LIFT_ENCODER_A, RobotMap.DIO.LIFT_ENCODER_B));
+		elevator = new Elevator(new CANTalon(RobotMap.CAN.ELEVATOR), new DigitalInput(RobotMap.DIO.ELEVATOR_UP),
+				new DigitalInput(RobotMap.DIO.ELEVATOR_DOWN),
+				new Encoder(RobotMap.DIO.ELEVATOR_ENCODER_A, RobotMap.DIO.ELEVATOR_ENCODER_B));
 		climber = new Climber(new CANTalon(RobotMap.CAN.CLIMBER));
 		oi = new OI();
 	}
