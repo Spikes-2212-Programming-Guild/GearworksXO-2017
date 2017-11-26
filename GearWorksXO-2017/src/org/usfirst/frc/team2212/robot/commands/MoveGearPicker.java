@@ -9,7 +9,6 @@ public class MoveGearPicker extends MoveLimitedSubsystem{
 
 	public MoveGearPicker(LimitedSubsystem GearPicker, double speed) {
 		super(GearPicker, speed);
-		requires(Robot.gearPicker);
 		// TODO Auto-generated constructor stub
 	}
 
