@@ -15,6 +15,7 @@ public class GearPicker extends LimitedSubsystem {
 	private Encoder encoder;
 	//private AnalogPotentiometer potentiometer;
 
+	//Todo - check if motor is inverted
 	public GearPicker(SpeedController motor, DigitalInput downLimit, DigitalInput upLimit, Encoder encoder
 					  /*, AnalogPotentiometer potentiometer */) {
 		this.motor = motor;
