@@ -4,13 +4,15 @@ package org.usfirst.frc.team2212.robot;
 import org.usfirst.frc.team2212.robot.subsystems.Climber;
 import org.usfirst.frc.team2212.robot.subsystems.Drivetrain;
 
+import com.spikes2212.utils.DoubleSpeedcontroller;
+
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -25,18 +27,21 @@ public class Robot extends IterativeRobot {
 	public static Climber climber;
 	public static Drivetrain drivetrain;
 
-	Command autonomousCommand;
-	SendableChooser<Command> chooser = new SendableChooser<>();
-
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
 	 */
 	@Override
 	public void robotInit() {
+		climber = new Climber(new CANTalon(RobotMap.CAN.CLIMBER));
+		drivetrain = new Drivetrain(
+				new DoubleSpeedcontroller(new CANTalon(RobotMap.CAN.DRIVE_LEFT_1),
+						new CANTalon(RobotMap.CAN.DRIVE_LEFT_2)),
+				new DoubleSpeedcontroller(new CANTalon(RobotMap.CAN.DRIVE_RIGHT_1),
+						new CANTalon(RobotMap.CAN.DRIVE_RIGHT_2)),
+				new Encoder(RobotMap.DIO.DRIVE_ENCODER_LEFT_A, RobotMap.DIO.DRIVE_ENCODER_LEFT_B),
+				new Encoder(RobotMap.DIO.DRIVE_ENCODER_RIGHT_A, RobotMap.DIO.DRIVE_ENCODER_RIGHT_B));
 		oi = new OI();
-		// chooser.addObject("My Auto", new MyAutoCommand());
-		SmartDashboard.putData("Auto mode", chooser);
 	}
 
 	/**
