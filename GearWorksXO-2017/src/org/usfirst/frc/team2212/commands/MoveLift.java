@@ -14,12 +14,13 @@ public class MoveLift extends MoveLimitedSubsystem {
 	private LiftState target;
 
 	public MoveLift(LiftState target) {
-		super(Robot.lift, (Robot.lift.getPosition().index < target.index) ? Lift.SPEED.get() : -Lift.SPEED.get());
+		super(Robot.lift, (Robot.lift.getPosition().getIndex() < target.getIndex()) ? Lift.SPEED.get() : -Lift.SPEED.get());
+		this.target = target;
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		return (target.index == Robot.lift.getPosition().index);
+		return (target.getIndex() == Robot.lift.getPosition().getIndex());
 	}
 
 }

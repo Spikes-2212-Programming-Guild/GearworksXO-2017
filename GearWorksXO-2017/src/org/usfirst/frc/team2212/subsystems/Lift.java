@@ -22,8 +22,7 @@ public class Lift extends LimitedSubsystem {
 	private DigitalInput downLimit;
 	private Encoder encoder;
 	public static final Supplier<Double> SPEED = ConstantHandler.addConstantDouble("Lift-SPEED", 0.7);
-	public static final Supplier<Integer> MIDDLE_SET_POINT = ConstantHandler.addConstantInt("lift-MIDDLE_SET_POINT", 0); // place
-	// putting lower gear
+	public static final Supplier<Integer> MIDDLE_SET_POINT = ConstantHandler.addConstantInt("lift-MIDDLE_SET_POINT", 0);
 
 	public enum LiftState {
 		LOW_LIMIT(0), LOW_TO_MIDDLE(1), MIDDLE(2), MIDDLE_TO_HIGH(3), HIGH_LIMIT(4);
@@ -85,7 +84,6 @@ public class Lift extends LimitedSubsystem {
 
 	@Override
 	protected void move(double speed) {
-		// TODO Auto-generated method stub
 		motor.set(speed);
 	}
 }
