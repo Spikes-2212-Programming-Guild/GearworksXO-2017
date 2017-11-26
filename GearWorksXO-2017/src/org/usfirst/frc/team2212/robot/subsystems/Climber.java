@@ -13,13 +13,13 @@ import edu.wpi.first.wpilibj.PIDSource;
  */
 public class Climber extends LimitedSubsystem {
 	
-	private CANTalon climberMotor;
+	private CANTalon motor;
 	public static final Supplier<Double> MAX_CURRENT = ConstantHandler.addConstantDouble("MAX_CURRENT", 0.75);
 	public static final Supplier<Double> SPEED = ConstantHandler.addConstantDouble("SPEED", 0.5);
 	
 	public Climber(CANTalon climberMotor) {
-		this.climberMotor = climberMotor;
-		this.climberMotor.setInverted(true);
+		this.motor = climberMotor;
+		this.motor.setInverted(true);
 	}
 
     public void initDefaultCommand() {
@@ -36,7 +36,7 @@ public class Climber extends LimitedSubsystem {
 	@Override
 	public boolean isMax() {
 		// TODO Auto-generated method stub
-		return (climberMotor.getOutputCurrent() >= MAX_CURRENT.get());
+		return (motor.getOutputCurrent() >= MAX_CURRENT.get());
 	}
 
 	@Override
@@ -47,7 +47,7 @@ public class Climber extends LimitedSubsystem {
 
 	@Override
 	protected void move(double speed) {
-		climberMotor.set(speed);
+		motor.set(speed);
 	}
 }
 
