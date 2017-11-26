@@ -12,16 +12,16 @@ import edu.wpi.first.wpilibj.SpeedController;
  */
 public class GearPicker extends LimitedSubsystem {
 
-	private SpeedController motor;
+	private SpeedController speedController;
 	private Encoder encoder;
-	private DigitalInput maxLimit;
-	private DigitalInput minLimit;
+	private DigitalInput upLimit;
+	private DigitalInput downLimit;
 
-	public void gearPicker(Encoder pickerEncoder, SpeedController pickerMotor, DigitalInput upLimit,DigitalInput downLimit) {
-		this.encoder = pickerEncoder;
-		this.motor = pickerMotor;
-		this.maxLimit = upLimit;
-		this.minLimit = downLimit;
+	public void gearPicker(Encoder Encoder, SpeedController speedController, DigitalInput upLimit,DigitalInput downLimit) {
+		this.encoder = Encoder;
+		this.speedController = speedController;
+		this.upLimit = upLimit;
+		this.downLimit = downLimit;
 	}
 
 	public void initDefaultCommand() {
@@ -38,18 +38,18 @@ public class GearPicker extends LimitedSubsystem {
 	@Override
 	public boolean isMax() {
 		// TODO Auto-generated method stub
-		return maxLimit.get();
+		return upLimit.get();
 	}
 
 	@Override
 	public boolean isMin() {
 		// TODO Auto-generated method stub
-		return minLimit.get();
+		return downLimit.get();
 	}
 
 	@Override
 	protected void move(double speed) {
-		this.motor.set(speed);
+		this.speedController.set(speed);
 	}
 
 }
