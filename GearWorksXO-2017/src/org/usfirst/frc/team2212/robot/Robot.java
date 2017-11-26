@@ -22,8 +22,7 @@ public class Robot extends IterativeRobot {
 	public static OI oi;
 	public static GearPicker gearPicker;
 
-	Command autonomousCommand;
-	SendableChooser<Command> chooser = new SendableChooser<>();
+
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -34,7 +33,7 @@ public class Robot extends IterativeRobot {
 		oi = new OI();
 		gearPicker = new GearPicker();
 		// chooser.addObject("My Auto", new MyAutoCommand());
-		SmartDashboard.putData("Auto mode", chooser);
+
 	}
 
 	/**
@@ -65,7 +64,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-		autonomousCommand = chooser.getSelected();
+	
 
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
@@ -75,8 +74,7 @@ public class Robot extends IterativeRobot {
 		 */
 
 		// schedule the autonomous command (example)
-		if (autonomousCommand != null)
-			autonomousCommand.start();
+
 	}
 
 	/**
@@ -93,8 +91,7 @@ public class Robot extends IterativeRobot {
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
 		// this line or comment it out.
-		if (autonomousCommand != null)
-			autonomousCommand.cancel();
+
 	}
 
 	/**
