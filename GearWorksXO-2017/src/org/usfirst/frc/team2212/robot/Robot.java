@@ -1,13 +1,15 @@
 
 package org.usfirst.frc.team2212.robot;
 
+import org.usfirst.frc.team2212.subsystems.Lift;
+
+import com.ctre.CANTalon;
+
+import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -19,6 +21,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Robot extends IterativeRobot {
 
 	public static OI oi;
+	public static Lift lift;
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -26,6 +29,9 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void robotInit() {
+		lift = new Lift(new CANTalon(RobotMap.CAN.LIFT), new DigitalInput(RobotMap.DIO.LIFT_UP),
+				new DigitalInput(RobotMap.DIO.LIFT_DOWN),
+				new Encoder(RobotMap.DIO.LIFT_ENCODER_A, RobotMap.DIO.LIFT_ENCODER_B));
 		oi = new OI();
 	}
 
