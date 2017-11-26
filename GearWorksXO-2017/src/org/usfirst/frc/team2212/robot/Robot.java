@@ -33,9 +33,6 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void robotInit() {
-		elevator = new Elevator(new CANTalon(RobotMap.CAN.LIFT), new DigitalInput(RobotMap.DIO.LIFT_UP),
-				new DigitalInput(RobotMap.DIO.LIFT_DOWN),
-				new Encoder(RobotMap.DIO.LIFT_ENCODER_A, RobotMap.DIO.LIFT_ENCODER_B));
 		climber = new Climber(new CANTalon(RobotMap.CAN.CLIMBER));
 		drivetrain = new Drivetrain(
 				new DoubleSpeedcontroller(new CANTalon(RobotMap.CAN.DRIVE_LEFT_1),
@@ -75,7 +72,6 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-		autonomousCommand = chooser.getSelected();
 
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
@@ -83,10 +79,6 @@ public class Robot extends IterativeRobot {
 		 * = new MyAutoCommand(); break; case "Default Auto": default:
 		 * autonomousCommand = new ExampleCommand(); break; }
 		 */
-
-		// schedule the autonomous command (example)
-		if (autonomousCommand != null)
-			autonomousCommand.start();
 	}
 
 	/**
@@ -99,12 +91,6 @@ public class Robot extends IterativeRobot {
 
 	@Override
 	public void teleopInit() {
-		// This makes sure that the autonomous stops running when
-		// teleop starts running. If you want the autonomous to
-		// continue until interrupted by another command, remove
-		// this line or comment it out.
-		if (autonomousCommand != null)
-			autonomousCommand.cancel();
 	}
 
 	/**
