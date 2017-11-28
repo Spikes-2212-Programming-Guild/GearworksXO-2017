@@ -22,6 +22,7 @@ public class Drivetrain extends TankDrivetrain {
 		this.rightGearbox = rightGearbox;
 		this.encoderLeft = encoderLeft;
 		this.encoderRight = encoderRight;
+		//y tho
 	}
 
 	public void initDefaultCommand() {
