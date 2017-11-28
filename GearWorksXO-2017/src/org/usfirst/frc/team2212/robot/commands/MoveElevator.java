@@ -15,8 +15,7 @@ import com.spikes2212.genericsubsystems.commands.MoveLimitedSubsystem;
 public class MoveElevator extends MoveLimitedSubsystem {
 
 	private ElevatorState target;
-	// TODO: Check naming ethics for tolerance.
-	public static final Supplier<Integer> tolerance = ConstantHandler.addConstantInt("Elevetor - Tolerance", 10);
+	public static final Supplier<Integer> TOLERANCE = ConstantHandler.addConstantInt("Elevetor - Tolerance", 10);
 
 	public MoveElevator(ElevatorState target) {
 		super(Robot.elevator, (Robot.elevator.getPosition().getIndex() < target.getIndex()) ? Elevator.SPEED.get()
