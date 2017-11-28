@@ -9,7 +9,12 @@ import com.ctre.CANTalon;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
+import org.usfirst.frc.team2212.robot.subsystems.RollerGripper;
+
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.VictorSP;
+import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
@@ -19,6 +24,7 @@ public class Robot extends IterativeRobot {
 	public static Elevator elevator;
 	public static Climber climber;
 	public static GearPicker gearPicker;
+    public static RollerGripper gripper;
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -26,6 +32,8 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void robotInit() {
+		gripper = new RollerGripper(new VictorSP(RobotMap.PWM.GRIPPER_MOTOR),
+				new DigitalInput(RobotMap.DIO.GRIPPER_LIGHT_SENSOR));
 		elevator = new Elevator(new CANTalon(RobotMap.CAN.ELEVATOR), new DigitalInput(RobotMap.DIO.ELEVATOR_UP),
 				new DigitalInput(RobotMap.DIO.ELEVATOR_DOWN),
 				new Encoder(RobotMap.DIO.ELEVATOR_ENCODER_A, RobotMap.DIO.ELEVATOR_ENCODER_B));
