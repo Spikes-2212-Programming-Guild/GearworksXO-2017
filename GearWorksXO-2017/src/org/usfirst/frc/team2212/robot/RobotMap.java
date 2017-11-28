@@ -10,11 +10,11 @@ public class RobotMap {
 	public interface CAN {
 		public static final int GEAR_PICKER = 0;
 		public static final int CLIMBER = 4;
-		public static final int ELEVATOR = 5;
 	}
 
 	// TODO insert correct ports
 	public interface PWM {
+		public static final int ELEVATOR = 0;
 	}
 
 	// TODO insert correct ports

@@ -10,6 +10,7 @@ import com.ctre.CANTalon;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
@@ -26,7 +27,8 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void robotInit() {
-		elevator = new Elevator(new CANTalon(RobotMap.CAN.ELEVATOR), new DigitalInput(RobotMap.DIO.ELEVATOR_UP),
+		
+		elevator = new Elevator(new VictorSP(RobotMap.PWM.ELEVATOR), new DigitalInput(RobotMap.DIO.ELEVATOR_UP),
 				new DigitalInput(RobotMap.DIO.ELEVATOR_DOWN),
 				new Encoder(RobotMap.DIO.ELEVATOR_ENCODER_A, RobotMap.DIO.ELEVATOR_ENCODER_B));
 		climber = new Climber(new CANTalon(RobotMap.CAN.CLIMBER));
