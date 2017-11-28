@@ -4,7 +4,7 @@ package org.usfirst.frc.team2212.robot;
 import org.usfirst.frc.team2212.robot.subsystems.Climber;
 import org.usfirst.frc.team2212.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team2212.robot.subsystems.Elevator;
-import org.usfirst.frc.team2212.robot.subsystems.GearPicker;
+import org.usfirst.frc.team2212.robot.subsystems.Folder;
 
 import com.ctre.CANTalon;
 import com.spikes2212.utils.DoubleSpeedcontroller;
@@ -25,7 +25,7 @@ public class Robot extends IterativeRobot {
 	public static OI oi;
 	public static Elevator elevator;
 	public static Climber climber;
-	public static GearPicker gearPicker;
+	public static Folder folder;
 	public static Drivetrain drivetrain;
     public static RollerGripper gripper;
 
@@ -42,14 +42,13 @@ public class Robot extends IterativeRobot {
 						new CANTalon(RobotMap.CAN.DRIVETRAIN_RIGHT_REAR)),
 				new Encoder(RobotMap.DIO.DRIVETRAIN_LEFT_ENCODER_A, RobotMap.DIO.DRIVETRAIN_LEFT_ENCODER_B),
 				new Encoder(RobotMap.DIO.DRIVETRAIN_RIGHT_ENCODER_A, RobotMap.DIO.DRIVETRAIN_RIGHT_ENCODER_B));
-		elevator = new Elevator(new VictorSP(RobotMap.PWM.ELEVATOR), new DigitalInput(RobotMap.DIO.ELEVATOR_UP),
 		gripper = new RollerGripper(new VictorSP(RobotMap.PWM.GRIPPER_MOTOR),
 				new DigitalInput(RobotMap.DIO.GRIPPER_LIGHT_SENSOR));
 		elevator = new Elevator(new CANTalon(RobotMap.CAN.ELEVATOR), new DigitalInput(RobotMap.DIO.ELEVATOR_UP),
 				new DigitalInput(RobotMap.DIO.ELEVATOR_DOWN),
 				new Encoder(RobotMap.DIO.ELEVATOR_ENCODER_A, RobotMap.DIO.ELEVATOR_ENCODER_B));
 		climber = new Climber(new CANTalon(RobotMap.CAN.CLIMBER));
-		gearPicker = new GearPicker(new CANTalon(RobotMap.CAN.GEAR_PICKER),
+		folder = new Folder(new CANTalon(RobotMap.CAN.GEAR_PICKER),
 				new DigitalInput(RobotMap.DIO.GEAR_PICKER_DOWN), new DigitalInput(RobotMap.DIO.GEAR_PICKER_UP),
 				new Encoder(RobotMap.DIO.GEAR_PICKER_ENCODER_A, RobotMap.DIO.GEAR_PICKER_ENCODER_B));
 		oi = new OI();
