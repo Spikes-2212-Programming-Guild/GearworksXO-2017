@@ -11,12 +11,12 @@ import edu.wpi.first.wpilibj.SpeedController;
 
 public class RollerGripper extends LimitedSubsystem {
 
-	public static final Supplier<Double> speed = ConstantHandler.addConstantDouble("Gripper - speed", 0.5);
+	public static final Supplier<Double> SPEED = ConstantHandler.addConstantDouble("Gripper - speed", 0.5);
 	private SpeedController motor;
 	private DigitalInput sensor;
 
 	// TODO - check if motor inverted
-	// TODO - check if inverted
+	// TODO - check if sensor inverted
 	public RollerGripper(SpeedController motor, DigitalInput sensor) {
 		this.motor = motor;
 		this.sensor = sensor;
@@ -29,7 +29,7 @@ public class RollerGripper extends LimitedSubsystem {
 
 	@Override
 	public boolean isMin() {
-		return !sensor.get();
+		return sensor.get();
 	}
 
 	@Override
