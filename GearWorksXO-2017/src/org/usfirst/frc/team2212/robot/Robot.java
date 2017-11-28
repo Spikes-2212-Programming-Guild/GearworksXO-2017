@@ -36,21 +36,26 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void robotInit() {
 		drivetrain = new Drivetrain(
-				new DoubleSpeedcontroller(new CANTalon(RobotMap.CAN.DRIVETRAIN_LEFT_FRONT),
-						new CANTalon(RobotMap.CAN.DRIVETRAIN_LEFT_REAR)),
-				new DoubleSpeedcontroller(new CANTalon(RobotMap.CAN.DRIVETRAIN_RIGHT_FRONT),
-						new CANTalon(RobotMap.CAN.DRIVETRAIN_RIGHT_REAR)),
+				new DoubleSpeedcontroller(new CANTalon(RobotMap.CAN.DRIVE_LEFT_FRONT),
+						new CANTalon(RobotMap.CAN.DRIVE_LEFT_REAR)),
+				new DoubleSpeedcontroller(new CANTalon(RobotMap.CAN.DRIVE_RIGHT_FRONT),
+						new CANTalon(RobotMap.CAN.DRIVE_RIGHT_REAR)),
 				new Encoder(RobotMap.DIO.DRIVETRAIN_LEFT_ENCODER_A, RobotMap.DIO.DRIVETRAIN_LEFT_ENCODER_B),
 				new Encoder(RobotMap.DIO.DRIVETRAIN_RIGHT_ENCODER_A, RobotMap.DIO.DRIVETRAIN_RIGHT_ENCODER_B));
-		rollerGripper = new RollerGripper(new VictorSP(RobotMap.PWM.GRIPPER_MOTOR),
-				new DigitalInput(RobotMap.DIO.GRIPPER_LIGHT_SENSOR));
-		elevator = new Elevator(new CANTalon(RobotMap.CAN.ELEVATOR), new DigitalInput(RobotMap.DIO.ELEVATOR_UP),
+		
+		rollerGripper = new RollerGripper(new VictorSP(RobotMap.PWM.ROLLER_MOTOR),
+				new DigitalInput(RobotMap.DIO.ROLLER_SENSOR));
+		
+		elevator = new Elevator(new CANTalon(RobotMap.PWM.ELEVATOR), new DigitalInput(RobotMap.DIO.ELEVATOR_UP),
 				new DigitalInput(RobotMap.DIO.ELEVATOR_DOWN),
 				new Encoder(RobotMap.DIO.ELEVATOR_ENCODER_A, RobotMap.DIO.ELEVATOR_ENCODER_B));
+		
 		climber = new Climber(new CANTalon(RobotMap.CAN.CLIMBER));
+		
 		gearPicker = new GearPicker(new CANTalon(RobotMap.CAN.GEAR_PICKER),
 				new DigitalInput(RobotMap.DIO.GEAR_PICKER_DOWN), new DigitalInput(RobotMap.DIO.GEAR_PICKER_UP),
 				new Encoder(RobotMap.DIO.GEAR_PICKER_ENCODER_A, RobotMap.DIO.GEAR_PICKER_ENCODER_B));
+		
 		oi = new OI();
 	}
 
