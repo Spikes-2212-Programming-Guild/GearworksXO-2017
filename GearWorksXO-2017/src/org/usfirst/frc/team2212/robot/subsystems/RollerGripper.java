@@ -36,7 +36,11 @@ public class RollerGripper extends LimitedSubsystem {
 	public PIDSource getPIDSource() {
 		return null;
 	}
-
+	
+	public void justMove(double speed) {
+		this.move(speed);
+	}
+	
 	@Override
 	protected void move(double speed) {
 		motor.set(speed);
