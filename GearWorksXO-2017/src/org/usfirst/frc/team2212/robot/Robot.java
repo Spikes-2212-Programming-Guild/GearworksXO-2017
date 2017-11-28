@@ -9,6 +9,7 @@ import org.usfirst.frc.team2212.robot.subsystems.GearPicker;
 import com.ctre.CANTalon;
 import com.spikes2212.utils.DoubleSpeedcontroller;
 
+import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
 import org.usfirst.frc.team2212.robot.subsystems.RollerGripper;
@@ -27,7 +28,7 @@ public class Robot extends IterativeRobot {
 	public static Climber climber;
 	public static GearPicker gearPicker;
 	public static Drivetrain drivetrain;
-    public static RollerGripper rollerGripper;
+	public static RollerGripper rollerGripper;
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -42,20 +43,20 @@ public class Robot extends IterativeRobot {
 						new CANTalon(RobotMap.CAN.DRIVE_RIGHT_REAR)),
 				new Encoder(RobotMap.DIO.DRIVETRAIN_LEFT_ENCODER_A, RobotMap.DIO.DRIVETRAIN_LEFT_ENCODER_B),
 				new Encoder(RobotMap.DIO.DRIVETRAIN_RIGHT_ENCODER_A, RobotMap.DIO.DRIVETRAIN_RIGHT_ENCODER_B));
-		
+
 		rollerGripper = new RollerGripper(new VictorSP(RobotMap.PWM.ROLLER_MOTOR),
 				new DigitalInput(RobotMap.DIO.ROLLER_SENSOR));
-		
+
 		elevator = new Elevator(new CANTalon(RobotMap.PWM.ELEVATOR), new DigitalInput(RobotMap.DIO.ELEVATOR_UP),
 				new DigitalInput(RobotMap.DIO.ELEVATOR_DOWN),
 				new Encoder(RobotMap.DIO.ELEVATOR_ENCODER_A, RobotMap.DIO.ELEVATOR_ENCODER_B));
-		
+
 		climber = new Climber(new CANTalon(RobotMap.CAN.CLIMBER));
-		
+
 		gearPicker = new GearPicker(new CANTalon(RobotMap.CAN.GEAR_PICKER),
 				new DigitalInput(RobotMap.DIO.GEAR_PICKER_DOWN), new DigitalInput(RobotMap.DIO.GEAR_PICKER_UP),
-				new Encoder(RobotMap.DIO.GEAR_PICKER_ENCODER_A, RobotMap.DIO.GEAR_PICKER_ENCODER_B));
-		
+				new AnalogPotentiometer(RobotMap.AnalogInput.GEAR_PICKER_POTENTIOMETER));
+
 		oi = new OI();
 	}
 
