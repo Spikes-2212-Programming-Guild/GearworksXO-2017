@@ -9,10 +9,10 @@ package org.usfirst.frc.team2212.robot;
 public class RobotMap {
 
 	public interface PWM {
-		public static final int GRIPPER_MOTOR_PORT = 0;
+		public static final int GRIPPER_MOTOR = 0;
 	}
 
 	public interface DIO {
-		public static final int GRIPPER_LIGHT_SENSOR_PORT = 1;
+		public static final int GRIPPER_LIGHT_SENSOR = 1;
 	}
 }
