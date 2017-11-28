@@ -4,7 +4,7 @@ package org.usfirst.frc.team2212.robot;
 import org.usfirst.frc.team2212.robot.subsystems.Climber;
 import org.usfirst.frc.team2212.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team2212.robot.subsystems.Elevator;
-import org.usfirst.frc.team2212.robot.subsystems.GearPicker;
+import org.usfirst.frc.team2212.robot.subsystems.Folder;
 
 import com.ctre.CANTalon;
 import com.spikes2212.utils.DoubleSpeedcontroller;
@@ -26,7 +26,7 @@ public class Robot extends IterativeRobot {
 	public static OI oi;
 	public static Elevator elevator;
 	public static Climber climber;
-	public static GearPicker gearPicker;
+	public static Folder folder;
 	public static Drivetrain drivetrain;
 	public static RollerGripper rollerGripper;
 
@@ -53,8 +53,7 @@ public class Robot extends IterativeRobot {
 
 		climber = new Climber(new CANTalon(RobotMap.CAN.CLIMBER));
 
-		gearPicker = new GearPicker(new CANTalon(RobotMap.CAN.GEAR_PICKER),
-				new DigitalInput(RobotMap.DIO.GEAR_PICKER_DOWN), new DigitalInput(RobotMap.DIO.GEAR_PICKER_UP),
+		folder = new Folder(new CANTalon(RobotMap.CAN.GEAR_PICKER),
 				new AnalogPotentiometer(RobotMap.AnalogInput.GEAR_PICKER_POTENTIOMETER));
 
 		oi = new OI();

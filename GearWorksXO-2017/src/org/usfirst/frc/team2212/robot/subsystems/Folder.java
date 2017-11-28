@@ -1,5 +1,8 @@
 package org.usfirst.frc.team2212.robot.subsystems;
 
+import java.util.function.Supplier;
+
+import com.spikes2212.dashboard.ConstantHandler;
 import com.spikes2212.genericsubsystems.LimitedSubsystem;
 
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
@@ -10,22 +13,22 @@ import edu.wpi.first.wpilibj.SpeedController;
 /**
  *
  */
-public class GearPicker extends LimitedSubsystem {
+public class Folder extends LimitedSubsystem {
 
+	// TODO - Change constants values to actual potentiometer values
+	public static final Supplier<Double> MID = ConstantHandler.addConstantDouble("Folder - Mid", 45);
 	private SpeedController motor;
 	private DigitalInput downLimit;
 	private DigitalInput upLimit;
 	private AnalogPotentiometer potentiometer;
-	// private Encoder encoder;
 
-	// TODO - check if motor is inverted
-	public GearPicker(SpeedController motor, DigitalInput downLimit, DigitalInput upLimit,
-			AnalogPotentiometer potentiometer /* Encoder encoder */) {
+	//TODO - check if motor is inverted
+	public Folder(SpeedController motor, DigitalInput downLimit, DigitalInput upLimit,
+					   AnalogPotentiometer potentiometer) {
 		this.motor = motor;
 		this.upLimit = downLimit;
 		this.downLimit = upLimit;
 		this.potentiometer = potentiometer;
-		/* this.encoder = encoder; */
 	}
 
 	@Override
@@ -41,7 +44,6 @@ public class GearPicker extends LimitedSubsystem {
 	@Override
 	public PIDSource getPIDSource() {
 		return potentiometer;
-		/* return encoder; */
 	}
 
 	@Override
