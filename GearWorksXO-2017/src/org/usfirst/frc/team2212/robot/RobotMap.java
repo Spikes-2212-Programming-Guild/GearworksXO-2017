@@ -14,7 +14,7 @@ public class RobotMap {
 
 	// TODO insert correct ports
 	public interface CAN {
-		public static final int GEAR_PICKER = 0;
+		public static final int FOLDER= 0;
 
 		public static final int CLIMBER = 5;
 
@@ -26,33 +26,33 @@ public class RobotMap {
 
 	// TODO insert correct ports
 	public interface PWM {
-		public static final int ELEVATOR = 0;
+		public static final int ELEVATOR_MOTOR = 0;
 		public static final int ROLLER_MOTOR = 1;
 	}
 
 	// TODO insert correct ports
 	public interface DIO {
-		public static final int ROLLER_SENSOR = 12;
-
 		public static final int ELEVATOR_DOWN = 0;
 		public static final int ELEVATOR_UP = 1;
 		public static final int ELEVATOR_ENCODER_A = 2;
 		public static final int ELEVATOR_ENCODER_B = 3;
 
-		public static final int GEAR_PICKER_DOWN = 4;
-		public static final int GEAR_PICKER_UP = 5;
-		public static final int GEAR_PICKER_ENCODER_A = 6;
-		public static final int GEAR_PICKER_ENCODER_B = 7;
+		public static final int FOLDER_DOWN = 4;
+		public static final int FOLDER_UP = 5;
+		public static final int FOLDER_ENCODER_A = 6;
+		public static final int FOLDER_ENCODER_B = 7;
 
-		public static final int DRIVETRAIN_LEFT_ENCODER_A = 8;
-		public static final int DRIVETRAIN_LEFT_ENCODER_B = 9;
-		public static final int DRIVETRAIN_RIGHT_ENCODER_A = 10;
-		public static final int DRIVETRAIN_RIGHT_ENCODER_B = 11;
+		public static final int DRIVE_LEFT_ENCODER_A = 8;
+		public static final int DRIVE_LEFT_ENCODER_B = 9;
+		public static final int DRIVE_RIGHT_ENCODER_A = 10;
+		public static final int DRIVE_RIGHT_ENCODER_B = 11;
+		
+		public static final int ROLLER_SENSOR = 12;
 	}
 
 	// TODO insert correct ports
 	public interface AnalogInput {
-		public static final int GEAR_PICKER_POTENTIOMETER = 0;
+		public static final int FOLDER_POTENTIOMETER = 0;
 	}
 
 }

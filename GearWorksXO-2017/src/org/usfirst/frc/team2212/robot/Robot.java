@@ -41,20 +41,21 @@ public class Robot extends IterativeRobot {
 						new CANTalon(RobotMap.CAN.DRIVE_LEFT_REAR)),
 				new DoubleSpeedcontroller(new CANTalon(RobotMap.CAN.DRIVE_RIGHT_FRONT),
 						new CANTalon(RobotMap.CAN.DRIVE_RIGHT_REAR)),
-				new Encoder(RobotMap.DIO.DRIVETRAIN_LEFT_ENCODER_A, RobotMap.DIO.DRIVETRAIN_LEFT_ENCODER_B),
-				new Encoder(RobotMap.DIO.DRIVETRAIN_RIGHT_ENCODER_A, RobotMap.DIO.DRIVETRAIN_RIGHT_ENCODER_B));
+				new Encoder(RobotMap.DIO.DRIVE_LEFT_ENCODER_A, RobotMap.DIO.DRIVE_LEFT_ENCODER_B),
+				new Encoder(RobotMap.DIO.DRIVE_RIGHT_ENCODER_A, RobotMap.DIO.DRIVE_RIGHT_ENCODER_B));
 
 		rollerGripper = new RollerGripper(new VictorSP(RobotMap.PWM.ROLLER_MOTOR),
 				new DigitalInput(RobotMap.DIO.ROLLER_SENSOR));
 
-		elevator = new Elevator(new CANTalon(RobotMap.PWM.ELEVATOR), new DigitalInput(RobotMap.DIO.ELEVATOR_UP),
+		elevator = new Elevator(new CANTalon(RobotMap.PWM.ELEVATOR_MOTOR), new DigitalInput(RobotMap.DIO.ELEVATOR_UP),
 				new DigitalInput(RobotMap.DIO.ELEVATOR_DOWN),
 				new Encoder(RobotMap.DIO.ELEVATOR_ENCODER_A, RobotMap.DIO.ELEVATOR_ENCODER_B));
 
 		climber = new Climber(new CANTalon(RobotMap.CAN.CLIMBER));
 
-		folder = new Folder(new CANTalon(RobotMap.CAN.GEAR_PICKER),
-				new AnalogPotentiometer(RobotMap.AnalogInput.GEAR_PICKER_POTENTIOMETER));
+		folder = new Folder(new CANTalon(RobotMap.CAN.FOLDER), new DigitalInput(RobotMap.DIO.FOLDER_DOWN),
+				new DigitalInput(RobotMap.DIO.FOLDER_UP),
+				new AnalogPotentiometer(RobotMap.AnalogInput.FOLDER_POTENTIOMETER));
 
 		oi = new OI();
 	}
