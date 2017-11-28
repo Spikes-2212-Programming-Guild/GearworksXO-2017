@@ -11,8 +11,12 @@ import com.spikes2212.utils.DoubleSpeedcontroller;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
+import org.usfirst.frc.team2212.robot.subsystems.RollerGripper;
+
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.VictorSP;
+import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
@@ -23,6 +27,7 @@ public class Robot extends IterativeRobot {
 	public static Climber climber;
 	public static GearPicker gearPicker;
 	public static Drivetrain drivetrain;
+    public static RollerGripper gripper;
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -38,6 +43,9 @@ public class Robot extends IterativeRobot {
 				new Encoder(RobotMap.DIO.DRIVETRAIN_LEFT_ENCODER_A, RobotMap.DIO.DRIVETRAIN_LEFT_ENCODER_B),
 				new Encoder(RobotMap.DIO.DRIVETRAIN_RIGHT_ENCODER_A, RobotMap.DIO.DRIVETRAIN_RIGHT_ENCODER_B));
 		elevator = new Elevator(new VictorSP(RobotMap.PWM.ELEVATOR), new DigitalInput(RobotMap.DIO.ELEVATOR_UP),
+		gripper = new RollerGripper(new VictorSP(RobotMap.PWM.GRIPPER_MOTOR),
+				new DigitalInput(RobotMap.DIO.GRIPPER_LIGHT_SENSOR));
+		elevator = new Elevator(new CANTalon(RobotMap.CAN.ELEVATOR), new DigitalInput(RobotMap.DIO.ELEVATOR_UP),
 				new DigitalInput(RobotMap.DIO.ELEVATOR_DOWN),
 				new Encoder(RobotMap.DIO.ELEVATOR_ENCODER_A, RobotMap.DIO.ELEVATOR_ENCODER_B));
 		climber = new Climber(new CANTalon(RobotMap.CAN.CLIMBER));
