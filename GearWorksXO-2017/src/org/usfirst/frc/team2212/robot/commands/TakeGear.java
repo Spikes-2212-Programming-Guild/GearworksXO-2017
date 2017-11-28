@@ -1,4 +1,6 @@
-package org.usfirst.team2212.robot.commands;
+package org.usfirst.frc.team2212.robot.commands;
+
+import org.usfirst.frc.team2212.robot.Robot;
 
 import com.spikes2212.genericsubsystems.LimitedSubsystem;
 import com.spikes2212.genericsubsystems.commands.MoveLimitedSubsystem;
@@ -12,8 +14,8 @@ public class TakeGear extends MoveLimitedSubsystem {
 
 	private double waitTime, lastTimeMin;
 
-	public TakeGear(LimitedSubsystem limitedSubsystem, double speed, double waitTime) {
-		super(limitedSubsystem, speed);
+	public TakeGear(double speed, double waitTime) {
+		super(Robot.rollerGripper, speed);
 		this.waitTime = waitTime;
 	}
 
