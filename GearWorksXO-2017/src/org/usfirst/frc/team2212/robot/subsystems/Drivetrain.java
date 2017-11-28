@@ -25,14 +25,10 @@ public class Drivetrain extends TankDrivetrain {
 	}
 
 	public void initDefaultCommand() {
-		// TODO bom
-		// Set the default command for a subsystem here.
-		// setDefaultCommand(new MySpecialCommand());
 	}
 
 	@Override
 	public PIDSource getLeftPIDSource() {
-		// TODO Auto-generated method stub
 		return encoderLeft;
 	}
 
