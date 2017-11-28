@@ -15,8 +15,6 @@ import edu.wpi.first.wpilibj.PIDSource;
  *
  */
 public class Folder extends LimitedSubsystem {
-
-	// TODO - Change name to Folder
 	
 	// TODO - Change constants values to actual potentiometer values
 	public static final Supplier<Double> MID = ConstantHandler.addConstantDouble("Folder - Mid", 45);
