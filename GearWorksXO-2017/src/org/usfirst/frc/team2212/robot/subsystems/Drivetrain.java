@@ -16,6 +16,7 @@ public class Drivetrain extends TankDrivetrain {
 	private Encoder encoderLeft;
 	private Encoder encoderRight;
 
+	// TODO - check inverted motors 
 	public Drivetrain(SpeedController leftGearbox, SpeedController rightGearbox, Encoder encoderLeft,
 			Encoder encoderRight) {
 		this.leftSpeedController = leftGearbox;
@@ -24,6 +25,7 @@ public class Drivetrain extends TankDrivetrain {
 		this.encoderRight = encoderRight;
 	}
 
+	// TODO - add default command
 	public void initDefaultCommand() {
 	}
 
@@ -34,7 +36,6 @@ public class Drivetrain extends TankDrivetrain {
 
 	@Override
 	public PIDSource getRightPIDSource() {
-		// TODO Auto-generated method stub
 		return encoderRight;
 	}
 
