@@ -10,11 +10,11 @@ import edu.wpi.first.wpilibj.Timer;
 /**
  *
  */
-public class TakeGear extends MoveLimitedSubsystem {
+public class RollGear extends MoveLimitedSubsystem {
 
 	private double waitTime, lastTimeMin;
 
-	public TakeGear(double speed, double waitTime) {
+	public RollGear(double speed, double waitTime) {
 		super(Robot.rollerGripper, speed);
 		this.waitTime = waitTime;
 	}
