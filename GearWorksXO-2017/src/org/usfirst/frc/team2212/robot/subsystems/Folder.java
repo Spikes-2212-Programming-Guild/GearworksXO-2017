@@ -19,9 +19,7 @@ public class Folder extends LimitedSubsystem {
 	// TODO - Change name to Folder
 	
 	// TODO - Change constants values to actual potentiometer values
-	public static final Supplier<Double> LOW = ConstantHandler.addConstantDouble("Folder - Low", 0);
 	public static final Supplier<Double> MID = ConstantHandler.addConstantDouble("Folder - Mid", 45);
-	public static final Supplier<Double> HIGH = ConstantHandler.addConstantDouble("Folder - High", 90);
 	private SpeedController motor;
 	private DigitalInput downLimit;
 	private DigitalInput upLimit;
