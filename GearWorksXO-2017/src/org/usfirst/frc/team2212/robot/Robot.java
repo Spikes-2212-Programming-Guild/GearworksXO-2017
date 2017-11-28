@@ -2,10 +2,12 @@
 package org.usfirst.frc.team2212.robot;
 
 import org.usfirst.frc.team2212.robot.subsystems.Climber;
+import org.usfirst.frc.team2212.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team2212.robot.subsystems.Elevator;
 import org.usfirst.frc.team2212.robot.subsystems.GearPicker;
 
 import com.ctre.CANTalon;
+import com.spikes2212.utils.DoubleSpeedcontroller;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
@@ -20,6 +22,7 @@ public class Robot extends IterativeRobot {
 	public static Elevator elevator;
 	public static Climber climber;
 	public static GearPicker gearPicker;
+	public static Drivetrain drivetrain;
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -27,7 +30,13 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void robotInit() {
-		
+		drivetrain = new Drivetrain(
+				new DoubleSpeedcontroller(new CANTalon(RobotMap.CAN.DRIVETRAIN_LEFT_FRONT),
+						new CANTalon(RobotMap.CAN.DRIVETRAIN_LEFT_BACK)),
+				new DoubleSpeedcontroller(new CANTalon(RobotMap.CAN.DRIVETRAIN_RIGHT_FRONT),
+						new CANTalon(RobotMap.CAN.DRIVETRAIN_RIGHT_BACK)),
+				new Encoder(RobotMap.DIO.DRIVETRAIN_LEFT_ENCODER_A, RobotMap.DIO.DRIVETRAIN_LEFT_ENCODER_B),
+				new Encoder(RobotMap.DIO.DRIVETRAIN_RIGHT_ENCODER_A, RobotMap.DIO.DRIVETRAIN_RIGHT_ENCODER_B));
 		elevator = new Elevator(new VictorSP(RobotMap.PWM.ELEVATOR), new DigitalInput(RobotMap.DIO.ELEVATOR_UP),
 				new DigitalInput(RobotMap.DIO.ELEVATOR_DOWN),
 				new Encoder(RobotMap.DIO.ELEVATOR_ENCODER_A, RobotMap.DIO.ELEVATOR_ENCODER_B));

@@ -9,7 +9,11 @@ public class RobotMap {
 	// TODO insert correct ports
 	public interface CAN {
 		public static final int GEAR_PICKER = 0;
-		public static final int CLIMBER = 4;
+		public static final int CLIMBER = 5;
+		public static final int DRIVETRAIN_LEFT_FRONT = 1;
+		public static final int DRIVETRAIN_LEFT_BACK = 2;
+		public static final int DRIVETRAIN_RIGHT_FRONT = 3;
+		public static final int DRIVETRAIN_RIGHT_BACK = 4;
 	}
 
 	// TODO insert correct ports
@@ -27,6 +31,10 @@ public class RobotMap {
 		public static final int GEAR_PICKER_UP = 5;
 		public static final int GEAR_PICKER_ENCODER_A = 6;
 		public static final int GEAR_PICKER_ENCODER_B = 7;
+		public static final int DRIVETRAIN_LEFT_ENCODER_A = 8;
+		public static final int DRIVETRAIN_LEFT_ENCODER_B = 9;
+		public static final int DRIVETRAIN_RIGHT_ENCODER_A = 10;
+		public static final int DRIVETRAIN_RIGHT_ENCODER_B = 11;
 	}
 
 	// TODO insert correct ports
