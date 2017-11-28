@@ -11,15 +11,15 @@ import edu.wpi.first.wpilibj.SpeedController;
  */
 public class Drivetrain extends TankDrivetrain {
 
-	private SpeedController leftGearbox;
-	private SpeedController rightGearbox;
+	private SpeedController leftSpeedController;
+	private SpeedController rightSpeedController;
 	private Encoder encoderLeft;
 	private Encoder encoderRight;
 
 	public Drivetrain(SpeedController leftGearbox, SpeedController rightGearbox, Encoder encoderLeft,
 			Encoder encoderRight) {
-		this.leftGearbox = leftGearbox;
-		this.rightGearbox = rightGearbox;
+		this.leftSpeedController = leftGearbox;
+		this.rightSpeedController = rightGearbox;
 		this.encoderLeft = encoderLeft;
 		this.encoderRight = encoderRight;
 	}
@@ -40,11 +40,11 @@ public class Drivetrain extends TankDrivetrain {
 
 	@Override
 	public void setLeft(double speed) {
-		leftGearbox.set(speed);
+		leftSpeedController.set(speed);
 	}
 
 	@Override
 	public void setRight(double speed) {
-		rightGearbox.set(speed);
+		rightSpeedController.set(speed);
 	}
 }
