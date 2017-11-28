@@ -12,8 +12,8 @@ public class EjectGear extends MoveLimitedSubsystem {
 
 	private double mySpeed;
 
-	public EjectGear(LimitedSubsystem limitedSubsystem, double speed) {
-		super(limitedSubsystem, speed);
+	public EjectGear(double speed) {
+		super(Robot.rollerGripper, speed);
 		mySpeed = speed;
 	}
 
