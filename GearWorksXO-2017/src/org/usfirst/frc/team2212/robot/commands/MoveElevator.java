@@ -28,5 +28,12 @@ public class MoveElevator extends MoveLimitedSubsystem {
 		return (Math.abs(target.getIndex() - Robot.elevator.getPosition().getIndex()) <= TOLERANCE.get())
 				|| super.isFinished();
 	}
+	
+	@Override
+	protected void end() {
+		if(Robot.elevator.getPosition() == ElevatorState.LOW_LIMIT)
+			Robot.elevator.resetEncoder();
+		super.end();
+	}
 
 }

@@ -61,6 +61,10 @@ public class Elevator extends LimitedSubsystem {
 		// The subsystem is between the middle and higher limit
 		return ElevatorState.MIDDLE_TO_HIGH;
 	}
+	
+	public void resetEncoder(){
+		encoder.reset();
+	}
 
 	public void initDefaultCommand() {
 		// Set the default command for a subsystem here.
