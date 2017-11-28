@@ -9,20 +9,22 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.PIDSource;
 import edu.wpi.first.wpilibj.SpeedController;
 
-public class Gripper extends LimitedSubsystem {
+public class RollerGripper extends LimitedSubsystem {
 
 	public static final Supplier<Double> speed = ConstantHandler.addConstantDouble("Gripper - speed", 0.5);
 	private SpeedController motor;
 	private DigitalInput sensor;
-	
-	public Gripper(SpeedController motor, DigitalInput sensor) {
+
+	// TODO - check if motor inverted
+	// TODO - check if inverted
+	public RollerGripper(SpeedController motor, DigitalInput sensor) {
 		this.motor = motor;
 		this.sensor = sensor;
 	}
-	
+
 	@Override
 	public boolean isMax() {
-		return sensor.get();
+		return false;
 	}
 
 	@Override
