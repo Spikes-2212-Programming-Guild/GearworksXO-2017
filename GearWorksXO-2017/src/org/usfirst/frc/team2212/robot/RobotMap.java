@@ -11,9 +11,9 @@ public class RobotMap {
 		public static final int GEAR_PICKER = 0;
 		public static final int CLIMBER = 5;
 		public static final int DRIVETRAIN_LEFT_FRONT = 1;
-		public static final int DRIVETRAIN_LEFT_BACK = 2;
+		public static final int DRIVETRAIN_LEFT_REAR = 2;
 		public static final int DRIVETRAIN_RIGHT_FRONT = 3;
-		public static final int DRIVETRAIN_RIGHT_BACK = 4;
+		public static final int DRIVETRAIN_RIGHT_REAR = 4;
 	}
 
 	// TODO insert correct ports

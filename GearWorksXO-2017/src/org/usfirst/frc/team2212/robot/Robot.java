@@ -32,9 +32,9 @@ public class Robot extends IterativeRobot {
 	public void robotInit() {
 		drivetrain = new Drivetrain(
 				new DoubleSpeedcontroller(new CANTalon(RobotMap.CAN.DRIVETRAIN_LEFT_FRONT),
-						new CANTalon(RobotMap.CAN.DRIVETRAIN_LEFT_BACK)),
+						new CANTalon(RobotMap.CAN.DRIVETRAIN_LEFT_REAR)),
 				new DoubleSpeedcontroller(new CANTalon(RobotMap.CAN.DRIVETRAIN_RIGHT_FRONT),
-						new CANTalon(RobotMap.CAN.DRIVETRAIN_RIGHT_BACK)),
+						new CANTalon(RobotMap.CAN.DRIVETRAIN_RIGHT_REAR)),
 				new Encoder(RobotMap.DIO.DRIVETRAIN_LEFT_ENCODER_A, RobotMap.DIO.DRIVETRAIN_LEFT_ENCODER_B),
 				new Encoder(RobotMap.DIO.DRIVETRAIN_RIGHT_ENCODER_A, RobotMap.DIO.DRIVETRAIN_RIGHT_ENCODER_B));
 		elevator = new Elevator(new VictorSP(RobotMap.PWM.ELEVATOR), new DigitalInput(RobotMap.DIO.ELEVATOR_UP),
