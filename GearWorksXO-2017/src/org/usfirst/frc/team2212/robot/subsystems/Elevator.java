@@ -38,10 +38,10 @@ public class Elevator extends LimitedSubsystem {
 		}
 	}
 
-	public Elevator(SpeedController motor, DigitalInput upLimit, DigitalInput downLimit, Encoder encoder) {
+	public Elevator(SpeedController motor, DigitalInput downLimit, DigitalInput upLimit, Encoder encoder) {
 		this.motor = motor;
-		this.upLimit = upLimit;
 		this.downLimit = downLimit;
+		this.upLimit = upLimit;
 		this.encoder = encoder;
 	}
 
@@ -67,8 +67,6 @@ public class Elevator extends LimitedSubsystem {
 	}
 
 	public void initDefaultCommand() {
-		// Set the default command for a subsystem here.
-		// setDefaultCommand(new MySpecialCommand());
 	}
 
 	@Override
