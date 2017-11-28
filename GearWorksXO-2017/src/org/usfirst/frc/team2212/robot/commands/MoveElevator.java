@@ -25,7 +25,7 @@ public class MoveElevator extends MoveLimitedSubsystem {
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		return (Math.abs(target.getIndex() - Robot.elevator.getPosition().getIndex()) <= tolerance.get())
+		return (Math.abs(target.getIndex() - Robot.elevator.getPosition().getIndex()) <= TOLERANCE.get())
 				|| super.isFinished();
 	}
 
