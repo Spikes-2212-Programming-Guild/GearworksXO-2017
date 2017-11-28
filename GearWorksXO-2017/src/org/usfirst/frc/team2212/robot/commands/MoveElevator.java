@@ -22,5 +22,12 @@ public class MoveElevator extends MoveLimitedSubsystem {
 	protected boolean isFinished() {
 		return (target.getIndex() == Robot.elevator.getPosition().getIndex());
 	}
+	
+	@Override
+	protected void end() {
+		if(Robot.elevator.getPosition() == ElevatorState.LOW_LIMIT)
+			Robot.elevator.resetEncoder();
+		super.end();
+	}
 
 }
