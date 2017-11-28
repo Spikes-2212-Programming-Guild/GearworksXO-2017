@@ -14,7 +14,7 @@ public class RobotMap {
 	
 	//TODO insert correct ports
 	public interface CAN{
-		public static final int LIFT = 6;
+		public static final int LIFT = 5;
 		public static final int DRIVE_LEFT_1 = 0;
 		public static final int DRIVE_LEFT_2 = 1;
 		public static final int DRIVE_RIGHT_1 = 2;
