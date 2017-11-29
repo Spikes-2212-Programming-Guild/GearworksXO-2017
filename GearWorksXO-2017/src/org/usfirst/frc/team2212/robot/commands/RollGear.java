@@ -1,5 +1,7 @@
 package org.usfirst.frc.team2212.robot.commands;
 
+import java.util.function.Supplier;
+
 import org.usfirst.frc.team2212.robot.Robot;
 
 import com.spikes2212.genericsubsystems.commands.MoveLimitedSubsystem;
@@ -14,6 +16,11 @@ public class RollGear extends MoveLimitedSubsystem {
 	private double waitTime, lastTimeMin;
 
 	public RollGear(double speed, double waitTime) {
+		super(Robot.rollerGripper, speed);
+		this.waitTime = waitTime;
+	}
+	
+	public RollGear(Supplier<Double> speed, double waitTime) {
 		super(Robot.rollerGripper, speed);
 		this.waitTime = waitTime;
 	}
