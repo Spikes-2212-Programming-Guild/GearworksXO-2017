@@ -15,9 +15,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  */
 public class PrepareToPickGear extends CommandGroup {
 
-    public PrepareToPickGear(Supplier<Double> foldSpeed, Supplier<Double> unfoldSpeed) {
-        addSequential(new MoveLimitedSubsystem(Robot.folder, foldSpeed));
+    public PrepareToPickGear(Supplier<Double> foldUpSpeed, Supplier<Double> foldDownSpeed) {
+        addSequential(new MoveLimitedSubsystem(Robot.folder, foldUpSpeed));
         addSequential(new MoveElevator(ElevatorState.LOW_LIMIT));
-        addSequential(new MoveLimitedSubsystem(Robot.folder, unfoldSpeed));
+        addSequential(new MoveLimitedSubsystem(Robot.folder, foldDownSpeed));
     }
 }
