@@ -11,9 +11,12 @@ import edu.wpi.first.wpilibj.SpeedController;
 
 public class RollerGripper extends LimitedSubsystem {
 
-	public static final Supplier<Double> SPEED = ConstantHandler.addConstantDouble("Gripper - speed", 0.5);
-	public static final Supplier<Double> WAIT_TIME_DROP = ConstantHandler.addConstantDouble("Gripper - wait time drop", 0);
-	public static final Supplier<Double> WAIT_TIME_PICK = ConstantHandler.addConstantDouble("Gripper - wait time pick", 0);
+	public static final Supplier<Double> SPEED_OUT = ConstantHandler.addConstantDouble("Gripper - out speed", 0.7);
+	public static final Supplier<Double> SPEED_IN = ConstantHandler.addConstantDouble("Gripper - in speed", -0.7);
+	public static final Supplier<Double> WAIT_TIME_DROP = ConstantHandler.addConstantDouble("Gripper - wait time drop",
+			0);
+	public static final Supplier<Double> WAIT_TIME_PICK = ConstantHandler.addConstantDouble("Gripper - wait time pick",
+			0);
 	private SpeedController motor;
 	private DigitalInput sensor;
 
@@ -22,6 +25,7 @@ public class RollerGripper extends LimitedSubsystem {
 	public RollerGripper(SpeedController motor, DigitalInput sensor) {
 		this.motor = motor;
 		this.sensor = sensor;
+		this.motor.setInverted(true);
 	}
 
 	@Override
@@ -42,6 +46,10 @@ public class RollerGripper extends LimitedSubsystem {
 	@Override
 	protected void move(double speed) {
 		motor.set(speed);
+	}
+	
+	public void justMove(double speed){
+		move(speed);
 	}
 
 }

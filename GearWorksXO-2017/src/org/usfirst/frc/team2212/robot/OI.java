@@ -1,12 +1,8 @@
 package org.usfirst.frc.team2212.robot;
 
-import org.usfirst.frc.team2212.robot.commands.MoveElevator;
-import org.usfirst.frc.team2212.robot.commands.commandGroups.DropGearAndMoveLift;
 import org.usfirst.frc.team2212.robot.commands.commandGroups.DropGearWithAngle;
 import org.usfirst.frc.team2212.robot.commands.commandGroups.PickUpGearAndFold;
-import org.usfirst.frc.team2212.robot.commands.commandGroups.PrepareToPickGear;
 import org.usfirst.frc.team2212.robot.subsystems.Climber;
-import org.usfirst.frc.team2212.robot.subsystems.Elevator.ElevatorState;
 import org.usfirst.frc.team2212.robot.subsystems.Folder;
 import org.usfirst.frc.team2212.robot.subsystems.RollerGripper;
 
@@ -49,19 +45,20 @@ public class OI /* GEVALD */ {
 		moveLiftToMiddle = new JoystickButton(navigatorJoystick, 10);
 
 		dropGearByAngleButton.whenPressed(
-				new DropGearWithAngle(Folder.SPEED_DOWN, RollerGripper.SPEED, RollerGripper.WAIT_TIME_DROP));
-		dropGearToHighPegButton.whenPressed(
-				new DropGearAndMoveLift(RollerGripper.SPEED, RollerGripper.WAIT_TIME_DROP.get(), ElevatorState.MIDDLE));
+				new DropGearWithAngle(Folder.SPEED_DOWN, RollerGripper.SPEED_OUT, RollerGripper.WAIT_TIME_DROP));
+		//dropGearToHighPegButton.whenPressed(
+			//	new DropGearAndMoveLift(RollerGripper.SPEED, RollerGripper.WAIT_TIME_DROP.get(), ElevatorState.MIDDLE));
 
-		dropGearToLowPegButton.whenPressed(new DropGearAndMoveLift(RollerGripper.SPEED,
-				RollerGripper.WAIT_TIME_DROP.get(), ElevatorState.HIGH_LIMIT));
+		//dropGearToLowPegButton.whenPressed(new DropGearAndMoveLift(RollerGripper.SPEED,
+			//	RollerGripper.WAIT_TIME_DROP.get(), ElevatorState.HIGH_LIMIT));
 		climbRopeButton.toggleWhenPressed(new MoveLimitedSubsystem(Robot.climber, Climber.SPEED));
-		prepareToTakeGearButton.whenPressed(new PrepareToPickGear(Folder.SPEED_UP, Folder.SPEED_DOWN));
+		//prepareToTakeGearButton.whenPressed(new PrepareToPickGear(Folder.SPEED_UP, Folder.SPEED_DOWN));
 
 		pickUpGearButton.whenPressed(
-				new PickUpGearAndFold(RollerGripper.SPEED, RollerGripper.WAIT_TIME_PICK.get(), Folder.SPEED_UP));
-		moveLiftUp.whenPressed(new MoveElevator(ElevatorState.HIGH_LIMIT));
-		moveLiftToMiddle.whenPressed(new MoveElevator(ElevatorState.MIDDLE));
+				new PickUpGearAndFold(RollerGripper.SPEED_OUT, RollerGripper.WAIT_TIME_PICK.get(), Folder.SPEED_UP));
+		
+//		moveLiftUp.whenPressed(new MoveElevator(ElevatorState.HIGH_LIMIT));
+//		moveLiftToMiddle.whenPressed(new MoveElevator(ElevatorState.MIDDLE));
 	}
 
 	// receives input, returns the adjusted input for better sensitivity

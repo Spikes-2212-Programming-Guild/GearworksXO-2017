@@ -1,15 +1,19 @@
 
 package org.usfirst.frc.team2212.robot;
 
+import org.usfirst.frc.team2212.robot.commands.JustFuckingMoveCommand;
+import org.usfirst.frc.team2212.robot.commands.MoveElevator;
+import org.usfirst.frc.team2212.robot.commands.MoveFolder;
+import org.usfirst.frc.team2212.robot.commands.commandGroups.DropGearAndMoveLift;
 import org.usfirst.frc.team2212.robot.subsystems.Climber;
 import org.usfirst.frc.team2212.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team2212.robot.subsystems.Elevator;
-import org.usfirst.frc.team2212.robot.subsystems.Elevator.ElevatorState;
 import org.usfirst.frc.team2212.robot.subsystems.Folder;
 import org.usfirst.frc.team2212.robot.subsystems.RollerGripper;
 
 import com.ctre.CANTalon;
 import com.spikes2212.dashboard.DashBoardController;
+import com.spikes2212.genericsubsystems.commands.MoveLimitedSubsystem;
 import com.spikes2212.utils.DoubleSpeedcontroller;
 
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
@@ -19,6 +23,7 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Robot extends IterativeRobot {
 
@@ -58,13 +63,37 @@ public class Robot extends IterativeRobot {
 				new AnalogPotentiometer(RobotMap.AnalogInput.FOLDER_POTENTIOMETER, 360, Folder.STARTING_ANGLE.get()));
 
 		oi = new OI();
-		
+
 		dbc = new DashBoardController();
-		dbc.addBoolean("Top", ()->elevator.getState().getIndex() == ElevatorState.HIGH_LIMIT.getIndex());
-		dbc.addBoolean("Top To Mid", ()->elevator.getState().getIndex() == ElevatorState.MIDDLE_TO_HIGH.getIndex());
-		dbc.addBoolean("Mid", ()->elevator.getState().getIndex() == ElevatorState.MIDDLE.getIndex());
-		dbc.addBoolean("Mid To Bottom", ()->elevator.getState().getIndex() == ElevatorState.LOW_TO_MIDDLE.getIndex());
-		dbc.addBoolean("Bottom", ()->elevator.getState().getIndex() == ElevatorState.LOW_LIMIT.getIndex());
+		dbc.addBoolean("Top", () -> elevator.isMax());
+		dbc.addBoolean("Top To Mid",
+				() -> (0 < elevator.getPosition() && elevator.getPosition() < Elevator.MIDDLE_SET_POINT.get()));
+		dbc.addBoolean("Mid", () -> (Math
+				.abs(Elevator.MIDDLE_SET_POINT.get() - Robot.elevator.getPosition()) <= MoveElevator.TOLERANCE.get()));
+		dbc.addBoolean("Mid To Bottom", () -> (Elevator.MIDDLE_SET_POINT.get() < elevator.getPosition()
+				&& elevator.getPosition() < Elevator.HIGH_SET_POINT.get()));
+		dbc.addBoolean("Bottom", () -> elevator.isMin());
+
+		dbc.addBoolean("lift-down-limit", () -> elevator.isMin());
+		dbc.addBoolean("lift-up-limit", () -> elevator.isMax());
+		dbc.addBoolean("folder-down-limit", () -> folder.isMin());
+		dbc.addBoolean("folder-up-limit", () -> folder.isMax());
+		dbc.addDouble("lift-encoder", () -> (double) elevator.getPosition());
+		dbc.addDouble("folder-potentio", () -> (double) folder.getPotentiometer().get());
+
+		SmartDashboard.putData("move folder up", new MoveFolder(folder, 0.8, 1));
+		SmartDashboard.putData("move folder down",
+				new MoveLimitedSubsystem(folder, () -> (folder.isMax() ? -0.4 : 0.1)));
+
+		SmartDashboard.putData("movLiftDown", new MoveLimitedSubsystem(elevator, -0.8));
+		SmartDashboard.putData("movLiftUp", new MoveLimitedSubsystem(elevator, 0.8));
+
+		SmartDashboard.putData("eat gear", new MoveLimitedSubsystem(rollerGripper, RollerGripper.SPEED_IN.get()));
+		SmartDashboard.putData("spit gear out", new MoveLimitedSubsystem(rollerGripper, RollerGripper.SPEED_OUT.get()));
+
+		SmartDashboard.putData("take a shit", new JustFuckingMoveCommand());
+
+		SmartDashboard.putData("climbe", new MoveLimitedSubsystem(climber, Climber.SPEED.get()));
 	}
 
 	/**
