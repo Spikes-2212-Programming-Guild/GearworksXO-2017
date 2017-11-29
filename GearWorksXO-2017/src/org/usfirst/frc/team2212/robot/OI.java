@@ -32,10 +32,11 @@ public class OI /*GEVALD*/{
 		private Button foldUpButton;
 		
 		public OI(){
-			switchToFrontCameraButton = new JoystickButton(rightJoystick, 3);
-			switchToFrontCameraButton = new JoystickButton(rightJoystick, 2);
+			// TODO if there are no cameras delete this
+			//switchToFrontCameraButton = new JoystickButton(rightJoystick, 3);
+			//switchToFrontCameraButton = new JoystickButton(rightJoystick, 2);
 			
-			//TODO change numbers for navigartor buttons
+			//TODO change numbers for navigator buttons
 			dropGearByAngleButton = new JoystickButton(navigatorJoystick, 4);
 			dropGearUpButton = new JoystickButton(navigatorJoystick, 5);
 			dropGearDownButton = new JoystickButton(navigatorJoystick, 2);
@@ -43,7 +44,8 @@ public class OI /*GEVALD*/{
 			foldDownButton = new JoystickButton(navigatorJoystick, 7);
 			foldUpButton = new JoystickButton(navigatorJoystick, 6);
 			pickGearButton = new JoystickButton(navigatorJoystick, 1);
-			
+		
+			//dropGearByAngleButton.whenPressed();
 		}
 
 		// receives input, returns the adjusted input for better sensitivity
