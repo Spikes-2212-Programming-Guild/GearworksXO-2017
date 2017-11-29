@@ -44,8 +44,26 @@ public class OI /*GEVALD*/{
 			foldUpButton = new JoystickButton(navigatorJoystick, 6);
 			pickGearButton = new JoystickButton(navigatorJoystick, 1);
 			
-			
 		}
 
-	
+		// receives input, returns the adjusted input for better sensitivity
+		private double adjustInput(double input) {
+			return input * Math.abs(input);
+		}
+
+		// returns the adjusted value of the Rotate
+		// switch this to switch between the 2 drive arcade methods
+		public double getRotation() {
+			return adjustInput(-rightJoystick.getX());
+		}
+
+		// returns the adjusted value of the driving right joystick's y
+		public double getForwardRight() {
+			return adjustInput(rightJoystick.getY());
+		}
+
+		// returns the adjusted value of the driving left joystick's y
+		public double getForwardLeft() {
+			return adjustInput(-rightJoystick.getY());
+		}
 }
