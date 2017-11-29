@@ -12,6 +12,8 @@ import edu.wpi.first.wpilibj.SpeedController;
 public class RollerGripper extends LimitedSubsystem {
 
 	public static final Supplier<Double> SPEED = ConstantHandler.addConstantDouble("Gripper - speed", 0.5);
+	public static final Supplier<Double> WAIT_TIME_DROP = ConstantHandler.addConstantDouble("Gripper - wait time drop", 0);
+	public static final Supplier<Double> WAIT_TIME_PICK = ConstantHandler.addConstantDouble("Gripper - wait time pick", 0);
 	private SpeedController motor;
 	private DigitalInput sensor;
 

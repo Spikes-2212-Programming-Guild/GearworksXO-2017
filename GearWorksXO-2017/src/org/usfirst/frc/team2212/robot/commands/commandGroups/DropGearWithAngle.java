@@ -14,8 +14,8 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  */
 public class DropGearWithAngle extends CommandGroup {
 
-    public DropGearWithAngle(Supplier<Double> foldSpeed, Supplier<Double> rollSpeed, double rollWaitTime) {
+    public DropGearWithAngle(Supplier<Double> foldSpeed, Supplier<Double> rollSpeed, Supplier<Double> rollWaitTime) {
         addParallel(new MoveLimitedSubsystem(Robot.folder, foldSpeed));
-        addParallel(new RollGear(rollSpeed, rollWaitTime));
+        addParallel(new RollGear(rollSpeed, rollWaitTime.get()));
     }
 }

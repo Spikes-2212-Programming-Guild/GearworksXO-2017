@@ -1,35 +1,86 @@
 package org.usfirst.frc.team2212.robot;
 
+import org.usfirst.frc.team2212.robot.commands.MoveElevator;
+import org.usfirst.frc.team2212.robot.commands.commandGroups.DropGearAndMoveLift;
+import org.usfirst.frc.team2212.robot.commands.commandGroups.DropGearWithAngle;
+import org.usfirst.frc.team2212.robot.commands.commandGroups.PrepareToPickGear;
+import org.usfirst.frc.team2212.robot.commands.commandGroups.RollGearAndFold;
+import org.usfirst.frc.team2212.robot.subsystems.Climber;
+import org.usfirst.frc.team2212.robot.subsystems.Elevator.ElevatorState;
+import org.usfirst.frc.team2212.robot.subsystems.Folder;
+import org.usfirst.frc.team2212.robot.subsystems.RollerGripper;
+
+import com.spikes2212.genericsubsystems.commands.MoveLimitedSubsystem;
+import com.spikes2212.utils.XboXUID;
+
+import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
+
 /**
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
  */
-public class OI {
-	//// CREATING BUTTONS
-	// One type of button is a joystick button which is any button on a
-	//// joystick.
-	// You create one by telling it which joystick it's on and which button
-	// number it is.
-	// Joystick stick = new Joystick(port);
-	// Button button = new JoystickButton(stick, buttonNumber);
+public class OI /* GEVALD */ {
 
-	// There are a few additional built in buttons you can use. Additionally,
-	// by subclassing Button you can create custom triggers and bind those to
-	// commands the same as any other Button.
+	private Joystick rightJoystick = new Joystick(0);
+	private Joystick leftjJoystick = new Joystick(1);
 
-	//// TRIGGERING COMMANDS WITH BUTTONS
-	// Once you have a button, it's trivial to bind it to a button in one of
-	// three ways:
+	private Joystick navigatorJoystick = new Joystick(2);
 
-	// Start the command when the button is pressed and let it run the command
-	// until it is finished as determined by it's isFinished method.
-	// button.whenPressed(new ExampleCommand());
+	// joystick navigator buttons
+	private Button dropGearByAngleButton;
+	private Button dropGearToLowPegButton;
+	private Button dropGearToHighPegButton;
+	private Button climbRopeButton;
+	private Button prepareToTakeGearButton;
+	private Button takeGearButton;
+	private Button moveLiftUp;
+	private Button moveLiftToMiddle;
 
-	// Run the command while the button is being held down and interrupt it once
-	// the button is released.
-	// button.whileHeld(new ExampleCommand());
+	public OI() {
+		// TODO change numbers for navigator buttons
+		dropGearByAngleButton = new JoystickButton(navigatorJoystick, 1);
+		dropGearToLowPegButton = new JoystickButton(navigatorJoystick, 3);
+		dropGearToHighPegButton = new JoystickButton(navigatorJoystick, 2);
+		climbRopeButton = new JoystickButton(navigatorJoystick, 4);
+		prepareToTakeGearButton = new JoystickButton(navigatorJoystick, 7);
+		takeGearButton = new JoystickButton(navigatorJoystick, 6);
+		moveLiftUp = new JoystickButton(navigatorJoystick, 11);
+		moveLiftToMiddle = new JoystickButton(navigatorJoystick, 10);
 
-	// Start the command when the button is released and let it run the command
-	// until it is finished as determined by it's isFinished method.
-	// button.whenReleased(new ExampleCommand());
+		dropGearByAngleButton
+				.whenPressed(new DropGearWithAngle(Folder.SPEED_DOWN, RollerGripper.SPEED, RollerGripper.WAIT_TIME_DROP));
+		dropGearToHighPegButton.whenPressed(
+				new DropGearAndMoveLift(RollerGripper.SPEED, RollerGripper.WAIT_TIME_DROP.get(), ElevatorState.MIDDLE));
+		dropGearToLowPegButton.whenPressed(new DropGearAndMoveLift(RollerGripper.SPEED, RollerGripper.WAIT_TIME_DROP.get(),
+				ElevatorState.HIGH_LIMIT));
+		climbRopeButton.toggleWhenPressed(new MoveLimitedSubsystem(Robot.climber, Climber.SPEED));
+		prepareToTakeGearButton.whenPressed(new PrepareToPickGear(Folder.SPEED_UP, Folder.SPEED_DOWN));
+		takeGearButton.whenPressed(new RollGearAndFold(RollerGripper.SPEED, RollerGripper.WAIT_TIME_PICK.get(), Folder.SPEED_UP));
+		moveLiftUp.whenPressed(new MoveElevator(ElevatorState.HIGH_LIMIT));
+		moveLiftToMiddle.whenPressed(new MoveElevator(ElevatorState.MIDDLE));
+	}
+
+	// receives input, returns the adjusted input for better sensitivity
+	private double adjustInput(double input) {
+		return input * Math.abs(input);
+	}
+
+	// returns the adjusted value of the Rotate
+	// switch this to switch between the 2 drive arcade methods
+	public double getRotation() {
+		return adjustInput(-rightJoystick.getX());
+	}
+
+	// returns the adjusted value of the driving right joystick's y
+	public double getForwardRight() {
+		return adjustInput(rightJoystick.getY());
+	}
+
+	// returns the adjusted value of the driving left joystick's y
+	public double getForwardLeft() {
+		return adjustInput(-rightJoystick.getY());
+	}
 }
