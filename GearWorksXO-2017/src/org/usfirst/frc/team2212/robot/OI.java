@@ -1,5 +1,6 @@
 package org.usfirst.frc.team2212.robot;
 
+import org.usfirst.frc.team2212.robot.commands.MoveElevator;
 import org.usfirst.frc.team2212.robot.commands.commandGroups.DropGearAndMoveLift;
 import org.usfirst.frc.team2212.robot.commands.commandGroups.DropGearWithAngle;
 import org.usfirst.frc.team2212.robot.commands.commandGroups.PrepareToPickGear;
@@ -28,41 +29,38 @@ public class OI /* GEVALD */ {
 
 	private Joystick navigatorJoystick = new Joystick(2);
 
-	// driverRight buttons TODO maybe there are more buttons
-	private Button switchToRearCameraButton;
-	private Button switchToFrontCameraButton;
-
 	// joystick navigator buttons
 	private Button dropGearByAngleButton;
-	private Button dropGearUpButton;
-	private Button dropGearDownButton;
+	private Button dropGearToLowPegButton;
+	private Button dropGearToHighPegButton;
 	private Button climbRopeButton;
-	private Button foldDownButton;
-	private Button pickGearButton;
+	private Button prepareToTakeGearButton;
 	private Button takeGearButton;
+	private Button moveLiftUp;
+	private Button moveLiftToMiddle;
 
 	public OI() {
-		// TODO if there are no cameras delete this
-		// switchToFrontCameraButton = new JoystickButton(rightJoystick, 3);
-		// switchToFrontCameraButton = new JoystickButton(rightJoystick, 2);
-
 		// TODO change numbers for navigator buttons
 		dropGearByAngleButton = new JoystickButton(navigatorJoystick, 1);
-		dropGearUpButton = new JoystickButton(navigatorJoystick, 3);
-		dropGearDownButton = new JoystickButton(navigatorJoystick, 2);
+		dropGearToLowPegButton = new JoystickButton(navigatorJoystick, 3);
+		dropGearToHighPegButton = new JoystickButton(navigatorJoystick, 2);
 		climbRopeButton = new JoystickButton(navigatorJoystick, 4);
-		foldDownButton = new JoystickButton(navigatorJoystick, 7);
+		prepareToTakeGearButton = new JoystickButton(navigatorJoystick, 7);
 		takeGearButton = new JoystickButton(navigatorJoystick, 6);
+		moveLiftUp = new JoystickButton(navigatorJoystick, 11);
+		moveLiftToMiddle = new JoystickButton(navigatorJoystick, 10);
 
 		dropGearByAngleButton
 				.whenPressed(new DropGearWithAngle(Folder.SPEED_DOWN, RollerGripper.SPEED, RollerGripper.WAIT_TIME_DROP));
-		dropGearDownButton.whenPressed(
+		dropGearToHighPegButton.whenPressed(
 				new DropGearAndMoveLift(RollerGripper.SPEED, RollerGripper.WAIT_TIME_DROP.get(), ElevatorState.MIDDLE));
-		dropGearUpButton.whenPressed(new DropGearAndMoveLift(RollerGripper.SPEED, RollerGripper.WAIT_TIME_DROP.get(),
+		dropGearToLowPegButton.whenPressed(new DropGearAndMoveLift(RollerGripper.SPEED, RollerGripper.WAIT_TIME_DROP.get(),
 				ElevatorState.HIGH_LIMIT));
 		climbRopeButton.toggleWhenPressed(new MoveLimitedSubsystem(Robot.climber, Climber.SPEED));
-		foldDownButton.whenPressed(new PrepareToPickGear(Folder.SPEED_UP, Folder.SPEED_DOWN));
+		prepareToTakeGearButton.whenPressed(new PrepareToPickGear(Folder.SPEED_UP, Folder.SPEED_DOWN));
 		takeGearButton.whenPressed(new RollGearAndFold(RollerGripper.SPEED, RollerGripper.WAIT_TIME_PICK.get(), Folder.SPEED_UP));
+		moveLiftUp.whenPressed(new MoveElevator(ElevatorState.HIGH_LIMIT));
+		moveLiftToMiddle.whenPressed(new MoveElevator(ElevatorState.MIDDLE));
 	}
 
 	// receives input, returns the adjusted input for better sensitivity
