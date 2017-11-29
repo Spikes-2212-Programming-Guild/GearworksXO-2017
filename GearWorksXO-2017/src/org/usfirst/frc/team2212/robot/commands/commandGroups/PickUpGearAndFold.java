@@ -12,9 +12,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class RollGearAndFold extends CommandGroup {
+public class PickUpGearAndFold extends CommandGroup {
 
-	public RollGearAndFold(Supplier<Double> rollSpeed, double rollWaitTime, Supplier<Double> foldSpeed) {
+	public PickUpGearAndFold(Supplier<Double> rollSpeed, double rollWaitTime, Supplier<Double> foldSpeed) {
 		addSequential(new RollGear(rollSpeed, rollWaitTime));
 		addSequential(new MoveLimitedSubsystem(Robot.folder, foldSpeed));
 	}
