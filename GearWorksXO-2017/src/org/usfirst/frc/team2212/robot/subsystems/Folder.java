@@ -16,9 +16,10 @@ import edu.wpi.first.wpilibj.SpeedController;
 public class Folder extends LimitedSubsystem {
 
 	// TODO - Change constant values to actual potentiometer values
-	public static final Supplier<Double> MID = ConstantHandler.addConstantDouble("Folder - Mid", 45);
+	public static final Supplier<Double> STARTING_MID_ANGLE = ConstantHandler.addConstantDouble("Folder - Mid", 45);
 	public static final Supplier<Double> STARTING_ANGLE = ConstantHandler.addConstantDouble("Folder - starting angle",
 			0);
+	private double midAngle;
 
 	private SpeedController motor;
 	private DigitalInput downLimit;
@@ -33,11 +34,16 @@ public class Folder extends LimitedSubsystem {
 		this.upLimit = upLimit;
 		this.potentiometer = potentiometer;
 		this.motor.setInverted(true);
+		midAngle = STARTING_ANGLE.get();
 	}
 
 	@Override
 	public boolean isMin() {
-		return downLimit.get();
+		if (downLimit.get()) {
+			midAngle = STARTING_MID_ANGLE.get() + (potentiometer.get() - STARTING_ANGLE.get());
+			return true;
+		}
+		return false;
 	}
 
 	@Override
