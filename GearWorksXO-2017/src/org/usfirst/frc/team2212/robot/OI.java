@@ -5,6 +5,7 @@ import com.spikes2212.utils.XboXUID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -12,23 +13,39 @@ import edu.wpi.first.wpilibj.buttons.Button;
  */
 public class OI /*GEVALD*/{
 
-	private Joystick joystick1 = new Joystick(0);
-	private Joystick joystick2 = new Joystick(1);
+	private Joystick rightJoystick = new Joystick(0);
+	private Joystick leftjJoystick = new Joystick(1);
 	
-	private XboXUID xboxController = new XboXUID(0);
+	private Joystick navigatorJoystick = new Joystick(2);
 	
-	// driverRight buttons TODO maybe there are more buttons
+		// driverRight buttons TODO maybe there are more buttons
 		private Button switchToRearCameraButton;
 		private Button switchToFrontCameraButton;
 
 		// joystick navigator buttons
 		private Button dropGearByAngleButton;
 		private Button dropGearUpButton;
-		private Button dropGearDownAngleButton;
+		private Button dropGearDownButton;
 		private Button climbRopeButton; 
-		private Button foldDownn;
-		private Button pickGear;
-		private Button foldUp;
+		private Button foldDownButton;
+		private Button pickGearButton;
+		private Button foldUpButton;
+		
+		public OI(){
+			switchToFrontCameraButton = new JoystickButton(rightJoystick, 3);
+			switchToFrontCameraButton = new JoystickButton(rightJoystick, 2);
+			
+			//TODO change numbers for navigartor buttons
+			dropGearByAngleButton = new JoystickButton(navigatorJoystick, 4);
+			dropGearUpButton = new JoystickButton(navigatorJoystick, 5);
+			dropGearDownButton = new JoystickButton(navigatorJoystick, 2);
+			climbRopeButton = new JoystickButton(navigatorJoystick, 3);
+			foldDownButton = new JoystickButton(navigatorJoystick, 7);
+			foldUpButton = new JoystickButton(navigatorJoystick, 6);
+			pickGearButton = new JoystickButton(navigatorJoystick, 1);
+			
+			
+		}
 
 	
 }
