@@ -26,6 +26,7 @@ public class Drivetrain extends TankDrivetrain {
 		this.rightSpeedController = rightGearbox;
 		this.encoderLeft = encoderLeft;
 		this.encoderRight = encoderRight;
+		this.rightSpeedController.setInverted(true);
 	}
 
 	@Override

@@ -23,7 +23,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 public class OI /* GEVALD */ {
 
 	private Joystick rightJoystick = new Joystick(0);
-	private Joystick leftjJoystick = new Joystick(1);
+	private Joystick leftJoystick = new Joystick(1);
 
 	private Joystick navigatorJoystick = new Joystick(2);
 
@@ -48,17 +48,18 @@ public class OI /* GEVALD */ {
 		moveLiftUp = new JoystickButton(navigatorJoystick, 11);
 		moveLiftToMiddle = new JoystickButton(navigatorJoystick, 10);
 
-		dropGearByAngleButton
-				.whenPressed(new DropGearWithAngle(Folder.SPEED_DOWN, RollerGripper.SPEED, RollerGripper.WAIT_TIME_DROP));
+		dropGearByAngleButton.whenPressed(
+				new DropGearWithAngle(Folder.SPEED_DOWN, RollerGripper.SPEED, RollerGripper.WAIT_TIME_DROP));
 		dropGearToHighPegButton.whenPressed(
 				new DropGearAndMoveLift(RollerGripper.SPEED, RollerGripper.WAIT_TIME_DROP.get(), ElevatorState.MIDDLE));
-		
-		dropGearToLowPegButton.whenPressed(new DropGearAndMoveLift(RollerGripper.SPEED, RollerGripper.WAIT_TIME_DROP.get(),
-				ElevatorState.HIGH_LIMIT));
+
+		dropGearToLowPegButton.whenPressed(new DropGearAndMoveLift(RollerGripper.SPEED,
+				RollerGripper.WAIT_TIME_DROP.get(), ElevatorState.HIGH_LIMIT));
 		climbRopeButton.toggleWhenPressed(new MoveLimitedSubsystem(Robot.climber, Climber.SPEED));
 		prepareToTakeGearButton.whenPressed(new PrepareToPickGear(Folder.SPEED_UP, Folder.SPEED_DOWN));
-		
-		pickUpGearButton.whenPressed(new PickUpGearAndFold(RollerGripper.SPEED, RollerGripper.WAIT_TIME_PICK.get(), Folder.SPEED_UP));
+
+		pickUpGearButton.whenPressed(
+				new PickUpGearAndFold(RollerGripper.SPEED, RollerGripper.WAIT_TIME_PICK.get(), Folder.SPEED_UP));
 		moveLiftUp.whenPressed(new MoveElevator(ElevatorState.HIGH_LIMIT));
 		moveLiftToMiddle.whenPressed(new MoveElevator(ElevatorState.MIDDLE));
 	}
@@ -77,10 +78,5 @@ public class OI /* GEVALD */ {
 	// returns the adjusted value of the driving right joystick's y
 	public double getForwardRight() {
 		return adjustInput(rightJoystick.getY());
-	}
-
-	// returns the adjusted value of the driving left joystick's y
-	public double getForwardLeft() {
-		return adjustInput(-rightJoystick.getY());
 	}
 }
