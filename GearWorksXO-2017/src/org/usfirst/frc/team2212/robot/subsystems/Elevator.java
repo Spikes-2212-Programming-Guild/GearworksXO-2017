@@ -43,6 +43,7 @@ public class Elevator extends LimitedSubsystem {
 		this.downLimit = downLimit;
 		this.upLimit = upLimit;
 		this.encoder = encoder;
+		this.motor.setInverted(true);
 	}
 
 	public ElevatorState getState() {
