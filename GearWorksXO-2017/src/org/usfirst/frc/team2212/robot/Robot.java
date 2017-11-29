@@ -28,7 +28,7 @@ public class Robot extends IterativeRobot {
 	public static Folder folder;
 	public static Drivetrain drivetrain;
 	public static RollerGripper rollerGripper;
-	private DashBoardController dbc;
+	public static DashBoardController dbc;
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -59,11 +59,12 @@ public class Robot extends IterativeRobot {
 
 		oi = new OI();
 		
-		dbc.addBoolean("Top", ()->elevator.getState() == ElevatorState.HIGH_LIMIT);
-		dbc.addBoolean("Top To Mid", ()->elevator.getState() == ElevatorState.MIDDLE_TO_HIGH);
-		dbc.addBoolean("Mid", ()->elevator.getState() == ElevatorState.MIDDLE);
-		dbc.addBoolean("Mid To Bottom", ()->elevator.getState() == ElevatorState.LOW_TO_MIDDLE);
-		dbc.addBoolean("Bottom", ()->elevator.getState() == ElevatorState.LOW_LIMIT);
+		dbc = new DashBoardController();
+		dbc.addBoolean("Top", ()->elevator.getState().getIndex() == ElevatorState.HIGH_LIMIT.getIndex());
+		dbc.addBoolean("Top To Mid", ()->elevator.getState().getIndex() == ElevatorState.MIDDLE_TO_HIGH.getIndex());
+		dbc.addBoolean("Mid", ()->elevator.getState().getIndex() == ElevatorState.MIDDLE.getIndex());
+		dbc.addBoolean("Mid To Bottom", ()->elevator.getState().getIndex() == ElevatorState.LOW_TO_MIDDLE.getIndex());
+		dbc.addBoolean("Bottom", ()->elevator.getState().getIndex() == ElevatorState.LOW_LIMIT.getIndex());
 	}
 
 	/**
