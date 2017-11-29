@@ -69,6 +69,6 @@ public class Folder extends LimitedSubsystem {
 	}
 
 	public double getMidAngle() {
-		return midAngle;
+		return actualMidAngle;
 	}
 }
