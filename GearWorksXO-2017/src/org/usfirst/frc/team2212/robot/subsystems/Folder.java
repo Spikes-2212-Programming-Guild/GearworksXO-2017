@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj.SpeedController;
  */
 public class Folder extends LimitedSubsystem {
 
+	// subsystem constants
 	// TODO - Change constant values to actual potentiometer values
 	public static final Supplier<Double> INITIAL_MID_ANGLE = ConstantHandler.addConstantDouble("Folder - Mid", 45);
 	public static final Supplier<Double> STARTING_ANGLE = ConstantHandler.addConstantDouble("Folder - starting angle",
@@ -24,10 +25,17 @@ public class Folder extends LimitedSubsystem {
 
 	private double actualMidAngle;
 
+	// subsystem variables
 	private SpeedController motor;
 	private DigitalInput downLimit;
 	private DigitalInput upLimit;
 	private AnalogPotentiometer potentiometer;
+
+	// folder PID constants
+	public static final Supplier<Double> KP = ConstantHandler.addConstantDouble("Folder KP", 1.2);
+	public static final Supplier<Double> KI = ConstantHandler.addConstantDouble("Folder KI", 5);
+	public static final Supplier<Double> KD = ConstantHandler.addConstantDouble("Folder KD", 0.05);
+	public static final Supplier<Double> TOLERANCE = ConstantHandler.addConstantDouble("Folder Tolerance", 0.05);
 
 	// TODO - check if motor is inverted
 	public Folder(SpeedController motor, DigitalInput downLimit, DigitalInput upLimit,

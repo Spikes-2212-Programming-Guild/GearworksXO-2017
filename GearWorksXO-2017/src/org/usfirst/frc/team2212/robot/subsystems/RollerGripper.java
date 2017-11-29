@@ -3,19 +3,20 @@ package org.usfirst.frc.team2212.robot.subsystems;
 import java.util.function.Supplier;
 
 import com.spikes2212.dashboard.ConstantHandler;
-import com.spikes2212.genericsubsystems.LimitedSubsystem;
 
 import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.PIDSource;
 import edu.wpi.first.wpilibj.SpeedController;
+import edu.wpi.first.wpilibj.command.Subsystem;
 
-public class RollerGripper extends LimitedSubsystem {
+public class RollerGripper extends Subsystem {
 
-	public static final Supplier<Double> SPEED = ConstantHandler.addConstantDouble("Gripper - speed", 0.5);
+	public static final Supplier<Double> SPEED_IN = ConstantHandler.addConstantDouble("Gripper - speed", 0.5);
+	public static final Supplier<Double> SPEED_OUT_HIGH_PEG = ConstantHandler.addConstantDouble("Gripper - speed", -0.5);
+	public static final Supplier<Double> SPEED_OUT_LOW_PEG = ConstantHandler.addConstantDouble("Gripper - speed", 0.5);
+
 	public static final Supplier<Double> WAIT_TIME_DROP = ConstantHandler.addConstantDouble("Gripper - wait time drop",
 			0);
-	public static final Supplier<Double> WAIT_TIME_PICK = ConstantHandler.addConstantDouble("Gripper - wait time pick",
-			0);
+
 	private SpeedController motor;
 	private DigitalInput sensor;
 
@@ -26,24 +27,22 @@ public class RollerGripper extends LimitedSubsystem {
 		this.sensor = sensor;
 	}
 
-	@Override
-	public boolean isMax() {
-		return false;
+	public void move(double speed) {
+		motor.set(speed);
 	}
 
-	@Override
-	public boolean isMin() {
+	public void stop() {
+		motor.set(0);
+	}
+
+	public boolean getSensorData() {
 		return sensor.get();
 	}
 
 	@Override
-	public PIDSource getPIDSource() {
-		return null;
-	}
+	protected void initDefaultCommand() {
+		// TODO Auto-generated method stub
 
-	@Override
-	protected void move(double speed) {
-		motor.set(speed);
 	}
 
 }
