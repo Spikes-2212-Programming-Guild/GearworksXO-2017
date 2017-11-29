@@ -8,12 +8,12 @@ import com.spikes2212.genericsubsystems.LimitedSubsystem;
 
 import edu.wpi.first.wpilibj.PIDSource;
 
-/**
- *
- */
 public class Climber extends LimitedSubsystem {
 
+	//defining subsystem fields
 	private CANTalon motor;
+
+	//defining subsystem constants
 	public static final Supplier<Double> MAX_CURRENT = ConstantHandler.addConstantDouble("MAX_CURRENT", 0.75);
 	public static final Supplier<Double> SPEED = ConstantHandler.addConstantDouble("SPEED", 0.5);
 

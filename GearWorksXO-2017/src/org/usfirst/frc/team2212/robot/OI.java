@@ -4,7 +4,6 @@ import org.usfirst.frc.team2212.robot.commands.RollGearIn;
 import org.usfirst.frc.team2212.robot.commands.RollGearOut;
 import org.usfirst.frc.team2212.robot.commands.command_groups.CollectGear;
 import org.usfirst.frc.team2212.robot.commands.command_groups.DropGear;
-import org.usfirst.frc.team2212.robot.subsystems.Elevator.ElevatorState;
 import org.usfirst.frc.team2212.robot.subsystems.Folder;
 import org.usfirst.frc.team2212.robot.subsystems.RollerGripper;
 
@@ -55,8 +54,8 @@ public class OI/* GEVALD */ {
 
 		// activating command groups buttons
 		collectGear.whenPressed(new CollectGear());
-		dropGearHigh.whenPressed(new DropGear(ElevatorState.HIGH_LIMIT));
-		dropGearLow.whenPressed(new DropGear(ElevatorState.MIDDLE));
+		// dropGearHigh.whenPressed(new DropGear(ElevatorState.HIGH_LIMIT));
+		// dropGearLow.whenPressed(new DropGear(ElevatorState.MIDDLE));
 
 	}
 
@@ -64,12 +63,8 @@ public class OI/* GEVALD */ {
 		return Math.abs(speed) * speed;
 	}
 
-	public double getForwardRight() {
+	public double getForward() {
 		return adjustSpeed(driverRight.getY());
-	}
-
-	public double getForwardLeft() {
-		return adjustSpeed(driverLeft.getY());
 	}
 
 	public double getRotation() {

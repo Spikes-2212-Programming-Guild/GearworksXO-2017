@@ -17,26 +17,21 @@ import edu.wpi.first.wpilibj.SpeedController;
 
 public class Elevator extends LimitedSubsystem {
 
+	// defining subsystem motor
 	private SpeedController motor;
+
+	// defining sensors
 	private DigitalInput upLimit;
 	private DigitalInput downLimit;
 	private Encoder encoder;
-	public static final Supplier<Double> SPEED = ConstantHandler.addConstantDouble("Lift-SPEED", 0.7);
+
+	// initializing subsystem constants
+	// TODO: set constants to their real values
+	public static final Supplier<Double> SPEED_UP = ConstantHandler.addConstantDouble("Lift-SPEED-UP", 0.7);
+	public static final Supplier<Double> SPEED_DOWN = ConstantHandler.addConstantDouble("Lift-SPEED-DOWN", -0.7);
+
 	public static final Supplier<Integer> MIDDLE_SET_POINT = ConstantHandler.addConstantInt("lift-MIDDLE_SET_POINT", 0);
-
-	public enum ElevatorState {
-		LOW_LIMIT(0), LOW_TO_MIDDLE(1), MIDDLE(2), MIDDLE_TO_HIGH(3), HIGH_LIMIT(4);
-
-		private int index;
-
-		ElevatorState(int index) {
-			this.index = index;
-		}
-
-		public int getIndex() {
-			return index;
-		}
-	}
+	public static final Supplier<Integer> HIGH_SET_POINT = ConstantHandler.addConstantInt("lift-HIGH_SET_POINT", 0);
 
 	public Elevator(SpeedController motor, DigitalInput downLimit, DigitalInput upLimit, Encoder encoder) {
 		this.motor = motor;
@@ -46,30 +41,19 @@ public class Elevator extends LimitedSubsystem {
 		this.motor.setInverted(true);
 	}
 
-	public ElevatorState getState() {
-		// The subsystem is in its upper limit
-		if (upLimit.get())
-			return ElevatorState.HIGH_LIMIT;
-		// The subsystem is in its lower limit
-		if (downLimit.get())
-			return ElevatorState.LOW_LIMIT;
-		// The subsystem is in the middle ( the height of the lower gear )
-		if (Elevator.MIDDLE_SET_POINT.get() == this.encoder.get())
-			return ElevatorState.MIDDLE;
-		// The subsystem is between the middle and the lower limit
-		if (this.encoder.get() < Elevator.MIDDLE_SET_POINT.get())
-			return ElevatorState.LOW_TO_MIDDLE;
-		// The subsystem is between the middle and higher limit
-		return ElevatorState.MIDDLE_TO_HIGH;
-	}
+	// overrides from limited subsystem
 
-	public void resetEncoder() {
-		encoder.reset();
+	@Override
+	protected void move(double speed) {
+		motor.set(speed);
 	}
 
 	@Override
 	public boolean isMin() {
-		return downLimit.get();
+		boolean isMin = !downLimit.get();
+		if (isMin)
+			this.resetEncoder();
+		return isMin;
 	}
 
 	@Override
@@ -82,9 +66,14 @@ public class Elevator extends LimitedSubsystem {
 		return encoder;
 	}
 
-	@Override
-	protected void move(double speed) {
-		motor.set(speed);
+	// encoder functions
+
+	public void resetEncoder() {
+		encoder.reset();
+	}
+
+	public int getPosition() {
+		return this.encoder.get();
 	}
 
 	public void initDefaultCommand() {

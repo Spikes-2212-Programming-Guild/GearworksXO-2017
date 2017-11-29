@@ -10,21 +10,33 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class RollerGripper extends Subsystem {
 
-	public static final Supplier<Double> SPEED_IN = ConstantHandler.addConstantDouble("Gripper - speed", 0.5);
-	public static final Supplier<Double> SPEED_OUT_HIGH_PEG = ConstantHandler.addConstantDouble("Gripper - speed", -0.5);
-	public static final Supplier<Double> SPEED_OUT_LOW_PEG = ConstantHandler.addConstantDouble("Gripper - speed", 0.5);
+	// defining subsystem constants
+	public static final Supplier<Double> SPEED_IN = ConstantHandler.addConstantDouble("Gripper - speed", -0.7);
+	/*
+	 * SPEED_OUT_HIGH_PEG: the speed of the subsystem when it releases the gear up,
+	 * to the high peg
+	 * SPEED_OUT_LOW_PEG: the speed of the subsystem when it
+	 * releases the gear down, to the low gear
+	 */
+	public static final Supplier<Double> SPEED_OUT_HIGH_PEG = ConstantHandler
+			.addConstantDouble("Gripper-speed-out-high-peg", 0.5);
+	public static final Supplier<Double> SPEED_OUT_LOW_PEG = ConstantHandler
+			.addConstantDouble("Gripper-speed-out-low-peg", -0.5);
 
+	// the wait time for roller-gripper drop-gear commands
 	public static final Supplier<Double> WAIT_TIME_DROP = ConstantHandler.addConstantDouble("Gripper - wait time drop",
 			0);
 
 	private SpeedController motor;
 	private DigitalInput sensor;
 
-	// TODO - check if motor inverted
 	// TODO - check if sensor inverted
 	public RollerGripper(SpeedController motor, DigitalInput sensor) {
 		this.motor = motor;
 		this.sensor = sensor;
+
+		// inverting motor
+		motor.setInverted(true);
 	}
 
 	public void move(double speed) {
@@ -41,8 +53,5 @@ public class RollerGripper extends Subsystem {
 
 	@Override
 	protected void initDefaultCommand() {
-		// TODO Auto-generated method stub
-
 	}
-
 }
