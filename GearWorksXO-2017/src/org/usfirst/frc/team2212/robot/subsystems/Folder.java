@@ -17,20 +17,22 @@ public class Folder extends LimitedSubsystem {
 
 	// TODO - Change constant values to actual potentiometer values
 	public static final Supplier<Double> MID = ConstantHandler.addConstantDouble("Folder - Mid", 45);
-	public static final Supplier<Double> STARTING_ANGLE = ConstantHandler.addConstantDouble("Folder - starting angle", 0);
+	public static final Supplier<Double> STARTING_ANGLE = ConstantHandler.addConstantDouble("Folder - starting angle",
+			0);
 
 	private SpeedController motor;
 	private DigitalInput downLimit;
 	private DigitalInput upLimit;
 	private AnalogPotentiometer potentiometer;
 
-	//TODO - check if motor is inverted
+	// TODO - check if motor is inverted
 	public Folder(SpeedController motor, DigitalInput downLimit, DigitalInput upLimit,
-					   AnalogPotentiometer potentiometer) {
+			AnalogPotentiometer potentiometer) {
 		this.motor = motor;
 		this.downLimit = downLimit;
 		this.upLimit = upLimit;
 		this.potentiometer = potentiometer;
+		this.motor.setInverted(true);
 	}
 
 	@Override
