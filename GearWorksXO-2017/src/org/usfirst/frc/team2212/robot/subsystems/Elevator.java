@@ -17,14 +17,6 @@ import edu.wpi.first.wpilibj.SpeedController;
 
 public class Elevator extends LimitedSubsystem {
 
-	// defining subsystem motor
-	private SpeedController motor;
-
-	// defining sensors
-	private DigitalInput upLimit;
-	private DigitalInput downLimit;
-	private Encoder encoder;
-
 	// initializing subsystem constants
 	// TODO: set constants to their real values
 	public static final Supplier<Double> SPEED_UP = ConstantHandler.addConstantDouble("Lift-SPEED-UP", 0.7);
@@ -32,6 +24,14 @@ public class Elevator extends LimitedSubsystem {
 
 	public static final Supplier<Integer> MIDDLE_SET_POINT = ConstantHandler.addConstantInt("lift-MIDDLE_SET_POINT", 0);
 	public static final Supplier<Integer> HIGH_SET_POINT = ConstantHandler.addConstantInt("lift-HIGH_SET_POINT", 0);
+	
+	// defining subsystem motor
+	private SpeedController motor;
+
+	// defining sensors
+	private DigitalInput upLimit;
+	private DigitalInput downLimit;
+	private Encoder encoder;
 
 	public Elevator(SpeedController motor, DigitalInput downLimit, DigitalInput upLimit, Encoder encoder) {
 		this.motor = motor;
