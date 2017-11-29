@@ -63,4 +63,8 @@ public class Folder extends LimitedSubsystem {
 
 	public void initDefaultCommand() {
 	}
+
+	public double getMidAngle() {
+		return midAngle;
+	}
 }
