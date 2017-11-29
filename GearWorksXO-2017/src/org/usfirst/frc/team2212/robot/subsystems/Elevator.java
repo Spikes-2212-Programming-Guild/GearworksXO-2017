@@ -45,7 +45,7 @@ public class Elevator extends LimitedSubsystem {
 		this.encoder = encoder;
 	}
 
-	public ElevatorState getSteate() {
+	public ElevatorState getState() {
 		// The subsystem is in its upper limit
 		if (upLimit.get())
 			return ElevatorState.HIGH_LIMIT;
