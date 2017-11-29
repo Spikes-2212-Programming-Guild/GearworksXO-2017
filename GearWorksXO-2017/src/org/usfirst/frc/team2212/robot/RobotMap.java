@@ -7,13 +7,50 @@ package org.usfirst.frc.team2212.robot;
  * floating around.
  */
 public class RobotMap {
-	// For example to map the left and right motors, you could define the
-	// following variables to use with your drivetrain subsystem.
-	// public static int leftMotor = 1;
-	// public static int rightMotor = 2;
+	// TODO insert correct ports
+	public interface USB {
 
-	// If you are using multiple modules, make sure to define both the port
-	// number and the module. For example you with a rangefinder:
-	// public static int rangefinderPort = 1;
-	// public static int rangefinderModule = 1;
+	}
+
+	// TODO insert correct ports
+	public interface CAN {
+		public static final int FOLDER = 0;
+
+		public static final int DRIVE_LEFT_FRONT = 1;
+		public static final int DRIVE_LEFT_REAR = 2;
+		public static final int DRIVE_RIGHT_FRONT = 3;
+		public static final int DRIVE_RIGHT_REAR = 4;
+
+		public static final int CLIMBER = 5;
+	}
+
+	// TODO insert correct ports
+	public interface PWM {
+		public static final int ELEVATOR_MOTOR = 0;
+		public static final int ROLLER_MOTOR = 1;
+	}
+
+	// TODO insert correct ports
+	public interface DIO {
+		public static final int ELEVATOR_DOWN = 9;
+		public static final int ELEVATOR_UP = 8;
+		public static final int ELEVATOR_ENCODER_A = 3;
+		public static final int ELEVATOR_ENCODER_B = 4;
+
+		public static final int FOLDER_DOWN = 7;
+		public static final int FOLDER_UP = 5;
+
+		public static final int DRIVE_LEFT_ENCODER_A = 0;
+		public static final int DRIVE_LEFT_ENCODER_B = 1;
+		public static final int DRIVE_RIGHT_ENCODER_A = 2;
+		public static final int DRIVE_RIGHT_ENCODER_B = 10;
+
+		public static final int ROLLER_SENSOR = 6;
+	}
+
+	// TODO insert correct ports
+	public interface AnalogInput {
+		public static final int FOLDER_POTENTIOMETER = 0;
+	}
+
 }
