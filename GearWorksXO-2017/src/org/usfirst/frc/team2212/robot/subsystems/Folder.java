@@ -20,7 +20,7 @@ public class Folder extends LimitedSubsystem {
 	public static final Supplier<Double> STARTING_ANGLE = ConstantHandler.addConstantDouble("Folder - starting angle",
 			0);
 	public static final Supplier<Double> SPEED_UP = ConstantHandler.addConstantDouble("Folder - speed", 0.5);
-	public static final Supplier<Double> SPEED_DOWN = ConstantHandler.addConstantDouble("Folder - speed", 0.1);
+	public static final Supplier<Double> SPEED_DOWN = ConstantHandler.addConstantDouble("Folder - speed", -0.1);
 	
  
 	private SpeedController motor;
