@@ -52,7 +52,7 @@ public class Robot extends IterativeRobot {
 
 		folder = new Folder(new CANTalon(RobotMap.CAN.FOLDER), new DigitalInput(RobotMap.DIO.FOLDER_DOWN),
 				new DigitalInput(RobotMap.DIO.FOLDER_UP),
-				new AnalogPotentiometer(RobotMap.AnalogInput.FOLDER_POTENTIOMETER));
+				new AnalogPotentiometer(RobotMap.AnalogInput.FOLDER_POTENTIOMETER, 360, Folder.STARTING_ANGLE.get()));
 
 		oi = new OI();
 	}
