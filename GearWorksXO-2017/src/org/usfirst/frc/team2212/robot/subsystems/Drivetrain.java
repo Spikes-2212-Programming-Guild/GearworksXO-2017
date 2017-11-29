@@ -3,7 +3,7 @@ package org.usfirst.frc.team2212.robot.subsystems;
 import org.usfirst.frc.team2212.robot.Robot;
 
 import com.spikes2212.genericsubsystems.drivetrains.TankDrivetrain;
-import com.spikes2212.genericsubsystems.drivetrains.commands.DriveArcade;
+import com.spikes2212.genericsubsystems.drivetrains.commands.DriveTank;
 
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.PIDSource;
@@ -50,6 +50,6 @@ public class Drivetrain extends TankDrivetrain {
 
 	// TODO - add default command
 	public void initDefaultCommand() {
-		setDefaultCommand(new DriveArcade(Robot.drivetrain, Robot.oi::getForwardRight, Robot.oi::getRotation));
+		setDefaultCommand(new DriveTank(Robot.drivetrain, Robot.oi::getForwardLeft, Robot.oi::getForwardRight));
 	}
 }

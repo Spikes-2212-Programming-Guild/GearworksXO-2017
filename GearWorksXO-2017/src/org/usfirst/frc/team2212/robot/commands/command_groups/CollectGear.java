@@ -14,8 +14,11 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class CollectGear extends CommandGroup {
 
 	public CollectGear() {
+		// lifting folder
+		addSequential(new MoveLimitedSubsystem(Robot.folder, Folder.SPEED_UP));
 
-		addParallel(new MoveElevator(ElevatorState.LOW_LIMIT));
+		addSequential(new MoveElevator(ElevatorState.LOW_LIMIT));
+		// collecting the gear
 		addSequential(new MoveLimitedSubsystem(Robot.folder, Folder.SPEED_DOWN));
 		addSequential(new RollGearIn(RollerGripper.SPEED_IN.get()));
 	}

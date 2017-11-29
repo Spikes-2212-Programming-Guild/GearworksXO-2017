@@ -1,10 +1,14 @@
 package org.usfirst.frc.team2212.robot;
 
+import org.usfirst.frc.team2212.robot.commands.RollGearIn;
+import org.usfirst.frc.team2212.robot.commands.RollGearOut;
+import org.usfirst.frc.team2212.robot.commands.command_groups.CollectGear;
+import org.usfirst.frc.team2212.robot.commands.command_groups.DropGear;
+import org.usfirst.frc.team2212.robot.subsystems.Elevator.ElevatorState;
 import org.usfirst.frc.team2212.robot.subsystems.Folder;
 import org.usfirst.frc.team2212.robot.subsystems.RollerGripper;
 
 import com.spikes2212.genericsubsystems.commands.MoveLimitedSubsystem;
-import com.spikes2212.genericsubsystems.commands.MoveLimitedSubsystemWithPID;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -22,28 +26,38 @@ public class OI/* GEVALD */ {
 
 	// defining folder buttons
 	private JoystickButton moveFolderUp;
-	private JoystickButton moveFolderMid;
-	private JoystickButton moveFolderDown;
 	// defining roller buttons
 	private JoystickButton rollGearIn;
 	private JoystickButton rollGearOut;
+	// defining command groups buttons
+	private JoystickButton collectGear;
+	private JoystickButton dropGearHigh;
+	private JoystickButton dropGearLow;
 
 	public OI() {
 		// initializing folder buttons
 		moveFolderUp = new JoystickButton(navigator, 2);
-		moveFolderMid = new JoystickButton(navigator, 3);
-		moveFolderDown = new JoystickButton(navigator, 4);
 		// initializing roller buttons
 		rollGearIn = new JoystickButton(navigator, 5);
 		rollGearOut = new JoystickButton(navigator, 6);
+		// initializing command groups buttons
+		collectGear = new JoystickButton(navigator, 7);
+		dropGearHigh = new JoystickButton(navigator, 3);
+		dropGearLow = new JoystickButton(navigator, 4);
 
 		// activating folder buttons
-		moveFolderDown.whenPressed(new MoveLimitedSubsystem(Robot.folder, Folder.SPEED_DOWN));
 		moveFolderUp.whenPressed(new MoveLimitedSubsystem(Robot.folder, Folder.SPEED_UP));
-		moveFolderMid.whenPressed(new MoveLimitedSubsystemWithPID(Robot.folder, Folder.INITIAL_MID_ANGLE,
-				Folder.KP.get(), Folder.KI.get(), Folder.KD.get(), Folder.TOLERANCE.get()));
 
-		// activating folder buttons
+		// activating roller buttons
+		rollGearIn.whenPressed(new RollGearIn(RollerGripper.SPEED_IN.get()));
+		rollGearOut.toggleWhenPressed(
+				new RollGearOut(RollerGripper.WAIT_TIME_DROP.get(), RollerGripper.SPEED_OUT_HIGH_PEG.get()));
+
+		// activating command groups buttons
+		collectGear.whenPressed(new CollectGear());
+		dropGearHigh.whenPressed(new DropGear(ElevatorState.HIGH_LIMIT));
+		dropGearLow.whenPressed(new DropGear(ElevatorState.MIDDLE));
+
 	}
 
 	public Double adjustSpeed(double speed) {

@@ -3,13 +3,11 @@ package org.usfirst.frc.team2212.robot.commands.command_groups;
 import org.usfirst.frc.team2212.robot.Robot;
 import org.usfirst.frc.team2212.robot.commands.MoveElevator;
 import org.usfirst.frc.team2212.robot.commands.RollGearOut;
-import org.usfirst.frc.team2212.robot.subsystems.Elevator;
-import org.usfirst.frc.team2212.robot.subsystems.Folder;
 import org.usfirst.frc.team2212.robot.subsystems.Elevator.ElevatorState;
+import org.usfirst.frc.team2212.robot.subsystems.Folder;
+import org.usfirst.frc.team2212.robot.subsystems.RollerGripper;
 
 import com.spikes2212.genericsubsystems.commands.MoveLimitedSubsystem;
-
-import org.usfirst.frc.team2212.robot.subsystems.RollerGripper;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
