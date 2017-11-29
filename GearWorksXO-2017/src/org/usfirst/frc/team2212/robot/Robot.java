@@ -4,10 +4,12 @@ package org.usfirst.frc.team2212.robot;
 import org.usfirst.frc.team2212.robot.subsystems.Climber;
 import org.usfirst.frc.team2212.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team2212.robot.subsystems.Elevator;
+import org.usfirst.frc.team2212.robot.subsystems.Elevator.ElevatorState;
 import org.usfirst.frc.team2212.robot.subsystems.Folder;
 import org.usfirst.frc.team2212.robot.subsystems.RollerGripper;
 
 import com.ctre.CANTalon;
+import com.spikes2212.dashboard.DashBoardController;
 import com.spikes2212.utils.DoubleSpeedcontroller;
 
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
@@ -26,6 +28,7 @@ public class Robot extends IterativeRobot {
 	public static Folder folder;
 	public static Drivetrain drivetrain;
 	public static RollerGripper rollerGripper;
+	private DashBoardController dbc;
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -55,6 +58,12 @@ public class Robot extends IterativeRobot {
 				new AnalogPotentiometer(RobotMap.AnalogInput.FOLDER_POTENTIOMETER, 360, Folder.STARTING_ANGLE.get()));
 
 		oi = new OI();
+		
+		dbc.addBoolean("Top", ()->elevator.getState() == ElevatorState.HIGH_LIMIT);
+		dbc.addBoolean("Top To Mid", ()->elevator.getState() == ElevatorState.MIDDLE_TO_HIGH);
+		dbc.addBoolean("Mid", ()->elevator.getState() == ElevatorState.MIDDLE);
+		dbc.addBoolean("Mid To Bottom", ()->elevator.getState() == ElevatorState.LOW_TO_MIDDLE);
+		dbc.addBoolean("Bottom", ()->elevator.getState() == ElevatorState.LOW_LIMIT);
 	}
 
 	/**
@@ -64,12 +73,12 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void disabledInit() {
-
 	}
 
 	@Override
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run();
+		dbc.update();
 	}
 
 	/**
@@ -111,6 +120,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
+		dbc.update();
 	}
 
 	/**
