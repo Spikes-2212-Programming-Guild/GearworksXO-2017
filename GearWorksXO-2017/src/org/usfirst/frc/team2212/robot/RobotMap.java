@@ -20,7 +20,7 @@ public class RobotMap {
 		public static final int DRIVE_LEFT_REAR = 2;
 		public static final int DRIVE_RIGHT_FRONT = 3;
 		public static final int DRIVE_RIGHT_REAR = 4;
-		
+
 		public static final int CLIMBER = 5;
 	}
 
@@ -32,22 +32,20 @@ public class RobotMap {
 
 	// TODO insert correct ports
 	public interface DIO {
-		public static final int ELEVATOR_DOWN = 0;
-		public static final int ELEVATOR_UP = 1;
-		public static final int ELEVATOR_ENCODER_A = 2;
-		public static final int ELEVATOR_ENCODER_B = 3;
+		public static final int ELEVATOR_DOWN = 9;
+		public static final int ELEVATOR_UP = 8;
+		public static final int ELEVATOR_ENCODER_A = 3;
+		public static final int ELEVATOR_ENCODER_B = 4;
 
-		public static final int FOLDER_DOWN = 4;
+		public static final int FOLDER_DOWN = 7;
 		public static final int FOLDER_UP = 5;
-		public static final int FOLDER_ENCODER_A = 6;
-		public static final int FOLDER_ENCODER_B = 7;
 
-		public static final int DRIVE_LEFT_ENCODER_A = 8;
-		public static final int DRIVE_LEFT_ENCODER_B = 9;
-		public static final int DRIVE_RIGHT_ENCODER_A = 10;
-		public static final int DRIVE_RIGHT_ENCODER_B = 11;
+		public static final int DRIVE_LEFT_ENCODER_A = 0;
+		public static final int DRIVE_LEFT_ENCODER_B = 1;
+		public static final int DRIVE_RIGHT_ENCODER_A = 2;
+		public static final int DRIVE_RIGHT_ENCODER_B = 10;
 
-		public static final int ROLLER_SENSOR = 12;
+		public static final int ROLLER_SENSOR = 6;
 	}
 
 	// TODO insert correct ports
