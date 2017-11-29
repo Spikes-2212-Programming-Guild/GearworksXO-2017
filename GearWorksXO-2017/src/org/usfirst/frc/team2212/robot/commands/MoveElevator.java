@@ -18,19 +18,19 @@ public class MoveElevator extends MoveLimitedSubsystem {
 	public static final Supplier<Integer> TOLERANCE = ConstantHandler.addConstantInt("Elevetor - Tolerance", 10);
 
 	public MoveElevator(ElevatorState target) {
-		super(Robot.elevator, (Robot.elevator.getPosition().getIndex() < target.getIndex()) ? Elevator.SPEED.get()
+		super(Robot.elevator, (Robot.elevator.getSteate().getIndex() < target.getIndex()) ? Elevator.SPEED.get()
 				: -Elevator.SPEED.get());
 		this.target = target;
 	}
 
 	protected boolean isFinished() {
-		return (Math.abs(target.getIndex() - Robot.elevator.getPosition().getIndex()) <= TOLERANCE.get())
+		return (Math.abs(target.getIndex() - Robot.elevator.getSteate().getIndex()) <= TOLERANCE.get())
 				|| super.isFinished();
 	}
 
 	@Override
 	protected void end() {
-		if (Robot.elevator.getPosition() == ElevatorState.LOW_LIMIT)
+		if (Robot.elevator.getSteate() == ElevatorState.LOW_LIMIT)
 			Robot.elevator.resetEncoder();
 		super.end();
 	}

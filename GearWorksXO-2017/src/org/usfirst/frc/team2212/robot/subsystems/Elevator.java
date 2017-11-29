@@ -45,7 +45,7 @@ public class Elevator extends LimitedSubsystem {
 		this.encoder = encoder;
 	}
 
-	public ElevatorState getPosition() {
+	public ElevatorState getSteate() {
 		// The subsystem is in its upper limit
 		if (upLimit.get())
 			return ElevatorState.HIGH_LIMIT;
@@ -66,9 +66,6 @@ public class Elevator extends LimitedSubsystem {
 		encoder.reset();
 	}
 
-	public void initDefaultCommand() {
-	}
-
 	@Override
 	public boolean isMin() {
 		return downLimit.get();
@@ -87,5 +84,8 @@ public class Elevator extends LimitedSubsystem {
 	@Override
 	protected void move(double speed) {
 		motor.set(speed);
+	}
+	
+	public void initDefaultCommand() {
 	}
 }
