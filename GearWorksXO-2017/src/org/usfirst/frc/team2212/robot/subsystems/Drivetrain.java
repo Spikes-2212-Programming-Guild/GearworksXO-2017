@@ -16,17 +16,13 @@ public class Drivetrain extends TankDrivetrain {
 	private Encoder encoderLeft;
 	private Encoder encoderRight;
 
-	// TODO - check inverted motors 
+	// TODO - check inverted motors
 	public Drivetrain(SpeedController leftGearbox, SpeedController rightGearbox, Encoder encoderLeft,
 			Encoder encoderRight) {
 		this.leftSpeedController = leftGearbox;
 		this.rightSpeedController = rightGearbox;
 		this.encoderLeft = encoderLeft;
 		this.encoderRight = encoderRight;
-	}
-
-	// TODO - add default command
-	public void initDefaultCommand() {
 	}
 
 	@Override
@@ -47,5 +43,9 @@ public class Drivetrain extends TankDrivetrain {
 	@Override
 	public void setRight(double speed) {
 		rightSpeedController.set(speed);
+	}
+
+	// TODO - add default command
+	public void initDefaultCommand() {
 	}
 }
