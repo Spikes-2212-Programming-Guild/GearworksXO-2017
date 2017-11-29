@@ -14,9 +14,9 @@ import edu.wpi.first.wpilibj.command.WaitCommand;
  */
 public class DropGearAndMoveLift extends CommandGroup {
 
-	public DropGearAndMoveLift(Supplier<Double> rollSpeed, double rollWaitTime, double timeBeforeFoling, ElevatorState elevatorTarget) {
+	public DropGearAndMoveLift(Supplier<Double> rollSpeed, double rollWaitTime, double timeBeforeFolding, ElevatorState elevatorTarget) {
 		addParallel(new RollGear(rollSpeed,rollWaitTime));
-		addSequential(new WaitCommand(timeBeforeFoling));
+		addSequential(new WaitCommand(timeBeforeFolding));
 		addParallel(new MoveElevator(elevatorTarget));
 	}
 }
