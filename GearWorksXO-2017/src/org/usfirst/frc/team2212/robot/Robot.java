@@ -5,6 +5,7 @@ import org.usfirst.frc.team2212.robot.subsystems.Climber;
 import org.usfirst.frc.team2212.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team2212.robot.subsystems.Elevator;
 import org.usfirst.frc.team2212.robot.subsystems.Folder;
+import org.usfirst.frc.team2212.robot.subsystems.RollerGripper;
 
 import com.ctre.CANTalon;
 import com.spikes2212.utils.DoubleSpeedcontroller;
@@ -12,12 +13,8 @@ import com.spikes2212.utils.DoubleSpeedcontroller;
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
-import org.usfirst.frc.team2212.robot.subsystems.RollerGripper;
-
-import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.VictorSP;
-import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
@@ -47,8 +44,8 @@ public class Robot extends IterativeRobot {
 		rollerGripper = new RollerGripper(new VictorSP(RobotMap.PWM.ROLLER_MOTOR),
 				new DigitalInput(RobotMap.DIO.ROLLER_SENSOR));
 
-		elevator = new Elevator(new CANTalon(RobotMap.PWM.ELEVATOR_MOTOR), new DigitalInput(RobotMap.DIO.ELEVATOR_UP),
-				new DigitalInput(RobotMap.DIO.ELEVATOR_DOWN),
+		elevator = new Elevator(new VictorSP(RobotMap.PWM.ELEVATOR_MOTOR), new DigitalInput(RobotMap.DIO.ELEVATOR_DOWN),
+				new DigitalInput(RobotMap.DIO.ELEVATOR_UP),
 				new Encoder(RobotMap.DIO.ELEVATOR_ENCODER_A, RobotMap.DIO.ELEVATOR_ENCODER_B));
 
 		climber = new Climber(new CANTalon(RobotMap.CAN.CLIMBER));
