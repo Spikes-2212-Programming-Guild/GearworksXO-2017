@@ -14,8 +14,8 @@ public class Climber extends LimitedSubsystem {
 	private CANTalon motor;
 
 	//defining subsystem constants
-	public static final Supplier<Double> MAX_CURRENT = ConstantHandler.addConstantDouble("MAX_CURRENT", 35);
-	public static final Supplier<Double> SPEED = ConstantHandler.addConstantDouble("SPEED", 0.5);
+	public static final Supplier<Double> MAX_CURRENT = ConstantHandler.addConstantDouble("Climber-MAX_CURRENT", 35);
+	public static final Supplier<Double> SPEED = ConstantHandler.addConstantDouble("Climber-SPEED", 1);
 
 	public Climber(CANTalon climberMotor) {
 		this.motor = climberMotor;
