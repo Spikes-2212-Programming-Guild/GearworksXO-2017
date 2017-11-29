@@ -19,7 +19,7 @@ public class Folder extends LimitedSubsystem {
 	public static final Supplier<Double> INITIAL_MID_ANGLE = ConstantHandler.addConstantDouble("Folder - Mid", 45);
 	public static final Supplier<Double> STARTING_ANGLE = ConstantHandler.addConstantDouble("Folder - starting angle",
 			0);
-	private double midAngle;
+	private double actualMidAngle;
 
 	private SpeedController motor;
 	private DigitalInput downLimit;
@@ -34,13 +34,13 @@ public class Folder extends LimitedSubsystem {
 		this.upLimit = upLimit;
 		this.potentiometer = potentiometer;
 		this.motor.setInverted(true);
-		midAngle = STARTING_ANGLE.get();
+		actualMidAngle = INITIAL_MID_ANGLE.get();
 	}
 
 	@Override
 	public boolean isMin() {
 		if (downLimit.get()) {
-			midAngle = STARTING_MID_ANGLE.get() + (potentiometer.get() - STARTING_ANGLE.get());
+			actualMidAngle = INITIAL_MID_ANGLE.get() + (potentiometer.get() - STARTING_ANGLE.get());
 			return true;
 		}
 		return false;
