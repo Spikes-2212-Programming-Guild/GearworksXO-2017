@@ -35,4 +35,8 @@ public class MoveElevator extends MoveLimitedSubsystem {
 		super.end();
 	}
 
+	protected void interrupted() {
+		end();
+	}
+
 }
