@@ -22,14 +22,4 @@ public class MoveElevator extends MoveLimitedSubsystem {
 	protected boolean isFinished() {
 		return (Math.abs(target - Robot.elevator.getPosition()) <= TOLERANCE.get()) || super.isFinished();
 	}
-
-	@Override
-	protected void end() {
-		super.end();
-	}
-
-	protected void interrupted() {
-		end();
-	}
-
 }
