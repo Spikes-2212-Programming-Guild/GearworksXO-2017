@@ -1,9 +1,8 @@
 package org.usfirst.frc.team2212.robot.commands.command_groups;
 
 import org.usfirst.frc.team2212.robot.Robot;
-import org.usfirst.frc.team2212.robot.commands.MoveElevator;
 import org.usfirst.frc.team2212.robot.commands.RollGearIn;
-import org.usfirst.frc.team2212.robot.subsystems.Elevator.ElevatorState;
+import org.usfirst.frc.team2212.robot.subsystems.Elevator;
 import org.usfirst.frc.team2212.robot.subsystems.Folder;
 import org.usfirst.frc.team2212.robot.subsystems.RollerGripper;
 
@@ -17,9 +16,19 @@ public class CollectGear extends CommandGroup {
 		// lifting folder
 		addSequential(new MoveLimitedSubsystem(Robot.folder, Folder.SPEED_UP));
 
-		addSequential(new MoveElevator(ElevatorState.LOW_LIMIT));
+		addSequential(new MoveLimitedSubsystem(Robot.elevator, Elevator.SPEED_DOWN));
+
 		// collecting the gear
-		addSequential(new MoveLimitedSubsystem(Robot.folder, Folder.SPEED_DOWN));
+
+		/*
+		 * if the folder is still in it's maximum, the supplier will return a larger
+		 * value to push the subsystem. otherwise, it will use SPEED_DOWN_B- the
+		 * smaller, more stable speed
+		 */
+		addSequential(new MoveLimitedSubsystem(Robot.folder,
+				Robot.folder.isMax() ? Folder.SPEED_DOWN_A : Folder.SPEED_DOWN_B));
+
 		addSequential(new RollGearIn(RollerGripper.SPEED_IN.get()));
+
 	}
 }
