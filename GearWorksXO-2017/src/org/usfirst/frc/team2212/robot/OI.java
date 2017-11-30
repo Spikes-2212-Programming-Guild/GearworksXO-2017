@@ -1,9 +1,7 @@
 package org.usfirst.frc.team2212.robot;
 
-import jdk.nashorn.internal.scripts.JO;
 import org.usfirst.frc.team2212.robot.commands.MoveElevator;
 import org.usfirst.frc.team2212.robot.commands.RollGearIn;
-import org.usfirst.frc.team2212.robot.commands.RollGearOut;
 import org.usfirst.frc.team2212.robot.commands.command_groups.DropGear;
 import org.usfirst.frc.team2212.robot.commands.command_groups.PickGear;
 import org.usfirst.frc.team2212.robot.commands.command_groups.PrepareToCollectGear;
