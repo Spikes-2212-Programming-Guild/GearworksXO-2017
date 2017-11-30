@@ -15,7 +15,7 @@ public class MoveElevator extends MoveLimitedSubsystem {
 
 	public MoveElevator(int target) {
 		super(Robot.elevator,
-				(Robot.elevator.getPosition() < target) ? Elevator.SPEED_UP.get() : -Elevator.SPEED_DOWN.get());
+				(Robot.elevator.getPosition() < target) ? Elevator.SPEED_UP.get() : Elevator.SPEED_DOWN.get());
 		this.target = target;
 	}
 
