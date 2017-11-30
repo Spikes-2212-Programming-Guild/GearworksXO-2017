@@ -58,13 +58,16 @@ public class Robot extends IterativeRobot {
 
 		dbc = new DashBoardController();
 		// adding 5 boolean boxes which present the position of the elevator
-		dbc.addBoolean("Elevator_in_high_limit", () -> elevator.getPosition() == Elevator.HIGH_SET_POINT.get());
-		dbc.addBoolean("Elevator_in_high-middle_area", () -> elevator.getPosition() < Elevator.HIGH_SET_POINT.get()
-				&& elevator.getPosition() > Elevator.MIDDLE_SET_POINT.get());
-		dbc.addBoolean("Elevator_in_middle_point", () -> elevator.getPosition() == Elevator.MIDDLE_SET_POINT.get());
-		dbc.addBoolean("Elevator_in_high-middle_area",
-				() -> elevator.getPosition() < Elevator.MIDDLE_SET_POINT.get() && elevator.getPosition() > 0);
-		dbc.addBoolean("Elevator_in_high_limit", () -> elevator.getPosition() == 0);
+		dbc.addBoolean("Top", () -> elevator.isMax());
+		dbc.addBoolean("Top To Mid",
+				() -> (Elevator.MIDDLE_SET_POINT.get() < elevator.getPosition() && elevator.getPosition() < Elevator.HIGH_SET_POINT.get()));
+		dbc.addBoolean("Mid", () -> (elevator.inTargetRange(Elevator.MIDDLE_SET_POINT.get())));
+		dbc.addBoolean("Mid To Bottom", () -> (0 < elevator.getPosition()
+				&& elevator.getPosition() < Elevator.MIDDLE_SET_POINT.get()));
+		dbc.addBoolean("Bottom", () -> elevator.isMin());
+
+		dbc.addBoolean("HasGear", rollerGripper::getSensorData);
+
 	}
 
 	/**

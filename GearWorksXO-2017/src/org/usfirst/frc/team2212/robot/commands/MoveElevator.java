@@ -11,7 +11,6 @@ import com.spikes2212.genericsubsystems.commands.MoveLimitedSubsystem;
 public class MoveElevator extends MoveLimitedSubsystem {
 
 	//TODO - find correct tolerance
-	public static final Supplier<Integer> TOLERANCE = ConstantHandler.addConstantInt("Elevetor - Tolerance", 20);
 	private int target;
 
 	public MoveElevator(int target) {
@@ -21,6 +20,6 @@ public class MoveElevator extends MoveLimitedSubsystem {
 	}
 
 	protected boolean isFinished() {
-		return (Math.abs(target - Robot.elevator.getPosition()) <= TOLERANCE.get()) || super.isFinished();
+		return Robot.elevator.inTargetRange(target)|| super.isFinished();
 	}
 }

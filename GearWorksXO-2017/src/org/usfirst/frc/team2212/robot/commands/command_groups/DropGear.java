@@ -13,17 +13,31 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 
 public class DropGear extends CommandGroup {
 
-	public DropGear(int target) {
-		addParallel(new MoveElevator(target));
-		addSequential(new MoveLimitedSubsystem(Robot.folder, Folder.SPEED_UP));
+	public DropGear() {
 		// setting the roller gripper speed according to target
-		double rollerSpeed = 0;
+		double rollerSpeed = determineRollerSpeed();
+		addSequential(new RollGearOut(rollerSpeed,RollerGripper.WAIT_TIME_DROP.get()));
 
-		if (target == Elevator.HIGH_SET_POINT.get())
-			rollerSpeed = RollerGripper.SPEED_OUT_HIGH_PEG.get();
-		else if (target == Elevator.MIDDLE_SET_POINT.get())
-			rollerSpeed = RollerGripper.SPEED_OUT_LOW_PEG.get();
+		//moving the elevator to the correct direction
+		int elevatorTarget=determineElevatorTarget();
+		addSequential(new MoveElevator(elevatorTarget));
+	}
 
-		addSequential(new RollGearOut(RollerGripper.WAIT_TIME_DROP.get(), rollerSpeed));
+	public double determineRollerSpeed(){
+		if (Robot.elevator.inTargetRange(Elevator.HIGH_SET_POINT.get()))
+			return RollerGripper.SPEED_OUT_HIGH_PEG.get();
+		else if (Robot.elevator.inTargetRange(Elevator.MIDDLE_SET_POINT.get()))
+			return RollerGripper.SPEED_OUT_LOW_PEG.get();
+		return 0;
+	}
+
+	public int determineElevatorTarget(){
+		if (Robot.elevator.inTargetRange(Elevator.HIGH_SET_POINT.get()))
+			return Elevator.MIDDLE_SET_POINT.get();
+		else if (Robot.elevator.inTargetRange(Elevator.MIDDLE_SET_POINT.get()))
+			return Elevator.HIGH_SET_POINT.get();
+		return 0;
+
+
 	}
 }

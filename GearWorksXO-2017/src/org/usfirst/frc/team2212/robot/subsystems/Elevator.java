@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.PIDSource;
 import edu.wpi.first.wpilibj.SpeedController;
+import org.usfirst.frc.team2212.robot.Robot;
 
 /**
  * @author Itamar Rivkind
@@ -25,7 +26,9 @@ public class Elevator extends LimitedSubsystem {
 	// TODO: set constants to their real values
 	public static final Supplier<Integer> MIDDLE_SET_POINT = ConstantHandler.addConstantInt("Elevator-MIDDLE_SET_POINT", 0);
 	public static final Supplier<Integer> HIGH_SET_POINT = ConstantHandler.addConstantInt("Elevator-HIGH_SET_POINT", 0);
-	
+
+	public static final Supplier<Integer> TOLERANCE = ConstantHandler.addConstantInt("Elevetor - Tolerance", 20);
+
 	// defining subsystem motor
 	private SpeedController motor;
 
@@ -77,6 +80,9 @@ public class Elevator extends LimitedSubsystem {
 		return this.encoder.get();
 	}
 
+	public boolean inTargetRange (int target){
+		return (Math.abs(target - Robot.elevator.getPosition()) <= TOLERANCE.get());
+	}
 	public void initDefaultCommand() {
 	}
 }
