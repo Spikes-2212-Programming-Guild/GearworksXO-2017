@@ -23,7 +23,7 @@ public class DropGear extends CommandGroup {
 		addSequential(new MoveElevator(elevatorTarget));
 	}
 
-	public double determineRollerSpeed(){
+	private double determineRollerSpeed(){
 		if (Robot.elevator.inTargetRange(Elevator.HIGH_SET_POINT.get()))
 			return RollerGripper.SPEED_OUT_HIGH_PEG.get();
 		else if (Robot.elevator.inTargetRange(Elevator.MIDDLE_SET_POINT.get()))
@@ -31,7 +31,7 @@ public class DropGear extends CommandGroup {
 		return 0;
 	}
 
-	public int determineElevatorTarget(){
+	private int determineElevatorTarget(){
 		if (Robot.elevator.inTargetRange(Elevator.HIGH_SET_POINT.get()))
 			return Elevator.MIDDLE_SET_POINT.get();
 		else if (Robot.elevator.inTargetRange(Elevator.MIDDLE_SET_POINT.get()))

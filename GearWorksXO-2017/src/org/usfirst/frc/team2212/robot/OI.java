@@ -1,9 +1,13 @@
 package org.usfirst.frc.team2212.robot;
 
+import jdk.nashorn.internal.scripts.JO;
+import org.usfirst.frc.team2212.robot.commands.MoveElevator;
 import org.usfirst.frc.team2212.robot.commands.RollGearIn;
 import org.usfirst.frc.team2212.robot.commands.RollGearOut;
-import org.usfirst.frc.team2212.robot.commands.command_groups.CollectGear;
 import org.usfirst.frc.team2212.robot.commands.command_groups.DropGear;
+import org.usfirst.frc.team2212.robot.commands.command_groups.PickGear;
+import org.usfirst.frc.team2212.robot.commands.command_groups.PrepareToCollectGear;
+import org.usfirst.frc.team2212.robot.subsystems.Climber;
 import org.usfirst.frc.team2212.robot.subsystems.Elevator;
 import org.usfirst.frc.team2212.robot.subsystems.Folder;
 import org.usfirst.frc.team2212.robot.subsystems.RollerGripper;
@@ -24,39 +28,60 @@ public class OI/* GEVALD */ {
 	private Joystick driverRight = new Joystick(1);
 	private Joystick navigator = new Joystick(2);
 
-	// defining folder buttons
-	private JoystickButton moveFolderUp;
-	// defining roller buttons
+	//move elevator
+	private JoystickButton moveElevatorToMiddle;
+	private JoystickButton moveElevatorToHigh;
+	// defining roller button
 	private JoystickButton rollGearIn;
-	private JoystickButton rollGearOut;
-	// defining command groups buttons
-	private JoystickButton collectGear;
-	private JoystickButton dropGearHigh;
-	private JoystickButton dropGearLow;
-
+	//folder buttons
+	private JoystickButton moveFolderUp;
+	private JoystickButton moveFolderDown;
+	//drop gear
+	private JoystickButton dropGear;
+	// defining prepare to pick gear button
+	private JoystickButton prepareToPickGear;
+	// defining button to pick the gear
+	private JoystickButton pickGear;
+	//defining climbing button
+	private JoystickButton climb;
 	public OI() {
-		// initializing folder buttons
-		moveFolderUp = new JoystickButton(navigator, 2);
-		// initializing roller buttons
-		rollGearIn = new JoystickButton(navigator, 5);
-		rollGearOut = new JoystickButton(navigator, 6);
-		// initializing command groups buttons
-		collectGear = new JoystickButton(navigator, 7);
-		dropGearHigh = new JoystickButton(navigator, 3);
-		dropGearLow = new JoystickButton(navigator, 4);
+		moveElevatorToHigh = new JoystickButton(navigator,2);
+		moveElevatorToMiddle = new JoystickButton(navigator,3);
 
-		// activating folder buttons
-		moveFolderUp.whenPressed(new MoveLimitedSubsystem(Robot.folder, Folder.SPEED_UP));
+		rollGearIn=new JoystickButton(navigator,4);
 
-		// activating roller buttons
+		moveFolderUp=new JoystickButton(navigator,5);
+		moveFolderDown=new JoystickButton(navigator,6);
+
+		dropGear=new JoystickButton(navigator,7);
+
+		prepareToPickGear=new JoystickButton(navigator,8);
+
+		pickGear=new JoystickButton(navigator,9);
+
+		climb=new JoystickButton(navigator,1);
+
+
+
+		moveElevatorToHigh.whenPressed(new MoveElevator(Elevator.HIGH_SET_POINT.get()));
+		moveElevatorToMiddle.whenPressed(new MoveElevator(Elevator.MIDDLE_SET_POINT.get()));
+
 		rollGearIn.whenPressed(new RollGearIn(RollerGripper.SPEED_IN.get()));
-		rollGearOut.toggleWhenPressed(
-				new RollGearOut(RollerGripper.WAIT_TIME_DROP.get(), RollerGripper.SPEED_OUT_HIGH_PEG.get()));
 
-		// activating command groups buttons
-		collectGear.whenPressed(new CollectGear());
-		dropGearHigh.whenPressed(new DropGear(Elevator.HIGH_SET_POINT.get()));
-		dropGearLow.whenPressed(new DropGear(Elevator.MIDDLE_SET_POINT.get()));
+		moveFolderUp.whenPressed(new MoveLimitedSubsystem(Robot.folder,Folder.SPEED_UP));
+		moveFolderDown.whenPressed(new MoveLimitedSubsystem(Robot.folder,
+				Robot.folder.isMax() ? Folder.SPEED_DOWN_A : Folder.SPEED_DOWN_B));
+
+		dropGear.whenPressed(new DropGear());
+
+		prepareToPickGear.whenPressed(new PrepareToCollectGear());
+
+		pickGear.whenPressed(new PickGear());
+
+		climb.whenPressed(new MoveLimitedSubsystem(Robot.climber, Climber.SPEED.get()));
+
+
+
 
 	}
 
