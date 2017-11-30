@@ -12,13 +12,13 @@ import edu.wpi.first.wpilibj.SpeedController;
 public class Folder extends LimitedSubsystem {
 
 	// defining subsystem constants
-	public static final Supplier<Double> SPEED_UP = ConstantHandler.addConstantDouble("Folder - speed", 0.8);
+	public static final Supplier<Double> SPEED_UP = ConstantHandler.addConstantDouble("Folder - UpSpeed", 0.8);
 	/*
 	 * SPEED_DOWN_A: the speed with which the folder needs to move just for the first 'pulse'
 	 * SPEED_DOWN_B: the stable speed with which the folder needs to move down
 	 */
-	public static final Supplier<Double> SPEED_DOWN_A = ConstantHandler.addConstantDouble("Folder-speed-A", -0.4);
-	public static final Supplier<Double> SPEED_DOWN_B = ConstantHandler.addConstantDouble("Folder-speed-B", -0.1);
+	public static final Supplier<Double> SPEED_DOWN_A = ConstantHandler.addConstantDouble("Folder-DownSpeed-A", -0.4);
+	public static final Supplier<Double> SPEED_DOWN_B = ConstantHandler.addConstantDouble("Folder-DownSpeed-B", -0.1);
 
 	// subsystem variables
 	private SpeedController motor;
