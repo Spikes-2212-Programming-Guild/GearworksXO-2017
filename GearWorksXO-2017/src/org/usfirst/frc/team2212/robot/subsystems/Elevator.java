@@ -19,11 +19,11 @@ public class Elevator extends LimitedSubsystem {
 
 	// initializing subsystem constants
 	// TODO: set constants to their real values
-	public static final Supplier<Double> SPEED_UP = ConstantHandler.addConstantDouble("Lift-SPEED-UP", 0.7);
-	public static final Supplier<Double> SPEED_DOWN = ConstantHandler.addConstantDouble("Lift-SPEED-DOWN", -0.7);
+	public static final Supplier<Double> SPEED_UP = ConstantHandler.addConstantDouble("Elevator-SPEED-UP", 0.7);
+	public static final Supplier<Double> SPEED_DOWN = ConstantHandler.addConstantDouble("Elevator-SPEED-DOWN", -0.7);
 
-	public static final Supplier<Integer> MIDDLE_SET_POINT = ConstantHandler.addConstantInt("lift-MIDDLE_SET_POINT", 0);
-	public static final Supplier<Integer> HIGH_SET_POINT = ConstantHandler.addConstantInt("lift-HIGH_SET_POINT", 0);
+	public static final Supplier<Integer> MIDDLE_SET_POINT = ConstantHandler.addConstantInt("Elevator-MIDDLE_SET_POINT", 0);
+	public static final Supplier<Integer> HIGH_SET_POINT = ConstantHandler.addConstantInt("Elevator-HIGH_SET_POINT", 0);
 	
 	// defining subsystem motor
 	private SpeedController motor;
