@@ -11,11 +11,9 @@ public class RollGearOut extends Command {
 
 	private double speed;
 
-	public RollGearOut(double waitTime, double speed) {
+	public RollGearOut(double speed, double waitTime) {
 		requires(Robot.rollerGripper);
 		this.speed = speed;
-
-		// finally, we really use it
 		this.setTimeout(waitTime);
 	}
 
