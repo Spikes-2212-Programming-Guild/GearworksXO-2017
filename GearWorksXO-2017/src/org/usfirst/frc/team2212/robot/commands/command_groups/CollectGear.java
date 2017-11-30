@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 
 public class CollectGear extends CommandGroup {
 
-	public CollectGear() {
+	public PrepareToCollectGear() {
 		// lift folder
 		addSequential(new MoveLimitedSubsystem(Robot.folder, Folder.SPEED_UP));
 		// lower elevetor
@@ -27,8 +27,5 @@ public class CollectGear extends CommandGroup {
 		 */
 		addSequential(new MoveLimitedSubsystem(Robot.folder,
 				Robot.folder.isMax() ? Folder.SPEED_DOWN_A : Folder.SPEED_DOWN_B));
-
-		addSequential(new RollGearIn(RollerGripper.SPEED_IN.get()));
-
 	}
 }
