@@ -10,7 +10,8 @@ import com.spikes2212.genericsubsystems.commands.MoveLimitedSubsystem;
 
 public class MoveElevator extends MoveLimitedSubsystem {
 
-	public static final Supplier<Integer> TOLERANCE = ConstantHandler.addConstantInt("Elevetor - Tolerance", 10);
+	//TODO - find correct tolerance
+	public static final Supplier<Integer> TOLERANCE = ConstantHandler.addConstantInt("Elevetor - Tolerance", 20);
 	private int target;
 
 	public MoveElevator(int target) {
