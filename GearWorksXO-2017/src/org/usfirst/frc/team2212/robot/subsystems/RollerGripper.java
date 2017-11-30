@@ -19,7 +19,7 @@ public class RollerGripper extends Subsystem {
 	 * releases the gear down, to the low gear
 	 */
 	public static final Supplier<Double> SPEED_OUT_HIGH_PEG = ConstantHandler
-			.addConstantDouble("Gripper-speed-out-high-peg", 0.5);
+			.addConstantDouble("Gripper-speed-out-high-peg", 0.7);
 	public static final Supplier<Double> SPEED_OUT_LOW_PEG = ConstantHandler
 			.addConstantDouble("Gripper-speed-out-low-peg", -0.5);
 
