@@ -4,6 +4,7 @@ import org.usfirst.frc.team2212.robot.commands.RollGearIn;
 import org.usfirst.frc.team2212.robot.commands.RollGearOut;
 import org.usfirst.frc.team2212.robot.commands.command_groups.CollectGear;
 import org.usfirst.frc.team2212.robot.commands.command_groups.DropGear;
+import org.usfirst.frc.team2212.robot.subsystems.Elevator;
 import org.usfirst.frc.team2212.robot.subsystems.Folder;
 import org.usfirst.frc.team2212.robot.subsystems.RollerGripper;
 
@@ -54,8 +55,8 @@ public class OI/* GEVALD */ {
 
 		// activating command groups buttons
 		collectGear.whenPressed(new CollectGear());
-		// dropGearHigh.whenPressed(new DropGear(ElevatorState.HIGH_LIMIT));
-		// dropGearLow.whenPressed(new DropGear(ElevatorState.MIDDLE));
+		dropGearHigh.whenPressed(new DropGear(Elevator.HIGH_SET_POINT.get()));
+		dropGearLow.whenPressed(new DropGear(Elevator.MIDDLE_SET_POINT.get()));
 
 	}
 

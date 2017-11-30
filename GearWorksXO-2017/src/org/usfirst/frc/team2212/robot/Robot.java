@@ -4,7 +4,6 @@ package org.usfirst.frc.team2212.robot;
 import org.usfirst.frc.team2212.robot.subsystems.Climber;
 import org.usfirst.frc.team2212.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team2212.robot.subsystems.Elevator;
-import org.usfirst.frc.team2212.robot.subsystems.Elevator.ElevatorState;
 import org.usfirst.frc.team2212.robot.subsystems.Folder;
 import org.usfirst.frc.team2212.robot.subsystems.RollerGripper;
 
@@ -12,7 +11,6 @@ import com.ctre.CANTalon;
 import com.spikes2212.dashboard.DashBoardController;
 import com.spikes2212.utils.DoubleSpeedcontroller;
 
-import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -54,17 +52,19 @@ public class Robot extends IterativeRobot {
 		climber = new Climber(new CANTalon(RobotMap.CAN.CLIMBER));
 
 		folder = new Folder(new CANTalon(RobotMap.CAN.FOLDER), new DigitalInput(RobotMap.DIO.FOLDER_DOWN),
-				new DigitalInput(RobotMap.DIO.FOLDER_UP),
-				new AnalogPotentiometer(RobotMap.AnalogInput.FOLDER_POTENTIOMETER, 360, Folder.STARTING_ANGLE.get()));
+				new DigitalInput(RobotMap.DIO.FOLDER_UP));
 
 		oi = new OI();
 
 		dbc = new DashBoardController();
-		dbc.addBoolean("Top", () -> elevator.getState().getIndex() == ElevatorState.HIGH_LIMIT.getIndex());
-		dbc.addBoolean("Top To Mid", () -> elevator.getState().getIndex() == ElevatorState.MIDDLE_TO_HIGH.getIndex());
-		dbc.addBoolean("Mid", () -> elevator.getState().getIndex() == ElevatorState.MIDDLE.getIndex());
-		dbc.addBoolean("Mid To Bottom", () -> elevator.getState().getIndex() == ElevatorState.LOW_TO_MIDDLE.getIndex());
-		dbc.addBoolean("Bottom", () -> elevator.getState().getIndex() == ElevatorState.LOW_LIMIT.getIndex());
+		// adding 5 boolean boxes which present the position of the elevator
+		dbc.addBoolean("Elevator_in_high_limit", () -> elevator.getPosition() == Elevator.HIGH_SET_POINT.get());
+		dbc.addBoolean("Elevator_in_high-middle_area", () -> elevator.getPosition() < Elevator.HIGH_SET_POINT.get()
+				&& elevator.getPosition() > Elevator.MIDDLE_SET_POINT.get());
+		dbc.addBoolean("Elevator_in_middle_point", () -> elevator.getPosition() == Elevator.MIDDLE_SET_POINT.get());
+		dbc.addBoolean("Elevator_in_high-middle_area",
+				() -> elevator.getPosition() < Elevator.MIDDLE_SET_POINT.get() && elevator.getPosition() > 0);
+		dbc.addBoolean("Elevator_in_high_limit", () -> elevator.getPosition() == 0);
 	}
 
 	/**
