@@ -10,7 +10,7 @@ import com.spikes2212.genericsubsystems.commands.MoveLimitedSubsystem;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
-public class CollectGear extends CommandGroup {
+public class PrepareToCollectGear extends CommandGroup {
 
 	public PrepareToCollectGear() {
 		// lift folder
@@ -18,7 +18,7 @@ public class CollectGear extends CommandGroup {
 		// lower elevetor
 		addSequential(new MoveLimitedSubsystem(Robot.elevator, Elevator.SPEED_DOWN));
 
-		// collecting the gear
+		// lower folder
 
 		/*
 		 * if the folder is in it's maximum limit, the supplier will return a larger
