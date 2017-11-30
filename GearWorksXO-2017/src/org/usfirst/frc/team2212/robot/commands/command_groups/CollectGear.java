@@ -13,15 +13,15 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class CollectGear extends CommandGroup {
 
 	public CollectGear() {
-		// lifting folder
+		// lift folder
 		addSequential(new MoveLimitedSubsystem(Robot.folder, Folder.SPEED_UP));
-
+		// lower elevetor
 		addSequential(new MoveLimitedSubsystem(Robot.elevator, Elevator.SPEED_DOWN));
 
 		// collecting the gear
 
 		/*
-		 * if the folder is still in it's maximum, the supplier will return a larger
+		 * if the folder is in it's maximum limit, the supplier will return a larger
 		 * value to push the subsystem. otherwise, it will use SPEED_DOWN_B- the
 		 * smaller, more stable speed
 		 */
