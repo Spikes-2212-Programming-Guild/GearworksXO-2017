@@ -26,47 +26,48 @@ public class OI/* GEVALD */ {
 	private Joystick driverRight = new Joystick(1);
 	private Joystick navigator = new Joystick(2);
 
-	//move elevator
+	// Navigator Buttons
 	private JoystickButton moveElevatorToMiddle;
 	private JoystickButton moveElevatorToHigh;
-	// defining roller button
 	private JoystickButton rollGearIn;
-	//folder buttons
 	private JoystickButton moveFolderUp;
 	private JoystickButton moveFolderDown;
-	//drop gear
 	private JoystickButton dropGear;
-	// defining prepare to pick gear button
 	private JoystickButton prepareToPickGear;
-	// defining button to pick the gear
 	private JoystickButton pickGear;
-	//defining climbing button
 	private JoystickButton climb;
+
+	// Driver Buttons
+	private JoystickButton orientAndMoveToGear;
+
 	public OI() {
-		moveElevatorToHigh = new JoystickButton(navigator,2);
-		moveElevatorToMiddle = new JoystickButton(navigator,3);
+		initJoystickDriver();
+		initJoystickNavigator();
+	}
 
-		rollGearIn=new JoystickButton(navigator,4);
+	private void initJoystickNavigator() {
+		moveElevatorToHigh = new JoystickButton(navigator, 2);
+		moveElevatorToMiddle = new JoystickButton(navigator, 3);
 
-		moveFolderUp=new JoystickButton(navigator,5);
-		moveFolderDown=new JoystickButton(navigator,6);
+		rollGearIn = new JoystickButton(navigator, 4);
 
-		dropGear=new JoystickButton(navigator,7);
+		moveFolderUp = new JoystickButton(navigator, 5);
+		moveFolderDown = new JoystickButton(navigator, 6);
 
-		prepareToPickGear=new JoystickButton(navigator,8);
+		dropGear = new JoystickButton(navigator, 7);
 
-		pickGear=new JoystickButton(navigator,9);
+		prepareToPickGear = new JoystickButton(navigator, 8);
 
-		climb=new JoystickButton(navigator,1);
+		pickGear = new JoystickButton(navigator, 9);
 
-
+		climb = new JoystickButton(navigator, 1);
 
 		moveElevatorToHigh.whenPressed(new MoveElevator(Elevator.HIGH_SET_POINT.get()));
 		moveElevatorToMiddle.whenPressed(new MoveElevator(Elevator.MIDDLE_SET_POINT.get()));
 
 		rollGearIn.whenPressed(new RollGearIn(RollerGripper.SPEED_IN.get()));
 
-		moveFolderUp.whenPressed(new MoveLimitedSubsystem(Robot.folder,Folder.SPEED_UP));
+		moveFolderUp.whenPressed(new MoveLimitedSubsystem(Robot.folder, Folder.SPEED_UP));
 		moveFolderDown.whenPressed(new MoveLimitedSubsystem(Robot.folder,
 				Robot.folder.isMax() ? Folder.SPEED_DOWN_A : Folder.SPEED_DOWN_B));
 
@@ -77,13 +78,13 @@ public class OI/* GEVALD */ {
 		pickGear.whenPressed(new PickGear());
 
 		climb.whenPressed(new MoveLimitedSubsystem(Robot.climber, Climber.SPEED.get()));
+	}
 
-
-
+	private void initJoystickDriver() {
 
 	}
 
-	public Double adjustSpeed(double speed) {
+	public double adjustSpeed(double speed) {
 		return Math.abs(speed) * speed;
 	}
 
