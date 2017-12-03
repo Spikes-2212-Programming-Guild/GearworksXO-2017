@@ -1,7 +1,6 @@
 
 package org.usfirst.frc.team2212.robot;
 
-import org.usfirst.frc.team2212.robot.subsystems.Climber;
 import org.usfirst.frc.team2212.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team2212.robot.subsystems.Elevator;
 import org.usfirst.frc.team2212.robot.subsystems.Folder;
@@ -22,7 +21,6 @@ public class Robot extends IterativeRobot {
 
 	public static OI oi;
 	public static Elevator elevator;
-	public static Climber climber;
 	public static Folder folder;
 	public static Drivetrain drivetrain;
 	public static RollerGripper rollerGripper;
@@ -48,8 +46,6 @@ public class Robot extends IterativeRobot {
 		elevator = new Elevator(new VictorSP(RobotMap.PWM.ELEVATOR_MOTOR), new DigitalInput(RobotMap.DIO.ELEVATOR_DOWN),
 				new DigitalInput(RobotMap.DIO.ELEVATOR_UP),
 				new Encoder(RobotMap.DIO.ELEVATOR_ENCODER_A, RobotMap.DIO.ELEVATOR_ENCODER_B));
-
-		climber = new Climber(new CANTalon(RobotMap.CAN.CLIMBER));
 
 		folder = new Folder(new CANTalon(RobotMap.CAN.FOLDER), new DigitalInput(RobotMap.DIO.FOLDER_DOWN),
 				new DigitalInput(RobotMap.DIO.FOLDER_UP));

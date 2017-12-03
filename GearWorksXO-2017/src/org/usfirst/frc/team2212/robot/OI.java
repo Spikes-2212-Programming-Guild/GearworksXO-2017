@@ -5,7 +5,6 @@ import org.usfirst.frc.team2212.robot.commands.RollGearIn;
 import org.usfirst.frc.team2212.robot.commands.command_groups.DropGear;
 import org.usfirst.frc.team2212.robot.commands.command_groups.PickGear;
 import org.usfirst.frc.team2212.robot.commands.command_groups.PrepareToCollectGear;
-import org.usfirst.frc.team2212.robot.subsystems.Climber;
 import org.usfirst.frc.team2212.robot.subsystems.Elevator;
 import org.usfirst.frc.team2212.robot.subsystems.Folder;
 import org.usfirst.frc.team2212.robot.subsystems.RollerGripper;
