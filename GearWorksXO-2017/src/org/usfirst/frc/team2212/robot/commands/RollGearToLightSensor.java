@@ -9,11 +9,11 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class RollGearIn extends MoveLimitedSubsystem {
+public class RollGearToLightSensor extends MoveLimitedSubsystem {
 
 	private double speed;
 
-	public RollGearIn(double speed) {
+	public RollGearToLightSensor(double speed) {
 		super(Robot.rollerGripper, speed);
 	}
 
