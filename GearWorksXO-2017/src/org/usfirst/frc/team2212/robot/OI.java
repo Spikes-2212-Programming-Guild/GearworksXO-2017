@@ -1,7 +1,7 @@
 package org.usfirst.frc.team2212.robot;
 
 import org.usfirst.frc.team2212.robot.commands.MoveElevator;
-import org.usfirst.frc.team2212.robot.commands.RollGearIn;
+import org.usfirst.frc.team2212.robot.commands.RollGearToLightSensor;
 import org.usfirst.frc.team2212.robot.commands.command_groups.DropGear;
 import org.usfirst.frc.team2212.robot.commands.command_groups.PickGear;
 import org.usfirst.frc.team2212.robot.commands.command_groups.PrepareToCollectGear;
@@ -41,8 +41,8 @@ public class OI/* GEVALD */ {
 
 	private void initJoystickNavigator() {
 
-		moveElevatorToHigh = new JoystickButton(navigator, 2);
-		moveElevatorToMiddle = new JoystickButton(navigator, 3);
+		moveElevatorToHigh = new JoystickButton(navigator, 3);
+		moveElevatorToMiddle = new JoystickButton(navigator, 2);
 		rollGearIn = new JoystickButton(navigator, 4);
 		moveFolderUp = new JoystickButton(navigator, 5);
 		moveFolderDown = new JoystickButton(navigator, 6);
@@ -52,7 +52,7 @@ public class OI/* GEVALD */ {
 
 		moveElevatorToHigh.whenPressed(new MoveLimitedSubsystem(Robot.elevator, Elevator.SPEED_UP));
 		moveElevatorToMiddle.whenPressed(new MoveElevator(Elevator.MIDDLE_SET_POINT.get()));
-		rollGearIn.whenPressed(new RollGearIn(RollerGripper.SPEED_IN.get()));
+		rollGearIn.whenPressed(new RollGearToLightSensor(RollerGripper.SPEED_IN.get()));
 		moveFolderUp.whenPressed(new MoveLimitedSubsystem(Robot.folder, Folder.SPEED_UP));
 		moveFolderDown.whenPressed(new MoveLimitedSubsystem(Robot.folder,
 				Robot.folder.isMax() ? Folder.SPEED_DOWN_A : Folder.SPEED_DOWN_B));

@@ -2,7 +2,7 @@ package org.usfirst.frc.team2212.robot.commands.command_groups;
 
 import org.usfirst.frc.team2212.robot.Robot;
 import org.usfirst.frc.team2212.robot.commands.MoveElevator;
-import org.usfirst.frc.team2212.robot.commands.RollGearOut;
+import org.usfirst.frc.team2212.robot.commands.RollGearWithTime;
 import org.usfirst.frc.team2212.robot.subsystems.Elevator;
 import org.usfirst.frc.team2212.robot.subsystems.Folder;
 import org.usfirst.frc.team2212.robot.subsystems.RollerGripper;
@@ -16,7 +16,7 @@ public class DropGear extends CommandGroup {
 	public DropGear() {
 		// setting the roller gripper speed according to target
 		double rollerSpeed = determineRollerSpeed();
-		addSequential(new RollGearOut(rollerSpeed,RollerGripper.WAIT_TIME_DROP.get()));
+		addSequential(new RollGearWithTime(rollerSpeed,RollerGripper.WAIT_TIME_DROP.get()));
 
 		//moving the elevator to the correct direction
 		int elevatorTarget=determineElevatorTarget();
