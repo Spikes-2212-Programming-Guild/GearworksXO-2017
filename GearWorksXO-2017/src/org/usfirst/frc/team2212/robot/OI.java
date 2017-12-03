@@ -5,7 +5,6 @@ import org.usfirst.frc.team2212.robot.commands.RollGearIn;
 import org.usfirst.frc.team2212.robot.commands.command_groups.DropGear;
 import org.usfirst.frc.team2212.robot.commands.command_groups.PickGear;
 import org.usfirst.frc.team2212.robot.commands.command_groups.PrepareToCollectGear;
-import org.usfirst.frc.team2212.robot.subsystems.Climber;
 import org.usfirst.frc.team2212.robot.subsystems.Elevator;
 import org.usfirst.frc.team2212.robot.subsystems.Folder;
 import org.usfirst.frc.team2212.robot.subsystems.RollerGripper;
@@ -35,7 +34,6 @@ public class OI/* GEVALD */ {
 	private JoystickButton dropGear;
 	private JoystickButton prepareToPickGear;
 	private JoystickButton pickGear;
-	private JoystickButton climb;
 
 	// Driver Buttons
 	private JoystickButton orientAndMoveToGear;
@@ -60,8 +58,6 @@ public class OI/* GEVALD */ {
 
 		pickGear = new JoystickButton(navigator, 9);
 
-		climb = new JoystickButton(navigator, 1);
-
 		moveElevatorToHigh.whenPressed(new MoveElevator(Elevator.HIGH_SET_POINT.get()));
 		moveElevatorToMiddle.whenPressed(new MoveElevator(Elevator.MIDDLE_SET_POINT.get()));
 
@@ -76,8 +72,6 @@ public class OI/* GEVALD */ {
 		prepareToPickGear.whenPressed(new PrepareToCollectGear());
 
 		pickGear.whenPressed(new PickGear());
-
-		climb.whenPressed(new MoveLimitedSubsystem(Robot.climber, Climber.SPEED.get()));
 	}
 
 	private void initJoystickDriver() {
