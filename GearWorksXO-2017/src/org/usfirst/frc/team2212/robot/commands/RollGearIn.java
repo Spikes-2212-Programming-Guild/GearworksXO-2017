@@ -2,18 +2,19 @@ package org.usfirst.frc.team2212.robot.commands;
 
 import org.usfirst.frc.team2212.robot.Robot;
 
+import com.spikes2212.genericsubsystems.commands.MoveLimitedSubsystem;
+
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class RollGearIn extends Command {
+public class RollGearIn extends MoveLimitedSubsystem {
 
 	private double speed;
 
 	public RollGearIn(double speed) {
-		requires(Robot.rollerGripper);
-		this.speed = speed;
+		super(Robot.rollerGripper, speed);
 	}
 
 	// Called just before this Command runs the first time
