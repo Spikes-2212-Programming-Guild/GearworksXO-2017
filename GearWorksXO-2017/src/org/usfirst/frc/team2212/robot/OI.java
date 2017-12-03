@@ -50,7 +50,7 @@ public class OI/* GEVALD */ {
 		prepareToPickGear = new JoystickButton(navigator, 8);
 		pickGear = new JoystickButton(navigator, 9);
 
-		moveElevatorToHigh.whenPressed(new MoveElevator(Elevator.HIGH_SET_POINT.get()));
+		moveElevatorToHigh.whenPressed(new MoveLimitedSubsystem(Robot.elevator, Elevator.SPEED_UP));
 		moveElevatorToMiddle.whenPressed(new MoveElevator(Elevator.MIDDLE_SET_POINT.get()));
 		rollGearIn.whenPressed(new RollGearIn(RollerGripper.SPEED_IN.get()));
 		moveFolderUp.whenPressed(new MoveLimitedSubsystem(Robot.folder, Folder.SPEED_UP));
