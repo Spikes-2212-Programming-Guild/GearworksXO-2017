@@ -5,6 +5,7 @@ import org.usfirst.frc.team2212.robot.commands.RollGearIn;
 import org.usfirst.frc.team2212.robot.commands.command_groups.DropGear;
 import org.usfirst.frc.team2212.robot.commands.command_groups.PickGear;
 import org.usfirst.frc.team2212.robot.commands.command_groups.PrepareToCollectGear;
+import org.usfirst.frc.team2212.robot.commands.orientation.OrientateAndMoveToGear;
 import org.usfirst.frc.team2212.robot.subsystems.Elevator;
 import org.usfirst.frc.team2212.robot.subsystems.Folder;
 import org.usfirst.frc.team2212.robot.subsystems.RollerGripper;
@@ -36,7 +37,7 @@ public class OI/* GEVALD */ {
 	private JoystickButton pickGear;
 
 	// Driver Buttons
-	private JoystickButton orientAndMoveToGear;
+	private JoystickButton orientateAndMoveToGearButton;
 
 	public OI() {
 		initJoystickDriver();
@@ -75,7 +76,7 @@ public class OI/* GEVALD */ {
 	}
 
 	private void initJoystickDriver() {
-
+		orientateAndMoveToGearButton.whileHeld(new OrientateAndMoveToGear(this::getRotation, this::getForward));
 	}
 
 	public double adjustSpeed(double speed) {
