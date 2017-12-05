@@ -1,5 +1,6 @@
 package org.usfirst.frc.team2212.robot;
 
+import org.usfirst.frc.team2212.robot.commands.DropGearByLimit;
 import org.usfirst.frc.team2212.robot.commands.MoveFolder;
 import org.usfirst.frc.team2212.robot.commands.RollGearToLightSensor;
 import org.usfirst.frc.team2212.robot.commands.RollGearWithTime;
@@ -62,11 +63,12 @@ public class OI/* GEVALD */ {
 				new MoveFolder(() -> Robot.folder.isMax() ? Folder.SPEED_DOWN_A.get() : Folder.SPEED_DOWN_B.get(),
 						Folder.WAIT_TIME.get()));
 
-		dropGear.whenPressed(new DropGear());
+		dropGear.whenPressed(new DropGearByLimit());
 		prepareToPickGear.whenPressed(new PrepareToCollectGear());
-		pickGear.whenPressed(new PickGear());
+		pickGear.toggleWhenPressed(new PickGear());
 		
-		testRollEithTimeOut.whenPressed(new RollGearWithTime(0.5, 5));
+		testRollEithTimeOut.whenPressed(new RollGearWithTime(-0.2, 2));
+		
 	}
 
 	public Double adjustSpeed(double speed) {

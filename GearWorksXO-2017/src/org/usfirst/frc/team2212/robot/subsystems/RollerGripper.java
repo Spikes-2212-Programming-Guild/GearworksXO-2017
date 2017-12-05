@@ -27,7 +27,7 @@ public class RollerGripper extends LimitedSubsystem {
 
 	// the wait time for roller-gripper drop-gear commands
 	public static final Supplier<Double> WAIT_TIME_DROP = ConstantHandler.addConstantDouble("Gripper - wait time drop",
-			0);
+			1);
 
 	private SpeedController motor;
 	private DigitalInput sensor;
