@@ -5,7 +5,9 @@ import org.usfirst.frc.team2212.robot.commands.RollGearIn;
 import org.usfirst.frc.team2212.robot.commands.command_groups.DropGear;
 import org.usfirst.frc.team2212.robot.commands.command_groups.PickGear;
 import org.usfirst.frc.team2212.robot.commands.command_groups.PrepareToCollectGear;
-import org.usfirst.frc.team2212.robot.commands.orientation.OrientAndMoveToGear;
+import org.usfirst.frc.team2212.robot.commands.orientation.TurnAndMoveToGear;
+import org.usfirst.frc.team2212.robot.commands.orientation.TurnAndMoveToHighGear;
+import org.usfirst.frc.team2212.robot.commands.orientation.TurnAndMoveToLowGear;
 import org.usfirst.frc.team2212.robot.subsystems.Elevator;
 import org.usfirst.frc.team2212.robot.subsystems.Folder;
 import org.usfirst.frc.team2212.robot.subsystems.RollerGripper;
@@ -27,7 +29,9 @@ public class OI/* GEVALD */ {
 	private Joystick navigator = new Joystick(2);
 
 	// Driver Buttons
-	private JoystickButton orientateAndMoveToGearButton;
+	private JoystickButton TurnAndMoveToGearAll;
+	private JoystickButton TurnAndMoveToGearHigh;
+	private JoystickButton TurnAndMoveToGearLow;
 
 	// Navigator Buttons
 	private JoystickButton moveElevatorToMiddle;
@@ -67,7 +71,9 @@ public class OI/* GEVALD */ {
 	}
 
 	private void initJoystickDriver() {
-		orientateAndMoveToGearButton.whileHeld(new OrientAndMoveToGear(this::getRotation, this::getForward));
+		TurnAndMoveToGearAll.whileHeld(new TurnAndMoveToGear(this::getRotation, this::getForward));
+		TurnAndMoveToGearHigh.whileHeld(new TurnAndMoveToHighGear(this::getRotation, this::getForward));
+		TurnAndMoveToGearLow.whileHeld(new TurnAndMoveToLowGear(this::getRotation, this::getForward));
 	}
 
 	public double adjustSpeed(double speed) {
