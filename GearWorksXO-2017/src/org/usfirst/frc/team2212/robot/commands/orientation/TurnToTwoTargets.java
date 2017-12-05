@@ -9,7 +9,6 @@ import com.spikes2212.dashboard.ConstantHandler;
 import com.spikes2212.genericsubsystems.drivetrains.commands.DriveArcade;
 
 import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj.command.Command;
 
 /**
  * A {@link DriveArcade} command which rotates the drivetrain in a given
@@ -31,6 +30,7 @@ public class TurnToTwoTargets extends DriveArcade {
 
 	@Override
 	protected boolean isFinished() {
+		// center supposed to be 0
 		boolean isCentered = Math.abs(ImageProcessingConstants.TWO_OBJECTS_CENTER.get()) <= TOLERANCE.get();
 		if (!isCentered) {
 			lastTimeNotOnTarget = Timer.getFPGATimestamp();
