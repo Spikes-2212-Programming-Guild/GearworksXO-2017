@@ -11,6 +11,11 @@ import com.spikes2212.utils.RunnableCommand;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
+/**
+ * A {@link CommandGroup} which rotates the drivetrain to the middle of the high
+ * peg and moves it forward in a given speed
+ *
+ */
 public class TurnAndMoveToHighGear extends CommandGroup {
 
 	public static final Supplier<Double> HIGH_GEAR_CAM_ID = ConstantHandler.addConstantDouble("HighGear-Camera_ID", 0);
