@@ -3,15 +3,17 @@ package org.usfirst.frc.team2212.robot.subsystems;
 import java.util.function.Supplier;
 
 import com.spikes2212.dashboard.ConstantHandler;
+import com.spikes2212.genericsubsystems.LimitedSubsystem;
 
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.PIDSource;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-public class RollerGripper extends Subsystem {
+public class RollerGripper extends LimitedSubsystem {
 
 	// defining subsystem constants
-	public static final Supplier<Double> SPEED_IN = ConstantHandler.addConstantDouble("Gripper-speed-in", -0.7);
+	public static final Supplier<Double> SPEED_IN = ConstantHandler.addConstantDouble("Gripper-speed-in", -0.5);
 	/*
 	 * SPEED_OUT_HIGH_PEG: the speed of the subsystem when it releases the gear up,
 	 * to the high peg
@@ -43,15 +45,26 @@ public class RollerGripper extends Subsystem {
 		motor.set(speed);
 	}
 
-	public void stop() {
-		motor.set(0);
-	}
-
 	public boolean getSensorData() {
 		return sensor.get();
 	}
 
 	@Override
 	protected void initDefaultCommand() {
+	}
+
+	@Override
+	public boolean isMin() {
+		return false;
+	}
+
+	@Override
+	public boolean isMax() {
+		return false;
+	}
+
+	@Override
+	public PIDSource getPIDSource() {
+		return null;
 	}
 }
