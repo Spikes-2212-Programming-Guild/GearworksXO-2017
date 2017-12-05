@@ -13,7 +13,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
  * A {@link CommandGroup} which rotates the drivetrain to the middle of the high
- * peg and moves it forward in a given speed
+ * peg in a given rotateSpeed and moves it forward in a given forwardSpeed
  *
  */
 public class TurnAndMoveToHighGear extends CommandGroup {
