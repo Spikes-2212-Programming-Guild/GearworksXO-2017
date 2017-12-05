@@ -54,7 +54,7 @@ public class OI/* GEVALD */ {
 		testRollEithTimeOut = new JoystickButton(navigator, 10);
 		
 
-		moveElevatorToHigh.whileHeld(new MoveLimitedSubsystem(Robot.elevator, Elevator.SPEED_UP));
+		moveElevatorToHigh.whenPressed(new MoveLimitedSubsystem(Robot.elevator, Elevator.SPEED_UP));
 		moveElevatorToLow.whenPressed(new MoveLimitedSubsystem(Robot.elevator, Elevator.SPEED_DOWN));
 		rollGearIn.whenPressed(new RollGearToLightSensor(RollerGripper.SPEED_IN.get()));
 		moveFolderUp.whenPressed(new MoveFolder(Folder.SPEED_UP, Folder.WAIT_TIME.get()));
