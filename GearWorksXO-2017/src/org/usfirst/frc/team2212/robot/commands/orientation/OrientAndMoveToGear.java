@@ -12,11 +12,11 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class OrientateAndMoveToGear extends CommandGroup {
+public class OrientAndMoveToGear extends CommandGroup {
 
 	public static final Supplier<Double> TOLERANCE = ConstantHandler.addConstantDouble("orientation-TOLERANCE", 0.05);
 
-	public OrientateAndMoveToGear(Supplier<Double> turningSpeed, Supplier<Double> forwardsSpeed) {
+	public OrientAndMoveToGear(Supplier<Double> turningSpeed, Supplier<Double> forwardsSpeed) {
 		addSequential(new OrientToTwoTargets(turningSpeed));
 		addSequential(new DriveArcade(Robot.drivetrain, forwardsSpeed, () -> 0.0));
 	}
