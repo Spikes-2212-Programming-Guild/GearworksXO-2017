@@ -19,7 +19,7 @@ public class Drivetrain extends TankDrivetrain {
 	private Encoder encoderRight;
 
 	public Drivetrain(SpeedController leftGearbox, SpeedController rightGearbox, Encoder encoderLeft,
-					  Encoder encoderRight) {
+			Encoder encoderRight) {
 		this.leftSpeedController = leftGearbox;
 		this.rightSpeedController = rightGearbox;
 		this.encoderLeft = encoderLeft;
@@ -51,6 +51,6 @@ public class Drivetrain extends TankDrivetrain {
 	}
 
 	public void initDefaultCommand() {
-		setDefaultCommand(new DriveArcade(Robot.drivetrain, Robot.oi::getForward, Robot.oi::getRotation));
+		setDefaultCommand(new DriveArcade(Robot.drivetrain, Robot.oi::getRightY, Robot.oi::getLeftX));
 	}
 }

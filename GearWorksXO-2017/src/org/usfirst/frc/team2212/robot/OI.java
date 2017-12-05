@@ -6,8 +6,8 @@ import org.usfirst.frc.team2212.robot.commands.command_groups.DropGear;
 import org.usfirst.frc.team2212.robot.commands.command_groups.PickGear;
 import org.usfirst.frc.team2212.robot.commands.command_groups.PrepareToCollectGear;
 import org.usfirst.frc.team2212.robot.commands.orientation.TurnAndMoveToGear;
-import org.usfirst.frc.team2212.robot.commands.orientation.TurnAndMoveToHighGear;
-import org.usfirst.frc.team2212.robot.commands.orientation.TurnAndMoveToLowGear;
+import org.usfirst.frc.team2212.robot.commands.orientation.TurnAndMoveToGearHigh;
+import org.usfirst.frc.team2212.robot.commands.orientation.TurnAndMoveToGearLow;
 import org.usfirst.frc.team2212.robot.subsystems.Elevator;
 import org.usfirst.frc.team2212.robot.subsystems.Folder;
 import org.usfirst.frc.team2212.robot.subsystems.RollerGripper;
@@ -71,20 +71,28 @@ public class OI/* GEVALD */ {
 	}
 
 	private void initJoystickDriver() {
-		TurnAndMoveToGearAll.whileHeld(new TurnAndMoveToGear(this::getRotation, this::getForward));
-		TurnAndMoveToGearHigh.whileHeld(new TurnAndMoveToHighGear(this::getRotation, this::getForward));
-		TurnAndMoveToGearLow.whileHeld(new TurnAndMoveToLowGear(this::getRotation, this::getForward));
+		TurnAndMoveToGearAll.whileHeld(new TurnAndMoveToGear(this::getRightX, this::getRightY));
+		TurnAndMoveToGearHigh.whileHeld(new TurnAndMoveToGearHigh(this::getRightX, this::getRightY));
+		TurnAndMoveToGearLow.whileHeld(new TurnAndMoveToGearLow(this::getRightX, this::getRightY));
 	}
 
 	public double adjustSpeed(double speed) {
 		return Math.abs(speed) * speed;
 	}
 
-	public double getForward() {
+	public double getRightX() {
+		return adjustSpeed(driverRight.getX());
+	}
+
+	public double getRightY() {
 		return adjustSpeed(driverRight.getY());
 	}
 
-	public double getRotation() {
+	public double getLeftX() {
 		return adjustSpeed(driverLeft.getX());
+	}
+
+	public double getLeftY() {
+		return adjustSpeed(driverLeft.getY());
 	}
 }
