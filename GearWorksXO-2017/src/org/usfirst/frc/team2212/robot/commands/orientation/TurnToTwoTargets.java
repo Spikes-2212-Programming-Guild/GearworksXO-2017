@@ -21,8 +21,8 @@ public class TurnToTwoTargets extends DriveArcade {
 
 	@Override
 	protected boolean isFinished() {
-		boolean state = ImageProcessingConstants.NETWORK_TABLE.getBoolean("isUpdated1", false);
-		if (!state) {
+		boolean reflectivesInSight = ImageProcessingConstants.NETWORK_TABLE.getBoolean("isUpdated1", false);
+		if (!reflectivesInSight) {
 			lastTimeNotOnTarget = Timer.getFPGATimestamp();
 		}
 		return Timer.getFPGATimestamp() - lastTimeNotOnTarget >= WAIT_TIME.get();
