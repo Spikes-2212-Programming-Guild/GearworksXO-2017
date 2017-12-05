@@ -4,14 +4,10 @@ import org.usfirst.frc.team2212.robot.Robot;
 
 import com.spikes2212.genericsubsystems.commands.MoveLimitedSubsystem;
 
-import edu.wpi.first.wpilibj.command.Command;
-
 /**
  *
  */
 public class RollGearToLightSensor extends MoveLimitedSubsystem {
-
-	private double speed;
 
 	public RollGearToLightSensor(double speed) {
 		super(Robot.rollerGripper, speed);
@@ -19,11 +15,6 @@ public class RollGearToLightSensor extends MoveLimitedSubsystem {
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
-	}
-
-	// Called repeatedly when this Command is scheduled to run
-	protected void execute() {
-		Robot.rollerGripper.move(speed);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

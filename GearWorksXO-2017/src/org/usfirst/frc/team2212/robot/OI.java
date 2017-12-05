@@ -1,6 +1,5 @@
 package org.usfirst.frc.team2212.robot;
 
-import org.usfirst.frc.team2212.robot.commands.MoveElevator;
 import org.usfirst.frc.team2212.robot.commands.RollGearToLightSensor;
 import org.usfirst.frc.team2212.robot.commands.command_groups.DropGear;
 import org.usfirst.frc.team2212.robot.commands.command_groups.PickGear;
@@ -21,12 +20,12 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 public class OI/* GEVALD */ {
 
 	// initializing joysticks
-	private Joystick driverLeft = new Joystick(0);
+	private Joystick driverLeft = new Joystick(2);
 	private Joystick driverRight = new Joystick(1);
-	private Joystick navigator = new Joystick(2);
+	private Joystick navigator = new Joystick(0);
 
 	// navigator
-	private JoystickButton moveElevatorToMiddle;
+	private JoystickButton moveElevatorToLow;
 	private JoystickButton moveElevatorToHigh;
 	private JoystickButton rollGearIn;
 	private JoystickButton moveFolderUp;
@@ -42,7 +41,7 @@ public class OI/* GEVALD */ {
 	private void initJoystickNavigator() {
 
 		moveElevatorToHigh = new JoystickButton(navigator, 3);
-		moveElevatorToMiddle = new JoystickButton(navigator, 2);
+		moveElevatorToLow = new JoystickButton(navigator, 2);
 		rollGearIn = new JoystickButton(navigator, 4);
 		moveFolderUp = new JoystickButton(navigator, 5);
 		moveFolderDown = new JoystickButton(navigator, 6);
@@ -50,12 +49,13 @@ public class OI/* GEVALD */ {
 		prepareToPickGear = new JoystickButton(navigator, 8);
 		pickGear = new JoystickButton(navigator, 9);
 
-		moveElevatorToHigh.whenPressed(new MoveLimitedSubsystem(Robot.elevator, Elevator.SPEED_UP));
-		moveElevatorToMiddle.whenPressed(new MoveElevator(Elevator.MIDDLE_SET_POINT.get()));
+		moveElevatorToHigh.whileHeld(new MoveLimitedSubsystem(Robot.elevator, Elevator.SPEED_UP));
+		moveElevatorToLow.whenPressed(new MoveLimitedSubsystem(Robot.elevator, -0.8));
 		rollGearIn.whenPressed(new RollGearToLightSensor(RollerGripper.SPEED_IN.get()));
 		moveFolderUp.whenPressed(new MoveLimitedSubsystem(Robot.folder, Folder.SPEED_UP));
 		moveFolderDown.whenPressed(new MoveLimitedSubsystem(Robot.folder,
-				Robot.folder.isMax() ? Folder.SPEED_DOWN_A : Folder.SPEED_DOWN_B));
+				() -> Robot.folder.isMax() ? Folder.SPEED_DOWN_A.get() : Folder.SPEED_DOWN_B.get()));
+
 		dropGear.whenPressed(new DropGear());
 		prepareToPickGear.whenPressed(new PrepareToCollectGear());
 		pickGear.whenPressed(new PickGear());
