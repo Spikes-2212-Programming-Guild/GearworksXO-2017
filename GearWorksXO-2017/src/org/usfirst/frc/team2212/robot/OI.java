@@ -26,6 +26,9 @@ public class OI/* GEVALD */ {
 	private Joystick driverRight = new Joystick(1);
 	private Joystick navigator = new Joystick(2);
 
+	// Driver Buttons
+	private JoystickButton orientateAndMoveToGearButton;
+
 	// Navigator Buttons
 	private JoystickButton moveElevatorToMiddle;
 	private JoystickButton moveElevatorToHigh;
@@ -36,42 +39,30 @@ public class OI/* GEVALD */ {
 	private JoystickButton prepareToPickGear;
 	private JoystickButton pickGear;
 
-	// Driver Buttons
-	private JoystickButton orientateAndMoveToGearButton;
-
 	public OI() {
 		initJoystickDriver();
 		initJoystickNavigator();
 	}
 
 	private void initJoystickNavigator() {
+
 		moveElevatorToHigh = new JoystickButton(navigator, 2);
 		moveElevatorToMiddle = new JoystickButton(navigator, 3);
-
 		rollGearIn = new JoystickButton(navigator, 4);
-
 		moveFolderUp = new JoystickButton(navigator, 5);
 		moveFolderDown = new JoystickButton(navigator, 6);
-
 		dropGear = new JoystickButton(navigator, 7);
-
 		prepareToPickGear = new JoystickButton(navigator, 8);
-
 		pickGear = new JoystickButton(navigator, 9);
 
 		moveElevatorToHigh.whenPressed(new MoveElevator(Elevator.HIGH_SET_POINT.get()));
 		moveElevatorToMiddle.whenPressed(new MoveElevator(Elevator.MIDDLE_SET_POINT.get()));
-
 		rollGearIn.whenPressed(new RollGearIn(RollerGripper.SPEED_IN.get()));
-
 		moveFolderUp.whenPressed(new MoveLimitedSubsystem(Robot.folder, Folder.SPEED_UP));
 		moveFolderDown.whenPressed(new MoveLimitedSubsystem(Robot.folder,
 				Robot.folder.isMax() ? Folder.SPEED_DOWN_A : Folder.SPEED_DOWN_B));
-
 		dropGear.whenPressed(new DropGear());
-
 		prepareToPickGear.whenPressed(new PrepareToCollectGear());
-
 		pickGear.whenPressed(new PickGear());
 	}
 
