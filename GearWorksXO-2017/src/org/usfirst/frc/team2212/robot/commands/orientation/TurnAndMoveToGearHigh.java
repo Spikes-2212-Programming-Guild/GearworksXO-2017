@@ -12,17 +12,17 @@ import com.spikes2212.utils.RunnableCommand;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
- * A {@link CommandGroup} which rotates the drivetrain to the middle of the low
+ * A {@link CommandGroup} which rotates the drivetrain to the middle of the high
  * peg in a given rotateSpeed and moves it forward in a given forwardSpeed
  *
  */
-public class TurnAndMoveToLowGear extends CommandGroup {
+public class TurnAndMoveToGearHigh extends CommandGroup {
 
-	public static final Supplier<Double> LOW_GEAR_CAM_ID = ConstantHandler.addConstantDouble("HighGear-Camera_ID", 1);
+	public static final Supplier<Double> HIGH_GEAR_CAM_ID = ConstantHandler.addConstantDouble("HighGear-Camera_ID", 0);
 
-	public TurnAndMoveToLowGear(Supplier<Double> rotateSpeedSupplier, Supplier<Double> forwardSpeedSupplier) {
+	public TurnAndMoveToGearHigh(Supplier<Double> rotateSpeedSupplier, Supplier<Double> forwardSpeedSupplier) {
 		addSequential(new RunnableCommand(
-				() -> ImageProcessingConstants.NETWORK_TABLE.putNumber("currentCamera", LOW_GEAR_CAM_ID.get())));
+				() -> ImageProcessingConstants.NETWORK_TABLE.putNumber("currentCamera", HIGH_GEAR_CAM_ID.get())));
 		addSequential(new TurnToTwoTargets(rotateSpeedSupplier));
 		addSequential(new DriveArcade(Robot.drivetrain, forwardSpeedSupplier, () -> 0.0));
 	}
