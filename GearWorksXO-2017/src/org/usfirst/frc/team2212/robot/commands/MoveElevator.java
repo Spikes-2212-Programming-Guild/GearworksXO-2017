@@ -8,7 +8,7 @@ import org.usfirst.frc.team2212.robot.subsystems.Elevator;
 import com.spikes2212.dashboard.ConstantHandler;
 import com.spikes2212.genericsubsystems.commands.MoveLimitedSubsystem;
 
-public class MoveElevatorToTarget extends MoveLimitedSubsystem {
+public class MoveElevator extends MoveLimitedSubsystem {
 
 	//TODO - find correct tolerance
 	private int target;
