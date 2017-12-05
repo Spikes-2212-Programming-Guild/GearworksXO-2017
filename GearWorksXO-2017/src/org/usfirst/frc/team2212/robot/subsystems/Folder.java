@@ -10,6 +10,8 @@ import edu.wpi.first.wpilibj.PIDSource;
 import edu.wpi.first.wpilibj.SpeedController;
 
 public class Folder extends LimitedSubsystem {
+	
+	public static final Supplier<Double> WAIT_TIME = ConstantHandler.addConstantDouble("Folder- WaitTime", 0.5);
 
 	// defining subsystem constants
 	public static final Supplier<Double> SPEED_UP = ConstantHandler.addConstantDouble("Folder - UpSpeed", 0.4);

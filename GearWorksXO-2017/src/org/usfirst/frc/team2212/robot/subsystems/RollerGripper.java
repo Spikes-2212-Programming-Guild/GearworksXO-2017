@@ -13,7 +13,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class RollerGripper extends LimitedSubsystem {
 
 	// defining subsystem constants
-	public static final Supplier<Double> SPEED_IN = ConstantHandler.addConstantDouble("Gripper-speed-in", -0.7);
+	public static final Supplier<Double> SPEED_IN = ConstantHandler.addConstantDouble("Gripper-speed-in", -0.5);
 	/*
 	 * SPEED_OUT_HIGH_PEG: the speed of the subsystem when it releases the gear up,
 	 * to the high peg

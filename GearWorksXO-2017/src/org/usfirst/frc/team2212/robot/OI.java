@@ -1,6 +1,8 @@
 package org.usfirst.frc.team2212.robot;
 
+import org.usfirst.frc.team2212.robot.commands.MoveFolder;
 import org.usfirst.frc.team2212.robot.commands.RollGearToLightSensor;
+import org.usfirst.frc.team2212.robot.commands.RollGearWithTime;
 import org.usfirst.frc.team2212.robot.commands.command_groups.DropGear;
 import org.usfirst.frc.team2212.robot.commands.command_groups.PickGear;
 import org.usfirst.frc.team2212.robot.commands.command_groups.PrepareToCollectGear;
@@ -33,6 +35,7 @@ public class OI/* GEVALD */ {
 	private JoystickButton dropGear;
 	private JoystickButton prepareToPickGear;
 	private JoystickButton pickGear;
+	private JoystickButton testRollEithTimeOut;
 
 	public OI() {
 		initJoystickNavigator();
@@ -45,20 +48,25 @@ public class OI/* GEVALD */ {
 		rollGearIn = new JoystickButton(navigator, 4);
 		moveFolderUp = new JoystickButton(navigator, 5);
 		moveFolderDown = new JoystickButton(navigator, 6);
-		dropGear = new JoystickButton(navigator, 7);
+		dropGear = new JoystickButton(navigator, 1);
 		prepareToPickGear = new JoystickButton(navigator, 8);
 		pickGear = new JoystickButton(navigator, 9);
+		testRollEithTimeOut = new JoystickButton(navigator, 10);
+		
 
 		moveElevatorToHigh.whileHeld(new MoveLimitedSubsystem(Robot.elevator, Elevator.SPEED_UP));
-		moveElevatorToLow.whenPressed(new MoveLimitedSubsystem(Robot.elevator, -0.8));
+		moveElevatorToLow.whenPressed(new MoveLimitedSubsystem(Robot.elevator, Elevator.SPEED_DOWN));
 		rollGearIn.whenPressed(new RollGearToLightSensor(RollerGripper.SPEED_IN.get()));
-		moveFolderUp.whenPressed(new MoveLimitedSubsystem(Robot.folder, Folder.SPEED_UP));
-		moveFolderDown.whenPressed(new MoveLimitedSubsystem(Robot.folder,
-				() -> Robot.folder.isMax() ? Folder.SPEED_DOWN_A.get() : Folder.SPEED_DOWN_B.get()));
+		moveFolderUp.whenPressed(new MoveFolder(Folder.SPEED_UP, Folder.WAIT_TIME.get()));
+		moveFolderDown.whenPressed(
+				new MoveFolder(() -> Robot.folder.isMax() ? Folder.SPEED_DOWN_A.get() : Folder.SPEED_DOWN_B.get(),
+						Folder.WAIT_TIME.get()));
 
 		dropGear.whenPressed(new DropGear());
 		prepareToPickGear.whenPressed(new PrepareToCollectGear());
 		pickGear.whenPressed(new PickGear());
+		
+		testRollEithTimeOut.whenPressed(new RollGearWithTime(0.5, 5));
 	}
 
 	public Double adjustSpeed(double speed) {

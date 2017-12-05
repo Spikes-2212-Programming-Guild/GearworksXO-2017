@@ -21,7 +21,7 @@ public class Elevator extends LimitedSubsystem {
 	// initializing subsystem constants
 
 	public static final Supplier<Double> SPEED_UP = ConstantHandler.addConstantDouble("Elevator-SPEED-UP", 0.6);
-	public static final Supplier<Double> SPEED_DOWN = ConstantHandler.addConstantDouble("Elevator-SPEED-DOWN", -0.5);
+	public static final Supplier<Double> SPEED_DOWN = ConstantHandler.addConstantDouble("Elevator-SPEED-DOWN", -0.3);
 
 	// TODO: set constants to their real values
 	public static final Supplier<Integer> MIDDLE_SET_POINT = ConstantHandler.addConstantInt("Elevator-MIDDLE_SET_POINT",
