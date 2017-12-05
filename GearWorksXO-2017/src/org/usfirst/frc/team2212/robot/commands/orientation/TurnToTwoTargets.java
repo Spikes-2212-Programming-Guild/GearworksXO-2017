@@ -9,7 +9,13 @@ import com.spikes2212.dashboard.ConstantHandler;
 import com.spikes2212.genericsubsystems.drivetrains.commands.DriveArcade;
 
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.command.Command;
 
+/**
+ * A {@link Command} which rotates the drivetrain in a given rotateSpeed until
+ * it sees both of the reflectives for the WAIT_TIME specified
+ *
+ */
 public class TurnToTwoTargets extends DriveArcade {
 	private double lastTimeNotOnTarget = Timer.getFPGATimestamp();
 	public static final Supplier<Double> WAIT_TIME = ConstantHandler.addConstantDouble("TurnToTwoTargets-WAIT_TIME",
