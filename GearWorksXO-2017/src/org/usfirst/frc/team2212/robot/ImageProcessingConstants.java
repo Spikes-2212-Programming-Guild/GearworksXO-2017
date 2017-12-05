@@ -16,13 +16,16 @@ public class ImageProcessingConstants {
 
 	public static final NetworkTable NETWORK_TABLE = NetworkTable.getTable("ImageProcessing");
 
-	// calculates the center of the big reflective on the X axis
+	// calculates the center of the big reflective on the X axis on a scale
+	// between -0.5 and 0.5
 	public static final Supplier<Double> BIG_OBJECT_CENTER = () -> ((NETWORK_TABLE.getNumber("x0", 0)
 			+ 0.5 * NETWORK_TABLE.getNumber("width0", 0)) / CAMERA_WIDTH - 0.5);
-	// calculates the center of the small reflective on the X axis
+	// calculates the center of the small reflective on the X axis on a scale
+	// between -0.5 and 0.5
 	public static final Supplier<Double> SMALL_OBJECT_CENTER = () -> ((NETWORK_TABLE.getNumber("x1", 0)
 			+ 0.5 * NETWORK_TABLE.getNumber("width1", 0)) / CAMERA_WIDTH - 0.5);
-	// calculates the center of the two reflectives on the X axis
+	// calculates the center of the two reflectives on the X axis on a scale
+	// between -0.5 and 0.5
 	public static Supplier<Double> TWO_OBJECTS_CENTER = () -> (BIG_OBJECT_CENTER.get() + SMALL_OBJECT_CENTER.get()) / 2;
 
 }
