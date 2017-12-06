@@ -27,8 +27,8 @@ public class Robot extends IterativeRobot {
 	public static DashBoardController dbc;
 
 	/**
-	 * This function is run when the robot is first started up and should be used
-	 * for any initialization code.
+	 * This function is run when the robot is first started up and should be
+	 * used for any initialization code.
 	 */
 	@Override
 	public void robotInit() {
@@ -55,11 +55,11 @@ public class Robot extends IterativeRobot {
 		dbc = new DashBoardController();
 		// adding 5 boolean boxes which present the position of the elevator
 		dbc.addBoolean("Top", () -> elevator.isMax());
-		dbc.addBoolean("Top To Mid",
-				() -> (Elevator.MIDDLE_SET_POINT.get() < elevator.getPosition() && elevator.getPosition() < Elevator.HIGH_SET_POINT.get()));
+		dbc.addBoolean("Top To Mid", () -> (Elevator.MIDDLE_SET_POINT.get() < elevator.getPosition()
+				&& elevator.getPosition() < Elevator.HIGH_SET_POINT.get()));
 		dbc.addBoolean("Mid", () -> (elevator.inTargetRange(Elevator.MIDDLE_SET_POINT.get())));
-		dbc.addBoolean("Mid To Bottom", () -> (0 < elevator.getPosition()
-				&& elevator.getPosition() < Elevator.MIDDLE_SET_POINT.get()));
+		dbc.addBoolean("Mid To Bottom",
+				() -> (0 < elevator.getPosition() && elevator.getPosition() < Elevator.MIDDLE_SET_POINT.get()));
 		dbc.addBoolean("Bottom", () -> elevator.isMin());
 
 		dbc.addBoolean("HasGear", rollerGripper::getSensorData);
@@ -67,9 +67,9 @@ public class Robot extends IterativeRobot {
 	}
 
 	/**
-	 * This function is called once each time the robot enters Disabled mode. You
-	 * can use it to reset any subsystem information you want to clear when the
-	 * robot is disabled.
+	 * This function is called once each time the robot enters Disabled mode.
+	 * You can use it to reset any subsystem information you want to clear when
+	 * the robot is disabled.
 	 */
 	@Override
 	public void disabledInit() {
@@ -83,14 +83,14 @@ public class Robot extends IterativeRobot {
 
 	/**
 	 * This autonomous (along with the chooser code above) shows how to select
-	 * between different autonomous modes using the dashboard. The sendable chooser
-	 * code works with the Java SmartDashboard. If you prefer the LabVIEW Dashboard,
-	 * remove all of the chooser code and uncomment the getString code to get the
-	 * auto name from the text box below the Gyro
+	 * between different autonomous modes using the dashboard. The sendable
+	 * chooser code works with the Java SmartDashboard. If you prefer the
+	 * LabVIEW Dashboard, remove all of the chooser code and uncomment the
+	 * getString code to get the auto name from the text box below the Gyro
 	 *
 	 * You can add additional auto modes by adding additional commands to the
-	 * chooser code above (like the commented example) or additional comparisons to
-	 * the switch structure below with additional strings & commands.
+	 * chooser code above (like the commented example) or additional comparisons
+	 * to the switch structure below with additional strings & commands.
 	 */
 	@Override
 	public void autonomousInit() {
