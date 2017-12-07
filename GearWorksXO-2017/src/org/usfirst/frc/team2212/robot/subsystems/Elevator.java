@@ -63,7 +63,7 @@ public class Elevator extends LimitedSubsystem {
 
 	@Override
 	public boolean isMax() {
-		return !upLimit.get();
+		return upLimit.get();
 	}
 
 	@Override
