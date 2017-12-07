@@ -24,8 +24,6 @@ public class OI/* GEVALD */ {
 	private Joystick navigator = new Joystick(0);
 
 	// navigator
-	private JoystickButton moveElevatorToLow;
-	private JoystickButton moveElevatorToHigh;
 	private JoystickButton dropGear;
 	private JoystickButton prepareToPickGear;
 	private JoystickButton pickGear;
@@ -38,20 +36,14 @@ public class OI/* GEVALD */ {
 
 	private void initJoystickNavigator() {
 
-		moveElevatorToHigh = new JoystickButton(navigator, 3);
-		moveElevatorToLow = new JoystickButton(navigator, 2);
 		dropGear = new JoystickButton(navigator, 1);
 		prepareToPickGear = new JoystickButton(navigator, 8);
 		pickGear = new JoystickButton(navigator, 9);
 		prepareToScoreLowPeg = new JoystickButton(navigator, 6);
 		prepareToScoreHighPeg = new JoystickButton(navigator, 7);
 
-		moveElevatorToHigh.whenPressed(new MoveLimitedSubsystem(Robot.elevator, Elevator.SPEED_UP));
-		moveElevatorToLow.whenPressed(new MoveLimitedSubsystem(Robot.elevator, Elevator.SPEED_DOWN));
 
-		dropGear.whenPressed(new DropGear(
-				Robot.elevator.isMax() ? RollerGripper.SPEED_OUT_HIGH_PEG.get() : RollerGripper.SPEED_OUT_LOW_PEG.get(),
-				Robot.elevator.isMax() ? Elevator.SPEED_DOWN.get() : Elevator.SPEED_UP.get()));
+		dropGear.whenPressed(new DropGear());
 		prepareToPickGear.whenPressed(new PrepareToCollectGear());
 		pickGear.toggleWhenPressed(new PickGear());
 		prepareToScoreLowPeg.whenPressed(new PrepareToScore(Elevator.SPEED_DOWN.get()));
@@ -68,6 +60,6 @@ public class OI/* GEVALD */ {
 	}
 
 	public double getRotation() {
-		return adjustSpeed(driverLeft.getX());
+		return -adjustSpeed(driverLeft.getX());
 	}
 }

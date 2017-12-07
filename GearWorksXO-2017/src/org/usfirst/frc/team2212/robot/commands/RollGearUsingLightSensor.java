@@ -7,10 +7,12 @@ import com.spikes2212.genericsubsystems.commands.MoveLimitedSubsystem;
 /**
  *
  */
-public class RollGearToLightSensor extends MoveLimitedSubsystem {
+public class RollGearUsingLightSensor extends MoveLimitedSubsystem {
+	private boolean wantedSensorState;
 
-	public RollGearToLightSensor(double speed) {
+	public RollGearUsingLightSensor(boolean wantedSensorState, double speed) {
 		super(Robot.rollerGripper, speed);
+		this.wantedSensorState = wantedSensorState;
 	}
 
 	// Called just before this Command runs the first time
@@ -19,7 +21,7 @@ public class RollGearToLightSensor extends MoveLimitedSubsystem {
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		return Robot.rollerGripper.getSensorData();
+		return wantedSensorState ? Robot.rollerGripper.getSensorData() : !Robot.rollerGripper.getSensorData();
 	}
 
 	// Called once after isFinished returns true

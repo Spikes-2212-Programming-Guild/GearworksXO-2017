@@ -1,7 +1,7 @@
 package org.usfirst.frc.team2212.robot.commands.command_groups;
 
 import org.usfirst.frc.team2212.robot.Robot;
-import org.usfirst.frc.team2212.robot.commands.RollGearToLightSensor;
+import org.usfirst.frc.team2212.robot.commands.RollGearUsingLightSensor;
 import org.usfirst.frc.team2212.robot.commands.RollGearWithTime;
 import org.usfirst.frc.team2212.robot.subsystems.RollerGripper;
 
@@ -18,7 +18,7 @@ public class PrepareToScore extends CommandGroup {
 
 		// score to high peg
 		if (elevatorSpeed > 0 && Robot.rollerGripper.getSensorData())
-			moveGripper = new RollGearToLightSensor(RollerGripper.SPEED_UP_TO_SENSOR.get());
+			moveGripper = new RollGearUsingLightSensor(false, RollerGripper.SPEED_UP_TO_SENSOR.get());
 
 		// score to low peg
 		else if (elevatorSpeed < 0 && !Robot.elevator.isMin())
