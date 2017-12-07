@@ -8,7 +8,6 @@ import com.spikes2212.genericsubsystems.LimitedSubsystem;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.PIDSource;
 import edu.wpi.first.wpilibj.SpeedController;
-import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class RollerGripper extends LimitedSubsystem {
 
@@ -20,6 +19,8 @@ public class RollerGripper extends LimitedSubsystem {
 	 * SPEED_OUT_LOW_PEG: the speed of the subsystem when it
 	 * releases the gear down, to the low gear
 	 */
+	public static final Supplier<Double> SPEED_UP_TO_SENSOR = ConstantHandler
+			.addConstantDouble("Gripper-speed-up-to-sensor", 0.5);
 	public static final Supplier<Double> SPEED_OUT_HIGH_PEG = ConstantHandler
 			.addConstantDouble("Gripper-speed-out-high-peg", 0.7);
 	public static final Supplier<Double> SPEED_OUT_LOW_PEG = ConstantHandler

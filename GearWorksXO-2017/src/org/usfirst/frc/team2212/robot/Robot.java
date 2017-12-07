@@ -1,6 +1,8 @@
 
 package org.usfirst.frc.team2212.robot;
 
+import org.usfirst.frc.team2212.robot.commands.MoveFolder;
+import org.usfirst.frc.team2212.robot.commands.RollGearToLightSensor;
 import org.usfirst.frc.team2212.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team2212.robot.subsystems.Elevator;
 import org.usfirst.frc.team2212.robot.subsystems.Folder;
@@ -8,6 +10,7 @@ import org.usfirst.frc.team2212.robot.subsystems.RollerGripper;
 
 import com.ctre.CANTalon;
 import com.spikes2212.dashboard.DashBoardController;
+import com.spikes2212.genericsubsystems.commands.MoveLimitedSubsystem;
 import com.spikes2212.utils.CamerasHandler;
 import com.spikes2212.utils.DoubleSpeedcontroller;
 
@@ -17,6 +20,7 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Robot extends IterativeRobot {
 
@@ -53,10 +57,15 @@ public class Robot extends IterativeRobot {
 				new DigitalInput(RobotMap.DIO.FOLDER_UP));
 		camerasHandler = new CamerasHandler(160 * 2, 120 * 2, 0);
 		camerasHandler.setExposure(47);
-		
+
 		oi = new OI();
 
+		initDashboard();
+	}
+
+	private void initDashboard() {
 		dbc = new DashBoardController();
+
 		// adding 5 boolean boxes which present the position of the elevator
 		dbc.addBoolean("Top", () -> elevator.isMax());
 		dbc.addBoolean("Top To Mid", () -> (Elevator.MIDDLE_SET_POINT.get() < elevator.getPosition()
@@ -68,6 +77,19 @@ public class Robot extends IterativeRobot {
 
 		dbc.addBoolean("HasGear", rollerGripper::getSensorData);
 
+		SmartDashboard.putData("Gripper - MoveGearInToSensor", new RollGearToLightSensor(RollerGripper.SPEED_IN.get()));
+		SmartDashboard.putData("Gripper - MoveGearUpToSensor",
+				new RollGearToLightSensor(RollerGripper.SPEED_UP_TO_SENSOR.get()));
+		SmartDashboard.putData("Gripper - RollGearIn", new MoveLimitedSubsystem(Robot.rollerGripper, -0.7));
+
+		SmartDashboard.putData("Folder - MoveUp", new MoveFolder(Folder.SPEED_UP, Folder.WAIT_TIME.get()));
+		SmartDashboard.putData("Folder - MoveDown",
+				new MoveFolder(() -> Robot.folder.isMax() ? Folder.SPEED_DOWN_A.get() : Folder.SPEED_DOWN_B.get(),
+						Folder.WAIT_TIME.get()));
+
+		SmartDashboard.putData("Elevator - moveUp", new MoveLimitedSubsystem(Robot.elevator, Elevator.SPEED_UP.get()));
+		SmartDashboard.putData("Elevator - moveDown",
+				new MoveLimitedSubsystem(Robot.elevator, Elevator.SPEED_DOWN.get()));
 	}
 
 	/**

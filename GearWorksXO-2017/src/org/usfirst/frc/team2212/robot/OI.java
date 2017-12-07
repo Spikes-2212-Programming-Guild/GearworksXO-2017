@@ -1,13 +1,10 @@
 package org.usfirst.frc.team2212.robot;
 
-import org.usfirst.frc.team2212.robot.commands.MoveFolder;
-import org.usfirst.frc.team2212.robot.commands.RollGearToLightSensor;
-import org.usfirst.frc.team2212.robot.commands.RollGearWithTime;
 import org.usfirst.frc.team2212.robot.commands.command_groups.DropGear;
 import org.usfirst.frc.team2212.robot.commands.command_groups.PickGear;
 import org.usfirst.frc.team2212.robot.commands.command_groups.PrepareToCollectGear;
+import org.usfirst.frc.team2212.robot.commands.command_groups.PrepareToScore;
 import org.usfirst.frc.team2212.robot.subsystems.Elevator;
-import org.usfirst.frc.team2212.robot.subsystems.Folder;
 import org.usfirst.frc.team2212.robot.subsystems.RollerGripper;
 
 import com.spikes2212.genericsubsystems.commands.MoveLimitedSubsystem;
@@ -29,15 +26,11 @@ public class OI/* GEVALD */ {
 	// navigator
 	private JoystickButton moveElevatorToLow;
 	private JoystickButton moveElevatorToHigh;
-	private JoystickButton rollGearInToLimit;
-	private JoystickButton rollGearToMax;
-	private JoystickButton moveFolderUp;
-	private JoystickButton moveFolderDown;
 	private JoystickButton dropGear;
 	private JoystickButton prepareToPickGear;
 	private JoystickButton pickGear;
-	private JoystickButton testRollUpEithTimeOut;
-	private JoystickButton testRollDownEithTimeOut;
+	private JoystickButton prepareToScoreLowPeg;
+	private JoystickButton prepareToScoreHighPeg;
 
 	public OI() {
 		initJoystickNavigator();
@@ -47,33 +40,22 @@ public class OI/* GEVALD */ {
 
 		moveElevatorToHigh = new JoystickButton(navigator, 3);
 		moveElevatorToLow = new JoystickButton(navigator, 2);
-		rollGearInToLimit = new JoystickButton(navigator, 4);
-		rollGearToMax = new JoystickButton(navigator, 5);
-		moveFolderUp = new JoystickButton(navigator, 6);
-		moveFolderDown = new JoystickButton(navigator, 7);
 		dropGear = new JoystickButton(navigator, 1);
 		prepareToPickGear = new JoystickButton(navigator, 8);
 		pickGear = new JoystickButton(navigator, 9);
-		testRollUpEithTimeOut = new JoystickButton(navigator, 10);
-		testRollDownEithTimeOut = new JoystickButton(navigator, 11);
+		prepareToScoreLowPeg = new JoystickButton(navigator, 6);
+		prepareToScoreHighPeg = new JoystickButton(navigator, 7);
 
 		moveElevatorToHigh.whenPressed(new MoveLimitedSubsystem(Robot.elevator, Elevator.SPEED_UP));
 		moveElevatorToLow.whenPressed(new MoveLimitedSubsystem(Robot.elevator, Elevator.SPEED_DOWN));
-		rollGearInToLimit.whenPressed(new RollGearToLightSensor(RollerGripper.SPEED_IN.get()));
-		rollGearToMax.whileHeld(new MoveLimitedSubsystem(Robot.rollerGripper,-0.7));
-		moveFolderUp.whenPressed(new MoveFolder(Folder.SPEED_UP, Folder.WAIT_TIME.get()));
-		moveFolderDown.whenPressed(
-				new MoveFolder(() -> Robot.folder.isMax() ? Folder.SPEED_DOWN_A.get() : Folder.SPEED_DOWN_B.get(),
-						Folder.WAIT_TIME.get()));
 
 		dropGear.whenPressed(new DropGear(
 				Robot.elevator.isMax() ? RollerGripper.SPEED_OUT_HIGH_PEG.get() : RollerGripper.SPEED_OUT_LOW_PEG.get(),
 				Robot.elevator.isMax() ? Elevator.SPEED_DOWN.get() : Elevator.SPEED_UP.get()));
 		prepareToPickGear.whenPressed(new PrepareToCollectGear());
 		pickGear.toggleWhenPressed(new PickGear());
-
-		testRollUpEithTimeOut.whenPressed(new RollGearWithTime(0.9, 0.5));
-		testRollDownEithTimeOut.whenPressed(new RollGearWithTime(-0.3, 0.5));
+		prepareToScoreLowPeg.whenPressed(new PrepareToScore(Elevator.SPEED_DOWN.get()));
+		prepareToScoreHighPeg.whenPressed(new PrepareToScore(Elevator.SPEED_UP.get()));
 
 	}
 
