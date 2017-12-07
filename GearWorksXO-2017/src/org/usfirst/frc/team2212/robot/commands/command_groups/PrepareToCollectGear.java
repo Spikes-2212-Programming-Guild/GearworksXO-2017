@@ -1,7 +1,7 @@
 package org.usfirst.frc.team2212.robot.commands.command_groups;
 
 import org.usfirst.frc.team2212.robot.Robot;
-import org.usfirst.frc.team2212.robot.commands.MoveFolder;
+import org.usfirst.frc.team2212.robot.commands.MoveLimitedSubsystemWithTime;
 import org.usfirst.frc.team2212.robot.subsystems.Elevator;
 import org.usfirst.frc.team2212.robot.subsystems.Folder;
 
@@ -13,7 +13,7 @@ public class PrepareToCollectGear extends CommandGroup {
 
 	public PrepareToCollectGear() {
 		// lift folder
-		addSequential(new MoveFolder(Folder.SPEED_UP, Folder.WAIT_TIME.get()));
+		addSequential(new MoveLimitedSubsystemWithTime(Robot.folder, Folder.SPEED_UP, Folder.WAIT_TIME.get()));
 		// lower elevetor
 		addSequential(new MoveLimitedSubsystem(Robot.elevator, Elevator.SPEED_DOWN));
 
@@ -24,6 +24,6 @@ public class PrepareToCollectGear extends CommandGroup {
 		 * larger value to push the subsystem. otherwise, it will use
 		 * SPEED_DOWN_B- the smaller, more stable speed
 		 */
-		addSequential(new MoveFolder(() -> Robot.folder.isMax() ? Folder.SPEED_DOWN_A.get() : Folder.SPEED_DOWN_B.get(), Folder.WAIT_TIME.get()));
+		addSequential(new MoveLimitedSubsystemWithTime(Robot.folder, () -> Robot.folder.isMax() ? Folder.SPEED_DOWN_A.get() : Folder.SPEED_DOWN_B.get(), Folder.WAIT_TIME.get()));
 	}
 }

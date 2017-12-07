@@ -4,17 +4,18 @@ import java.util.function.Supplier;
 
 import org.usfirst.frc.team2212.robot.Robot;
 
+import com.spikes2212.genericsubsystems.LimitedSubsystem;
 import com.spikes2212.genericsubsystems.commands.MoveLimitedSubsystem;
 
 import edu.wpi.first.wpilibj.Timer;
 
-public class MoveFolder extends MoveLimitedSubsystem {
+public class MoveLimitedSubsystemWithTime extends MoveLimitedSubsystem {
 
 	private double lastTimeNotOnTarget;
 	private double waitTime;
 
-	public MoveFolder(Supplier<Double> speed, double waitTime) {
-		super(Robot.folder, speed);
+	public MoveLimitedSubsystemWithTime(LimitedSubsystem subsystem, Supplier<Double> speed, double waitTime) {
+		super(subsystem, speed);
 		this.waitTime = waitTime;
 	}
 
