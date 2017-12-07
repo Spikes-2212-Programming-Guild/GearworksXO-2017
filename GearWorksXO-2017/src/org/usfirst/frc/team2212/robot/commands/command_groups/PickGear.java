@@ -10,10 +10,12 @@ import com.spikes2212.genericsubsystems.commands.MoveLimitedSubsystem;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 public class PickGear extends CommandGroup {
-	// todo - make it take the gear until it hits the physical robot and move folder up
+	// todo - make it take the gear until it hits the physical robot and move
+	// folder up
 	// only if the gear is in the system
 	public PickGear() {
-		addSequential(new MoveLimitedSubsystem(Robot.rollerGripper, RollerGripper.SPEED_IN));
+		addSequential(new MoveLimitedSubsystemWithTime(Robot.rollerGripper, RollerGripper.SPEED_IN,
+				RollerGripper.WAIT_TIME_PICK.get()));
 		addSequential(new MoveLimitedSubsystemWithTime(Robot.folder, Folder.SPEED_UP, Folder.WAIT_TIME.get()));
 	}
 }

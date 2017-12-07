@@ -30,7 +30,7 @@ public class RollerGripper extends LimitedSubsystem {
 	public static final Supplier<Double> WAIT_TIME_DROP = ConstantHandler.addConstantDouble("Gripper - wait time drop",
 			1);
 	public static final Supplier<Double> WAIT_TIME_PICK = ConstantHandler.addConstantDouble("Gripper - wait time pick",
-			1);
+			0.5);
 
 	private SpeedController motor;
 	private DigitalInput sensor;
