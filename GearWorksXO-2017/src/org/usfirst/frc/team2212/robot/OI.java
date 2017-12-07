@@ -36,7 +36,8 @@ public class OI/* GEVALD */ {
 	private JoystickButton dropGear;
 	private JoystickButton prepareToPickGear;
 	private JoystickButton pickGear;
-	private JoystickButton testRollEithTimeOut;
+	private JoystickButton testRollUpEithTimeOut;
+	private JoystickButton testRollDownEithTimeOut;
 
 	public OI() {
 		initJoystickNavigator();
@@ -53,7 +54,8 @@ public class OI/* GEVALD */ {
 		dropGear = new JoystickButton(navigator, 1);
 		prepareToPickGear = new JoystickButton(navigator, 8);
 		pickGear = new JoystickButton(navigator, 9);
-		testRollEithTimeOut = new JoystickButton(navigator, 10);
+		testRollUpEithTimeOut = new JoystickButton(navigator, 10);
+		testRollDownEithTimeOut = new JoystickButton(navigator, 11);
 
 		moveElevatorToHigh.whenPressed(new MoveLimitedSubsystem(Robot.elevator, Elevator.SPEED_UP));
 		moveElevatorToLow.whenPressed(new MoveLimitedSubsystem(Robot.elevator, Elevator.SPEED_DOWN));
@@ -70,7 +72,8 @@ public class OI/* GEVALD */ {
 		prepareToPickGear.whenPressed(new PrepareToCollectGear());
 		pickGear.toggleWhenPressed(new PickGear());
 
-		testRollEithTimeOut.whenPressed(new RollGearWithTime(-0.2, 2));
+		testRollUpEithTimeOut.whenPressed(new RollGearWithTime(0.9, 0.5));
+		testRollDownEithTimeOut.whenPressed(new RollGearWithTime(-0.3, 0.5));
 
 	}
 
