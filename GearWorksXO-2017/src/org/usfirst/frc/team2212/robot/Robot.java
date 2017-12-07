@@ -8,6 +8,7 @@ import org.usfirst.frc.team2212.robot.subsystems.RollerGripper;
 
 import com.ctre.CANTalon;
 import com.spikes2212.dashboard.DashBoardController;
+import com.spikes2212.utils.CamerasHandler;
 import com.spikes2212.utils.DoubleSpeedcontroller;
 
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -25,6 +26,7 @@ public class Robot extends IterativeRobot {
 	public static Drivetrain drivetrain;
 	public static RollerGripper rollerGripper;
 	public static DashBoardController dbc;
+	public static CamerasHandler camerasHandler;
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -49,7 +51,9 @@ public class Robot extends IterativeRobot {
 
 		folder = new Folder(new CANTalon(RobotMap.CAN.FOLDER), new DigitalInput(RobotMap.DIO.FOLDER_DOWN),
 				new DigitalInput(RobotMap.DIO.FOLDER_UP));
-
+		camerasHandler = new CamerasHandler(160 * 2, 120 * 2, 0);
+		camerasHandler.setExposure(47);
+		
 		oi = new OI();
 
 		dbc = new DashBoardController();
