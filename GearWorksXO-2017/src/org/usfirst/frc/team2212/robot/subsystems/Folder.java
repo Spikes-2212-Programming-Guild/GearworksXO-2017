@@ -20,8 +20,8 @@ public class Folder extends LimitedSubsystem {
 	 * first 'pulse' SPEED_DOWN_B: the stable speed with which the folder needs
 	 * to move down
 	 */
-	public static final Supplier<Double> SPEED_DOWN_A = ConstantHandler.addConstantDouble("Folder-DownSpeed-A", -0.4);
-	public static final Supplier<Double> SPEED_DOWN_B = ConstantHandler.addConstantDouble("Folder-DownSpeed-B", -0.2);
+	public static final Supplier<Double> SPEED_DOWN_A = ConstantHandler.addConstantDouble("Folder-DownSpeed-A", -0.6);
+	public static final Supplier<Double> SPEED_DOWN_B = ConstantHandler.addConstantDouble("Folder-DownSpeed-B", -0.4);
 
 	// subsystem variables
 	private SpeedController motor;
