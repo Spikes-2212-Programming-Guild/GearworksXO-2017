@@ -3,11 +3,8 @@ package org.usfirst.frc.team2212.robot;
 import org.usfirst.frc.team2212.robot.commands.command_groups.DropGear;
 import org.usfirst.frc.team2212.robot.commands.command_groups.PickGear;
 import org.usfirst.frc.team2212.robot.commands.command_groups.PrepareToCollectGear;
-import org.usfirst.frc.team2212.robot.commands.command_groups.PrepareToScore;
-import org.usfirst.frc.team2212.robot.subsystems.Elevator;
-import org.usfirst.frc.team2212.robot.subsystems.RollerGripper;
-
-import com.spikes2212.genericsubsystems.commands.MoveLimitedSubsystem;
+import org.usfirst.frc.team2212.robot.commands.command_groups.PrepareToScoreHigh;
+import org.usfirst.frc.team2212.robot.commands.command_groups.PrepareToScoreLow;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -42,12 +39,11 @@ public class OI/* GEVALD */ {
 		prepareToScoreLowPeg = new JoystickButton(navigator, 2);
 		prepareToScoreHighPeg = new JoystickButton(navigator, 3);
 
-
 		dropGear.whenPressed(new DropGear());
 		prepareToPickGear.whenPressed(new PrepareToCollectGear());
 		pickGear.toggleWhenPressed(new PickGear());
-		prepareToScoreLowPeg.whenPressed(new PrepareToScore(Elevator.SPEED_DOWN.get()));
-		prepareToScoreHighPeg.whenPressed(new PrepareToScore(Elevator.SPEED_UP.get()));
+		prepareToScoreLowPeg.whenPressed(new PrepareToScoreLow());
+		prepareToScoreHighPeg.whenPressed(new PrepareToScoreHigh());
 
 	}
 
