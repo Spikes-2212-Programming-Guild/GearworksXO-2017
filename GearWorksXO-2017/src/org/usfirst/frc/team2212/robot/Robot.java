@@ -46,7 +46,7 @@ public class Robot extends IterativeRobot {
 				new Encoder(RobotMap.DIO.DRIVE_LEFT_ENCODER_A, RobotMap.DIO.DRIVE_LEFT_ENCODER_B),
 				new Encoder(RobotMap.DIO.DRIVE_RIGHT_ENCODER_A, RobotMap.DIO.DRIVE_RIGHT_ENCODER_B));
 
-		rollerGripper = new RollerGripper(new VictorSP(RobotMap.PWM.ROLLER_MOTOR),
+		rollerGripper = new RollerGripper(new CANTalon(RobotMap.CAN.ROLLER),
 				new DigitalInput(RobotMap.DIO.ROLLER_SENSOR));
 
 		elevator = new Elevator(new VictorSP(RobotMap.PWM.ELEVATOR_MOTOR), new DigitalInput(RobotMap.DIO.ELEVATOR_DOWN),
@@ -77,14 +77,17 @@ public class Robot extends IterativeRobot {
 
 		dbc.addBoolean("HasGear", rollerGripper::getSensorData);
 
-		SmartDashboard.putData("Gripper - MoveGearInToSensor", new RollGearUsingLightSensor(true, RollerGripper.SPEED_IN.get()));
+		SmartDashboard.putData("Gripper - MoveGearInToSensor",
+				new RollGearUsingLightSensor(true, RollerGripper.SPEED_IN.get()));
 		SmartDashboard.putData("Gripper - MoveGearUpToSensor",
 				new RollGearUsingLightSensor(true, RollerGripper.SPEED_UP_TO_SENSOR.get()));
 		SmartDashboard.putData("Gripper - RollGearIn", new MoveLimitedSubsystem(Robot.rollerGripper, -0.7));
 
-		SmartDashboard.putData("Folder - MoveUp", new MoveLimitedSubsystemWithTimeSinceReachingLimit(Robot.folder, Folder.SPEED_UP, Folder.WAIT_TIME.get()));
+		SmartDashboard.putData("Folder - MoveUp", new MoveLimitedSubsystemWithTimeSinceReachingLimit(Robot.folder,
+				Folder.SPEED_UP, Folder.WAIT_TIME.get()));
 		SmartDashboard.putData("Folder - MoveDown",
-				new MoveLimitedSubsystemWithTimeSinceReachingLimit(Robot.folder, () -> Robot.folder.isMax() ? Folder.SPEED_DOWN_A.get() : Folder.SPEED_DOWN_B.get(),
+				new MoveLimitedSubsystemWithTimeSinceReachingLimit(Robot.folder,
+						() -> Robot.folder.isMax() ? Folder.SPEED_DOWN_A.get() : Folder.SPEED_DOWN_B.get(),
 						Folder.WAIT_TIME.get()));
 
 		SmartDashboard.putData("Elevator - moveUp", new MoveLimitedSubsystem(Robot.elevator, Elevator.SPEED_UP.get()));

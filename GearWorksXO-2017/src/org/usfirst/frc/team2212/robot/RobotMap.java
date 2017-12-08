@@ -20,14 +20,14 @@ public class RobotMap {
 		public static final int DRIVE_LEFT_REAR = 2;
 		public static final int DRIVE_RIGHT_FRONT = 3;
 		public static final int DRIVE_RIGHT_REAR = 4;
-
-		public static final int CLIMBER = 5;
+		
+		//TODO - insert correct port
+		public static final int ROLLER = 5;
 	}
 
 	// TODO insert correct ports
 	public interface PWM {
 		public static final int ELEVATOR_MOTOR = 0;
-		public static final int ROLLER_MOTOR = 1;
 	}
 
 	// TODO insert correct ports
