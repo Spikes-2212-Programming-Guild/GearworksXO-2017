@@ -1,11 +1,9 @@
 package org.usfirst.frc.team2212.robot.commands.command_groups;
 
 import org.usfirst.frc.team2212.robot.Robot;
-import org.usfirst.frc.team2212.robot.commands.MoveLimitedSubsystemWithTime;
+import org.usfirst.frc.team2212.robot.commands.MoveLimitedSubsystemWithTimeSinceReachingLimit;
 import org.usfirst.frc.team2212.robot.subsystems.Folder;
 import org.usfirst.frc.team2212.robot.subsystems.RollerGripper;
-
-import com.spikes2212.genericsubsystems.commands.MoveLimitedSubsystem;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
@@ -14,8 +12,8 @@ public class PickGear extends CommandGroup {
 	// folder up
 	// only if the gear is in the system
 	public PickGear() {
-		addSequential(new MoveLimitedSubsystemWithTime(Robot.rollerGripper, RollerGripper.SPEED_IN,
+		addSequential(new MoveLimitedSubsystemWithTimeSinceReachingLimit(Robot.rollerGripper, RollerGripper.SPEED_IN,
 				RollerGripper.WAIT_TIME_PICK.get()));
-		addSequential(new MoveLimitedSubsystemWithTime(Robot.folder, Folder.SPEED_UP, Folder.WAIT_TIME.get()));
+		addSequential(new MoveLimitedSubsystemWithTimeSinceReachingLimit(Robot.folder, Folder.SPEED_UP, Folder.WAIT_TIME.get()));
 	}
 }
