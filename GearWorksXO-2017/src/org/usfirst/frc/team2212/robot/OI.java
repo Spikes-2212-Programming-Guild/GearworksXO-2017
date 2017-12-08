@@ -39,8 +39,8 @@ public class OI/* GEVALD */ {
 		dropGear = new JoystickButton(navigator, 1);
 		prepareToPickGear = new JoystickButton(navigator, 8);
 		pickGear = new JoystickButton(navigator, 9);
-		prepareToScoreLowPeg = new JoystickButton(navigator, 6);
-		prepareToScoreHighPeg = new JoystickButton(navigator, 7);
+		prepareToScoreLowPeg = new JoystickButton(navigator, 2);
+		prepareToScoreHighPeg = new JoystickButton(navigator, 3);
 
 
 		dropGear.whenPressed(new DropGear());
