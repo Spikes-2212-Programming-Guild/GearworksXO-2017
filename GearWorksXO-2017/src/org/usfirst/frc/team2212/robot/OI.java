@@ -1,5 +1,7 @@
 package org.usfirst.frc.team2212.robot;
 
+import java.awt.Adjustable;
+
 import org.usfirst.frc.team2212.robot.commands.MoveElevator;
 import org.usfirst.frc.team2212.robot.commands.RollGearIn;
 import org.usfirst.frc.team2212.robot.commands.command_groups.DropGear;
@@ -74,7 +76,7 @@ public class OI/* GEVALD */ {
 		TurnAndMoveToGearAll = new JoystickButton(driverRight, 1);
 		TurnAndMoveToGearLow = new JoystickButton(driverRight, 2);
 		TurnAndMoveToGearHigh = new JoystickButton(driverRight, 3);
-		
+
 		TurnAndMoveToGearAll.whileHeld(new TurnAndMoveToGear(this::getRightX, this::getRightY));
 		TurnAndMoveToGearHigh.whileHeld(new TurnAndMoveToGearHigh(this::getRightX, this::getRightY));
 		TurnAndMoveToGearLow.whileHeld(new TurnAndMoveToGearLow(this::getRightX, this::getRightY));
@@ -98,5 +100,9 @@ public class OI/* GEVALD */ {
 
 	public double getLeftY() {
 		return adjustSpeed(driverLeft.getY());
+	}
+
+	public double getRotation() {
+		return -adjustSpeed(driverLeft.getX());
 	}
 }

@@ -51,6 +51,6 @@ public class Drivetrain extends TankDrivetrain {
 	}
 
 	public void initDefaultCommand() {
-		setDefaultCommand(new DriveArcade(Robot.drivetrain, Robot.oi::getRightY, Robot.oi::getLeftX));
+		setDefaultCommand(new DriveArcade(Robot.drivetrain, Robot.oi::getRightY, Robot.oi::getRotation));
 	}
 }
