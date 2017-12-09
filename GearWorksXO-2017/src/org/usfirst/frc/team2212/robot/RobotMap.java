@@ -9,7 +9,7 @@ package org.usfirst.frc.team2212.robot;
 public class RobotMap {
 	public interface USB {
 		public static final int LOW_CAM = 0;
-		public static final int HIGH_CAM = 0;
+		public static final int HIGH_CAM = 1;
 	}
 
 	public interface CAN {
