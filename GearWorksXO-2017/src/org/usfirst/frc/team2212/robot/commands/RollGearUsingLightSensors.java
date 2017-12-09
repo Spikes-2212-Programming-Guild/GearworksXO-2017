@@ -4,13 +4,11 @@ import org.usfirst.frc.team2212.robot.Robot;
 
 import com.spikes2212.genericsubsystems.commands.MoveLimitedSubsystem;
 
-/**
- *
- */
-public class RollGearUsingLightSensor extends MoveLimitedSubsystem {
+public class RollGearUsingLightSensors extends MoveLimitedSubsystem {
+
 	private boolean wantedSensorState;
 
-	public RollGearUsingLightSensor(boolean wantedSensorState, double speed) {
+	public RollGearUsingLightSensors(boolean wantedSensorState, double speed) {
 		super(Robot.rollerGripper, speed);
 		this.wantedSensorState = wantedSensorState;
 	}

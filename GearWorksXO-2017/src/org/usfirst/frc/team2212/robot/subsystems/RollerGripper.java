@@ -15,8 +15,7 @@ public class RollerGripper extends LimitedSubsystem {
 	public static final Supplier<Double> SPEED_IN = ConstantHandler.addConstantDouble("Gripper-speed-in", -0.5);
 	/*
 	 * SPEED_OUT_HIGH_PEG: the speed of the subsystem when it releases the gear up,
-	 * to the high peg
-	 * SPEED_OUT_LOW_PEG: the speed of the subsystem when it
+	 * to the high peg SPEED_OUT_LOW_PEG: the speed of the subsystem when it
 	 * releases the gear down, to the low gear
 	 */
 	public static final Supplier<Double> SPEED_UP_TO_SENSOR = ConstantHandler
@@ -33,12 +32,14 @@ public class RollerGripper extends LimitedSubsystem {
 			0.5);
 
 	private SpeedController motor;
-	private DigitalInput sensor;
+	private DigitalInput upLimit;
+	private DigitalInput downLimit;
 
 	// TODO - check if sensor inverted
-	public RollerGripper(SpeedController motor, DigitalInput sensor) {
+	public RollerGripper(SpeedController motor, DigitalInput upLimit, DigitalInput downLimit) {
 		this.motor = motor;
-		this.sensor = sensor;
+		this.upLimit = upLimit;
+		this.downLimit = downLimit;
 
 		// inverting motor
 		motor.setInverted(true);
@@ -48,8 +49,13 @@ public class RollerGripper extends LimitedSubsystem {
 		motor.set(speed);
 	}
 
-	public boolean getSensorData() {
-		return sensor.get();
+	// TODO rename these methods
+	public boolean getHighData() {
+		return upLimit.get();
+	}
+
+	public boolean getLowData() {
+		return downLimit.get();
 	}
 
 	@Override

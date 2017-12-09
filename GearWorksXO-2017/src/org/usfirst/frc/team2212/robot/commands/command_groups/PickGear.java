@@ -2,6 +2,7 @@ package org.usfirst.frc.team2212.robot.commands.command_groups;
 
 import org.usfirst.frc.team2212.robot.Robot;
 import org.usfirst.frc.team2212.robot.commands.MoveLimitedSubsystemWithTimeSinceReachingLimit;
+import org.usfirst.frc.team2212.robot.commands.RollGearWithLimits;
 import org.usfirst.frc.team2212.robot.subsystems.Folder;
 import org.usfirst.frc.team2212.robot.subsystems.RollerGripper;
 
@@ -12,8 +13,8 @@ public class PickGear extends CommandGroup {
 	// folder up
 	// only if the gear is in the system
 	public PickGear() {
-		addSequential(new MoveLimitedSubsystemWithTimeSinceReachingLimit(Robot.rollerGripper, RollerGripper.SPEED_IN,
-				RollerGripper.WAIT_TIME_PICK.get()));
-		addSequential(new MoveLimitedSubsystemWithTimeSinceReachingLimit(Robot.folder, Folder.SPEED_UP, Folder.WAIT_TIME.get()));
+		addSequential(new RollGearWithLimits(RollerGripper.SPEED_IN));
+		addSequential(new MoveLimitedSubsystemWithTimeSinceReachingLimit(Robot.folder, Folder.SPEED_UP,
+				Folder.WAIT_TIME.get()));
 	}
 }

@@ -2,7 +2,7 @@
 package org.usfirst.frc.team2212.robot;
 
 import org.usfirst.frc.team2212.robot.commands.MoveLimitedSubsystemWithTimeSinceReachingLimit;
-import org.usfirst.frc.team2212.robot.commands.RollGearUsingLightSensor;
+import org.usfirst.frc.team2212.robot.commands.RollGearUsingLightSensors;
 import org.usfirst.frc.team2212.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team2212.robot.subsystems.Elevator;
 import org.usfirst.frc.team2212.robot.subsystems.Folder;
@@ -78,9 +78,9 @@ public class Robot extends IterativeRobot {
 		dbc.addBoolean("HasGear", rollerGripper::getSensorData);
 
 		SmartDashboard.putData("Gripper - MoveGearInToSensor",
-				new RollGearUsingLightSensor(true, RollerGripper.SPEED_IN.get()));
+				new RollGearUsingLightSensors(true, RollerGripper.SPEED_IN.get()));
 		SmartDashboard.putData("Gripper - MoveGearUpToSensor",
-				new RollGearUsingLightSensor(true, RollerGripper.SPEED_UP_TO_SENSOR.get()));
+				new RollGearUsingLightSensors(true, RollerGripper.SPEED_UP_TO_SENSOR.get()));
 		SmartDashboard.putData("Gripper - RollGearIn", new MoveLimitedSubsystem(Robot.rollerGripper, -0.7));
 
 		SmartDashboard.putData("Folder - MoveUp", new MoveLimitedSubsystemWithTimeSinceReachingLimit(Robot.folder,
