@@ -2,7 +2,8 @@
 package org.usfirst.frc.team2212.robot;
 
 import org.usfirst.frc.team2212.robot.commands.MoveLimitedSubsystemWithTimeSinceReachingLimit;
-import org.usfirst.frc.team2212.robot.commands.RollGearUsingLightSensors;
+import org.usfirst.frc.team2212.robot.commands.command_groups.DropGear;
+import org.usfirst.frc.team2212.robot.commands.command_groups.PickGear;
 import org.usfirst.frc.team2212.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team2212.robot.subsystems.Elevator;
 import org.usfirst.frc.team2212.robot.subsystems.Folder;
@@ -38,6 +39,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void robotInit() {
+
 		drivetrain = new Drivetrain(
 				new DoubleSpeedcontroller(new CANTalon(RobotMap.CAN.DRIVE_LEFT_FRONT),
 						new CANTalon(RobotMap.CAN.DRIVE_LEFT_REAR)),
@@ -47,7 +49,7 @@ public class Robot extends IterativeRobot {
 				new Encoder(RobotMap.DIO.DRIVE_RIGHT_ENCODER_A, RobotMap.DIO.DRIVE_RIGHT_ENCODER_B));
 
 		rollerGripper = new RollerGripper(new CANTalon(RobotMap.CAN.ROLLER),
-				new DigitalInput(RobotMap.DIO.ROLLER_SENSOR));
+				new DigitalInput(RobotMap.DIO.ROLLER_HIGH_SENSOR), new DigitalInput(RobotMap.DIO.ROLLER_LOW_SENSOR));
 
 		elevator = new Elevator(new VictorSP(RobotMap.PWM.ELEVATOR_MOTOR), new DigitalInput(RobotMap.DIO.ELEVATOR_DOWN),
 				new DigitalInput(RobotMap.DIO.ELEVATOR_UP),
@@ -68,20 +70,14 @@ public class Robot extends IterativeRobot {
 
 		// adding 5 boolean boxes which present the position of the elevator
 		dbc.addBoolean("Top", () -> elevator.isMax());
-		dbc.addBoolean("Top To Mid", () -> (Elevator.MIDDLE_SET_POINT.get() < elevator.getPosition()
-				&& elevator.getPosition() < Elevator.HIGH_SET_POINT.get()));
 		dbc.addBoolean("Mid", () -> (elevator.inTargetRange(Elevator.MIDDLE_SET_POINT.get())));
-		dbc.addBoolean("Mid To Bottom",
-				() -> (0 < elevator.getPosition() && elevator.getPosition() < Elevator.MIDDLE_SET_POINT.get()));
 		dbc.addBoolean("Bottom", () -> elevator.isMin());
 
-		dbc.addBoolean("HasGear", rollerGripper::getSensorData);
+		dbc.addBoolean("Roller high sensor blocked", rollerGripper::getHighSensorData);
+		dbc.addBoolean("Roller low sensor blocked", rollerGripper::getLowSensorData);
 
-		SmartDashboard.putData("Gripper - MoveGearInToSensor",
-				new RollGearUsingLightSensors(true, RollerGripper.SPEED_IN.get()));
-		SmartDashboard.putData("Gripper - MoveGearUpToSensor",
-				new RollGearUsingLightSensors(true, RollerGripper.SPEED_UP_TO_SENSOR.get()));
-		SmartDashboard.putData("Gripper - RollGearIn", new MoveLimitedSubsystem(Robot.rollerGripper, -0.7));
+		SmartDashboard.putData("Gripper - RollGearIn",
+				new MoveLimitedSubsystem(Robot.rollerGripper, PickGear.ROLLER_SPEED_IN));
 
 		SmartDashboard.putData("Folder - MoveUp", new MoveLimitedSubsystemWithTimeSinceReachingLimit(Robot.folder,
 				Folder.SPEED_UP, Folder.WAIT_TIME.get()));
@@ -93,6 +89,11 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putData("Elevator - moveUp", new MoveLimitedSubsystem(Robot.elevator, Elevator.SPEED_UP.get()));
 		SmartDashboard.putData("Elevator - moveDown",
 				new MoveLimitedSubsystem(Robot.elevator, Elevator.SPEED_DOWN.get()));
+
+		SmartDashboard.putData("Roll-Gear-Down",
+				new MoveLimitedSubsystem(rollerGripper, DropGear.ROLLER_SPEED_OUT_LOW_PEG));
+		SmartDashboard.putData("Roll-Gear-Up",
+				new MoveLimitedSubsystem(rollerGripper, DropGear.ROLLER_SPEED_OUT_HIGH_PEG));
 	}
 
 	/**

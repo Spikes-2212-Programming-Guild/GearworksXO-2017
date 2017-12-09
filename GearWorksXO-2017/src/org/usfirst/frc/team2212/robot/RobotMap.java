@@ -20,8 +20,8 @@ public class RobotMap {
 		public static final int DRIVE_LEFT_REAR = 2;
 		public static final int DRIVE_RIGHT_FRONT = 3;
 		public static final int DRIVE_RIGHT_REAR = 4;
-		
-		//TODO - insert correct port
+
+		// TODO - insert correct port
 		public static final int ROLLER = 5;
 	}
 
@@ -42,10 +42,11 @@ public class RobotMap {
 
 		public static final int DRIVE_LEFT_ENCODER_A = 0;
 		public static final int DRIVE_LEFT_ENCODER_B = 1;
-		public static final int DRIVE_RIGHT_ENCODER_A = 2;
+		public static final int DRIVE_RIGHT_ENCODER_A = 11;
 		public static final int DRIVE_RIGHT_ENCODER_B = 10;
 
-		public static final int ROLLER_SENSOR = 6;
+		public static final int ROLLER_HIGH_SENSOR = 6;
+		public static final int ROLLER_LOW_SENSOR = 2;
 	}
 
 	// TODO insert correct ports

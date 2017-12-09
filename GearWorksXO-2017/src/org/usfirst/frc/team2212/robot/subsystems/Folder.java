@@ -2,6 +2,8 @@ package org.usfirst.frc.team2212.robot.subsystems;
 
 import java.util.function.Supplier;
 
+import org.usfirst.frc.team2212.robot.commands.HoldFolderUp;
+
 import com.spikes2212.dashboard.ConstantHandler;
 import com.spikes2212.genericsubsystems.LimitedSubsystem;
 
@@ -10,7 +12,7 @@ import edu.wpi.first.wpilibj.PIDSource;
 import edu.wpi.first.wpilibj.SpeedController;
 
 public class Folder extends LimitedSubsystem {
-	
+
 	public static final Supplier<Double> WAIT_TIME = ConstantHandler.addConstantDouble("Folder- WaitTime", 0.5);
 
 	// defining subsystem constants
@@ -57,5 +59,6 @@ public class Folder extends LimitedSubsystem {
 	}
 
 	public void initDefaultCommand() {
+		setDefaultCommand(new HoldFolderUp(this, SPEED_UP));
 	}
 }

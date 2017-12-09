@@ -21,9 +21,9 @@ public class PrepareToCollectGear extends CommandGroup {
 		// lower folder
 
 		/*
-		 * if the folder is in it's maximum limit, the supplier will return a larger
-		 * value to push the subsystem. otherwise, it will use SPEED_DOWN_B- the
-		 * smaller, more stable speed
+		 * if the folder is in it's maximum limit, the supplier will return a
+		 * larger value to push the subsystem. otherwise, it will use
+		 * SPEED_DOWN_B- the smaller, more stable speed
 		 */
 		addSequential(new MoveLimitedSubsystemWithTimeSinceReachingLimit(Robot.folder,
 				() -> Robot.folder.isMax() ? Folder.SPEED_DOWN_A.get() : Folder.SPEED_DOWN_B.get(),

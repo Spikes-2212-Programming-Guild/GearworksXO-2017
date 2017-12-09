@@ -10,13 +10,14 @@ public class RollGearWithLimits extends MoveLimitedSubsystem {
 
 	private boolean goingUp;
 
+	// positive speed moves the gear up
 	public RollGearWithLimits(Supplier<Double> speed) {
 		super(Robot.rollerGripper, speed);
 		this.goingUp = speed.get() > 0;
 	}
 
 	protected boolean isFinished() {
-		return super.isFinished() || (goingUp && !Robot.rollerGripper.getHighData())
-				|| (!goingUp && Robot.rollerGripper.getLowData());
+		return super.isFinished() || (goingUp && !Robot.rollerGripper.getHighSensorData())
+				|| (!goingUp && Robot.rollerGripper.getLowSensorData());
 	}
 }

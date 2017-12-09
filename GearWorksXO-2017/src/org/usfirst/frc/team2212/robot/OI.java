@@ -1,10 +1,12 @@
 package org.usfirst.frc.team2212.robot;
 
+import org.usfirst.frc.team2212.robot.commands.MoveLimitedSubsystemWithTimeSinceReachingLimit;
 import org.usfirst.frc.team2212.robot.commands.command_groups.DropGear;
 import org.usfirst.frc.team2212.robot.commands.command_groups.PickGear;
 import org.usfirst.frc.team2212.robot.commands.command_groups.PrepareToCollectGear;
 import org.usfirst.frc.team2212.robot.commands.command_groups.PrepareToScoreHigh;
 import org.usfirst.frc.team2212.robot.commands.command_groups.PrepareToScoreLow;
+import org.usfirst.frc.team2212.robot.subsystems.Folder;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -26,6 +28,7 @@ public class OI/* GEVALD */ {
 	private JoystickButton pickGear;
 	private JoystickButton prepareToScoreLowPeg;
 	private JoystickButton prepareToScoreHighPeg;
+	private JoystickButton moveFolderUp;
 
 	public OI() {
 		initJoystickNavigator();
@@ -38,12 +41,15 @@ public class OI/* GEVALD */ {
 		pickGear = new JoystickButton(navigator, 9);
 		prepareToScoreLowPeg = new JoystickButton(navigator, 2);
 		prepareToScoreHighPeg = new JoystickButton(navigator, 3);
+		moveFolderUp = new JoystickButton(navigator, 6);
 
 		dropGear.whenPressed(new DropGear());
 		prepareToPickGear.whenPressed(new PrepareToCollectGear());
 		pickGear.toggleWhenPressed(new PickGear());
-		prepareToScoreLowPeg.whenPressed(new PrepareToScoreLow());
-		prepareToScoreHighPeg.whenPressed(new PrepareToScoreHigh());
+		prepareToScoreLowPeg.toggleWhenPressed(new PrepareToScoreLow());
+		prepareToScoreHighPeg.toggleWhenPressed(new PrepareToScoreHigh());
+		moveFolderUp.toggleWhenPressed(new MoveLimitedSubsystemWithTimeSinceReachingLimit(Robot.folder, Folder.SPEED_UP,
+				Folder.WAIT_TIME.get()));
 
 	}
 

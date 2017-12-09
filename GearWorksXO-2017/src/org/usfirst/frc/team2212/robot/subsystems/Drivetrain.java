@@ -19,7 +19,7 @@ public class Drivetrain extends TankDrivetrain {
 	private Encoder encoderRight;
 
 	public Drivetrain(SpeedController leftGearbox, SpeedController rightGearbox, Encoder encoderLeft,
-					  Encoder encoderRight) {
+			Encoder encoderRight) {
 		this.leftSpeedController = leftGearbox;
 		this.rightSpeedController = rightGearbox;
 		this.encoderLeft = encoderLeft;
