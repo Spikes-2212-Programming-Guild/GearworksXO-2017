@@ -24,9 +24,9 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 public class OI/* GEVALD */ {
 
 	// initializing joysticks
-	private Joystick driverLeft = new Joystick(0);
 	private Joystick driverRight = new Joystick(1);
-	private Joystick navigator = new Joystick(2);
+	private Joystick driverLeft = new Joystick(2);
+	private Joystick navigator = new Joystick(0);
 
 	// Driver Buttons
 	private JoystickButton TurnAndMoveToGearAll;
