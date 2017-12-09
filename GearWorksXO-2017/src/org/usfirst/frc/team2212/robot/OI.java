@@ -26,8 +26,6 @@ public class OI/* GEVALD */ {
 
 	// Driver Buttons
 	private JoystickButton TurnAndMoveToGearAll;
-	private JoystickButton TurnAndMoveToGearHigh;
-	private JoystickButton TurnAndMoveToGearLow;
 
 	// Navigator Buttons
 	private JoystickButton moveElevatorToMiddle;
@@ -68,8 +66,6 @@ public class OI/* GEVALD */ {
 
 	private void initJoystickDriver() {
 		TurnAndMoveToGearAll = new JoystickButton(driverRight, 1);
-		TurnAndMoveToGearLow = new JoystickButton(driverRight, 2);
-		TurnAndMoveToGearHigh = new JoystickButton(driverRight, 3);
 
 		TurnAndMoveToGearAll.whileHeld(new TurnAndMoveToGear(this::getRightX, this::getRightY));
 	}
