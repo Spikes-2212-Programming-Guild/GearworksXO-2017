@@ -91,7 +91,7 @@ public class OI/* GEVALD */ {
 	}
 
 	public double getLeftX() {
-		return adjustSpeed(driverLeft.getX());
+		return -driverLeft.getX();
 	}
 
 	public double getLeftY() {
