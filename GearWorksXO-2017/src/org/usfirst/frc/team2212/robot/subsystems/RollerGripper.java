@@ -1,8 +1,5 @@
 package org.usfirst.frc.team2212.robot.subsystems;
 
-import java.util.function.Supplier;
-
-import com.spikes2212.dashboard.ConstantHandler;
 import com.spikes2212.genericsubsystems.LimitedSubsystem;
 
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -11,15 +8,39 @@ import edu.wpi.first.wpilibj.SpeedController;
 
 public class RollerGripper extends LimitedSubsystem {
 
-	public static final Supplier<Double> SPEED = ConstantHandler.addConstantDouble("Gripper - speed", 0.5);
 	private SpeedController motor;
-	private DigitalInput sensor;
+	private DigitalInput highSensor;
+	private DigitalInput lowSensor;
 
-	// TODO - check if motor inverted
 	// TODO - check if sensor inverted
-	public RollerGripper(SpeedController motor, DigitalInput sensor) {
+	public RollerGripper(SpeedController motor, DigitalInput upLimit, DigitalInput downLimit) {
 		this.motor = motor;
-		this.sensor = sensor;
+		this.highSensor = upLimit;
+		this.lowSensor = downLimit;
+
+		// inverting motor
+		motor.setInverted(true);
+	}
+
+	public void move(double speed) {
+		motor.set(speed);
+	}
+
+	public boolean getHighSensorData() {
+		return highSensor.get();
+	}
+
+	public boolean getLowSensorData() {
+		return !lowSensor.get();
+	}
+
+	@Override
+	protected void initDefaultCommand() {
+	}
+
+	@Override
+	public boolean isMin() {
+		return false;
 	}
 
 	@Override
@@ -28,18 +49,7 @@ public class RollerGripper extends LimitedSubsystem {
 	}
 
 	@Override
-	public boolean isMin() {
-		return sensor.get();
-	}
-
-	@Override
 	public PIDSource getPIDSource() {
 		return null;
 	}
-
-	@Override
-	protected void move(double speed) {
-		motor.set(speed);
-	}
-
 }
