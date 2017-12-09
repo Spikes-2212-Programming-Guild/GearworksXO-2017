@@ -54,7 +54,7 @@ public class Elevator extends LimitedSubsystem {
 
 	@Override
 	public boolean isMin() {
-		boolean isMin = !downLimit.get();
+		boolean isMin = downLimit.get();
 		if (isMin)
 			this.resetEncoder();
 		return isMin;

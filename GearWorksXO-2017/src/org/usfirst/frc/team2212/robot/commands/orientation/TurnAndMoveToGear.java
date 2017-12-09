@@ -26,4 +26,5 @@ public class TurnAndMoveToGear extends CommandGroup {
 		addSequential(new TurnToTwoTargets(rotateSpeedSupplier));
 		addSequential(new DriveArcade(Robot.drivetrain, forwardSpeedSupplier, () -> 0.0));
 	}
+	
 }
