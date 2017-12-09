@@ -4,6 +4,7 @@ import java.util.function.Supplier;
 
 import org.usfirst.frc.team2212.robot.ImageProcessingConstants;
 import org.usfirst.frc.team2212.robot.Robot;
+import org.usfirst.frc.team2212.robot.RobotMap;
 
 import com.spikes2212.dashboard.ConstantHandler;
 import com.spikes2212.genericsubsystems.drivetrains.commands.DriveArcade;
@@ -18,11 +19,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  */
 public class TurnAndMoveToGearHigh extends CommandGroup {
 
-	public static final Supplier<Double> HIGH_GEAR_CAM_ID = ConstantHandler.addConstantDouble("HighGear-Camera_ID", 0);
-
 	public TurnAndMoveToGearHigh(Supplier<Double> rotateSpeedSupplier, Supplier<Double> forwardSpeedSupplier) {
 		addSequential(new RunnableCommand(
-				() -> ImageProcessingConstants.NETWORK_TABLE.putNumber("currentCamera", HIGH_GEAR_CAM_ID.get())));
+				() -> ImageProcessingConstants.NETWORK_TABLE.putNumber("currentCamera", RobotMap.USB.HIGH_CAM)));
 		addSequential(new TurnToTwoTargets(rotateSpeedSupplier));
 		addSequential(new DriveArcade(Robot.drivetrain, forwardSpeedSupplier, () -> 0.0));
 	}
