@@ -1,8 +1,5 @@
 package org.usfirst.frc.team2212.robot;
 
-import java.awt.Adjustable;
-
-import org.usfirst.frc.team2212.robot.commands.MoveElevator;
 import org.usfirst.frc.team2212.robot.commands.RollGearIn;
 import org.usfirst.frc.team2212.robot.commands.command_groups.DropGear;
 import org.usfirst.frc.team2212.robot.commands.command_groups.PickGear;
@@ -10,7 +7,6 @@ import org.usfirst.frc.team2212.robot.commands.command_groups.PrepareToCollectGe
 import org.usfirst.frc.team2212.robot.commands.orientation.TurnAndMoveToGear;
 import org.usfirst.frc.team2212.robot.commands.orientation.TurnAndMoveToGearHigh;
 import org.usfirst.frc.team2212.robot.commands.orientation.TurnAndMoveToGearLow;
-import org.usfirst.frc.team2212.robot.subsystems.Elevator;
 import org.usfirst.frc.team2212.robot.subsystems.Folder;
 import org.usfirst.frc.team2212.robot.subsystems.RollerGripper;
 
@@ -61,8 +57,8 @@ public class OI/* GEVALD */ {
 		prepareToPickGear = new JoystickButton(navigator, 8);
 		pickGear = new JoystickButton(navigator, 9);
 
-		moveElevatorToHigh.whenPressed(new MoveElevator(Elevator.HIGH_SET_POINT.get()));
-		moveElevatorToMiddle.whenPressed(new MoveElevator(Elevator.MIDDLE_SET_POINT.get()));
+		moveElevatorToHigh.whenPressed(new MoveLimitedSubsystem(Robot.elevator, -0.5));
+		moveElevatorToMiddle.whenPressed(new MoveLimitedSubsystem(Robot.elevator, 0.5));
 		rollGearIn.whenPressed(new RollGearIn(RollerGripper.SPEED_IN.get()));
 		moveFolderUp.whenPressed(new MoveLimitedSubsystem(Robot.folder, Folder.SPEED_UP));
 		moveFolderDown.whenPressed(new MoveLimitedSubsystem(Robot.folder,
