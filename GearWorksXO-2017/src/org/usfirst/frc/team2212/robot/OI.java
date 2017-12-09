@@ -1,11 +1,13 @@
 package org.usfirst.frc.team2212.robot;
 
 import org.usfirst.frc.team2212.robot.commands.MoveLimitedSubsystemWithTimeSinceReachingLimit;
+import org.usfirst.frc.team2212.robot.commands.RollGearIn;
 import org.usfirst.frc.team2212.robot.commands.command_groups.DropGear;
 import org.usfirst.frc.team2212.robot.commands.command_groups.PickGear;
 import org.usfirst.frc.team2212.robot.commands.command_groups.PrepareToCollectGear;
 import org.usfirst.frc.team2212.robot.commands.command_groups.PrepareToScoreHigh;
 import org.usfirst.frc.team2212.robot.commands.command_groups.PrepareToScoreLow;
+import org.usfirst.frc.team2212.robot.commands.orientation.TurnAndMoveToGear;
 import org.usfirst.frc.team2212.robot.subsystems.Folder;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -22,6 +24,9 @@ public class OI/* GEVALD */ {
 	private Joystick driverRight = new Joystick(1);
 	private Joystick navigator = new Joystick(0);
 
+	// driver
+    private JoystickButton TurnAndMoveToGearAll;
+
 	// navigator
 	private JoystickButton dropGear;
 	private JoystickButton prepareToPickGear;
@@ -31,6 +36,7 @@ public class OI/* GEVALD */ {
 	private JoystickButton moveFolderUp;
 
 	public OI() {
+        initJoystickDriver();
 		initJoystickNavigator();
 	}
 
@@ -45,20 +51,39 @@ public class OI/* GEVALD */ {
 
 		dropGear.whenPressed(new DropGear());
 		prepareToPickGear.whenPressed(new PrepareToCollectGear());
-		pickGear.toggleWhenPressed(new PickGear());
-		prepareToScoreLowPeg.toggleWhenPressed(new PrepareToScoreLow());
-		prepareToScoreHighPeg.toggleWhenPressed(new PrepareToScoreHigh());
-		moveFolderUp.toggleWhenPressed(new MoveLimitedSubsystemWithTimeSinceReachingLimit(Robot.folder, Folder.SPEED_UP,
-				Folder.WAIT_TIME.get()));
+        pickGear.toggleWhenPressed(new PickGear());
+        prepareToScoreLowPeg.toggleWhenPressed(new PrepareToScoreLow());
+        prepareToScoreHighPeg.toggleWhenPressed(new PrepareToScoreHigh());
+        moveFolderUp.toggleWhenPressed(new MoveLimitedSubsystemWithTimeSinceReachingLimit(Robot.folder, Folder.SPEED_UP,
+                Folder.WAIT_TIME.get()));
+	}
+
+	private void initJoystickDriver() {
+		TurnAndMoveToGearAll = new JoystickButton(driverRight, 1);
+
+		TurnAndMoveToGearAll.whileHeld(new TurnAndMoveToGear(this::getRightX, this::getRightY));
+
 
 	}
 
-	public Double adjustSpeed(double speed) {
+	public double adjustSpeed(double speed) {
 		return Math.abs(speed) * speed;
 	}
 
-	public double getForward() {
+	public double getRightX() {
+		return -driverRight.getX();
+	}
+
+	public double getRightY() {
 		return adjustSpeed(driverRight.getY());
+	}
+
+	public double getLeftX() {
+		return -driverLeft.getX();
+	}
+
+	public double getLeftY() {
+		return adjustSpeed(driverLeft.getY());
 	}
 
 	public double getRotation() {

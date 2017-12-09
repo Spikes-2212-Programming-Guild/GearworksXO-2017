@@ -12,6 +12,7 @@ import org.usfirst.frc.team2212.robot.subsystems.RollerGripper;
 import com.ctre.CANTalon;
 import com.spikes2212.dashboard.DashBoardController;
 import com.spikes2212.genericsubsystems.commands.MoveLimitedSubsystem;
+import com.spikes2212.genericsubsystems.commands.MoveLimitedSubsystem;
 import com.spikes2212.utils.CamerasHandler;
 import com.spikes2212.utils.DoubleSpeedcontroller;
 
@@ -48,12 +49,13 @@ public class Robot extends IterativeRobot {
 				new Encoder(RobotMap.DIO.DRIVE_LEFT_ENCODER_A, RobotMap.DIO.DRIVE_LEFT_ENCODER_B),
 				new Encoder(RobotMap.DIO.DRIVE_RIGHT_ENCODER_A, RobotMap.DIO.DRIVE_RIGHT_ENCODER_B));
 
-		rollerGripper = new RollerGripper(new CANTalon(RobotMap.CAN.ROLLER),
-				new DigitalInput(RobotMap.DIO.ROLLER_HIGH_SENSOR), new DigitalInput(RobotMap.DIO.ROLLER_LOW_SENSOR));
+		rollerGripper = new RollerGripper(new VictorSP(RobotMap.PWM.ROLLER_MOTOR),
+				new DigitalInput(RobotMap.DIO.ROLLER_SENSOR));
 
 		elevator = new Elevator(new VictorSP(RobotMap.PWM.ELEVATOR_MOTOR), new DigitalInput(RobotMap.DIO.ELEVATOR_DOWN),
 				new DigitalInput(RobotMap.DIO.ELEVATOR_UP),
 				new Encoder(RobotMap.DIO.ELEVATOR_ENCODER_A, RobotMap.DIO.ELEVATOR_ENCODER_B));
+
 
 		folder = new Folder(new CANTalon(RobotMap.CAN.FOLDER), new DigitalInput(RobotMap.DIO.FOLDER_DOWN),
 				new DigitalInput(RobotMap.DIO.FOLDER_UP));
