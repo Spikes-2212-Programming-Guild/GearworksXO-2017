@@ -12,11 +12,15 @@ import com.spikes2212.genericsubsystems.commands.MoveLimitedSubsystem;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 public class PrepareToScoreHigh extends CommandGroup {
-	public static final Supplier<Double> ROLLER_MOVE_GEAR_UP_SPEED = ConstantHandler
-			.addConstantDouble("Gripper-prepare-to-score-high-speed", 0.7);
+	public static final Supplier<Double> ROLLER_SPEED_UP_TO_SENSOR_A = ConstantHandler
+			.addConstantDouble("Gripper-prepare-to-score-high-speed-A", 0.7);
+
+	public static final Supplier<Double> ROLLER_SPEED_UP_TO_SENSOR_B = ConstantHandler
+			.addConstantDouble("Gripper-prepare-to-score-high-speed-B", 0.5);
 
 	public PrepareToScoreHigh() {
-		addSequential(new RollGearWithLimits(ROLLER_MOVE_GEAR_UP_SPEED));
+		addParallel(new RollGearWithLimits(() -> !Robot.rollerGripper.getLowSensorData()
+				? ROLLER_SPEED_UP_TO_SENSOR_A.get() : ROLLER_SPEED_UP_TO_SENSOR_B.get()));
 		addSequential(new MoveLimitedSubsystem(Robot.elevator, Elevator.SPEED_UP.get()));
 	}
 }

@@ -13,12 +13,12 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 
 public class PrepareToScoreLow extends CommandGroup {
 	public static final Supplier<Double> ROLLER_SPEED_DOWN_TO_SENSOR_A = ConstantHandler
-			.addConstantDouble("Gripper-prepare-to-score-low-speed-A", -0.45);
+			.addConstantDouble("Gripper-prepare-to-score-low-speed-A", -0.5);
 	public static final Supplier<Double> ROLLER_SPEED_DOWN_TO_SENSOR_B = ConstantHandler
-			.addConstantDouble("Gripper-prepare-to-score-low-speed-B", -0.2);
+			.addConstantDouble("Gripper-prepare-to-score-low-speed-B", -0.25);
 
 	public PrepareToScoreLow() {
-		addSequential(new RollGearWithLimits(() -> Robot.rollerGripper.getHighSensorData()
+		addParallel(new RollGearWithLimits(() -> Robot.rollerGripper.getHighSensorData()
 				? ROLLER_SPEED_DOWN_TO_SENSOR_A.get() : ROLLER_SPEED_DOWN_TO_SENSOR_B.get()));
 		addSequential(new MoveLimitedSubsystem(Robot.elevator, Elevator.SPEED_DOWN.get()));
 	}
