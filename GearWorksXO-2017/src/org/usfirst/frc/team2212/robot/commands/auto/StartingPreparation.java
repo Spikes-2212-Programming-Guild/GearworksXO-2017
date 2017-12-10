@@ -1,4 +1,4 @@
-package org.usfirst.frc.team2212.robot.commands.command_groups;
+package org.usfirst.frc.team2212.robot.commands.auto;
 
 import org.usfirst.frc.team2212.robot.Robot;
 import org.usfirst.frc.team2212.robot.commands.MoveLimitedSubsystemWithTimeSinceReachingLimit;
