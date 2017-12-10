@@ -5,6 +5,7 @@ import org.usfirst.frc.team2212.robot.commands.MoveElevatorUpSlowly;
 import org.usfirst.frc.team2212.robot.commands.MoveLimitedSubsystemWithTimeSinceReachingLimit;
 import org.usfirst.frc.team2212.robot.commands.command_groups.DropGear;
 import org.usfirst.frc.team2212.robot.commands.command_groups.PickGear;
+import org.usfirst.frc.team2212.robot.commands.command_groups.StartingPreparation;
 import org.usfirst.frc.team2212.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team2212.robot.subsystems.Elevator;
 import org.usfirst.frc.team2212.robot.subsystems.Folder;
@@ -97,6 +98,8 @@ public class Robot extends IterativeRobot {
 				new MoveLimitedSubsystem(rollerGripper, DropGear.ROLLER_SPEED_OUT_HIGH_PEG));
 		
 		SmartDashboard.putData("Move ele up while ignoring the limit", new MoveElevatorUpSlowly());
+		
+		SmartDashboard.putData(new StartingPreparation());
 	}
 
 	/**
@@ -127,7 +130,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-
+		new StartingPreparation().start();
 	}
 
 	/**
