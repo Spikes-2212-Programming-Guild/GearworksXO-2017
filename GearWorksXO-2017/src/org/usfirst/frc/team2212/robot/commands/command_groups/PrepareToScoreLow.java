@@ -18,7 +18,7 @@ public class PrepareToScoreLow extends CommandGroup {
 			.addConstantDouble("Gripper-prepare-to-score-low-speed-B", -0.2);
 
 	public PrepareToScoreLow() {
-		addSequential(new RollGearWithLimits(() -> Robot.rollerGripper.getHighSensorData()
+		addParallel(new RollGearWithLimits(() -> Robot.rollerGripper.getHighSensorData()
 				? ROLLER_SPEED_DOWN_TO_SENSOR_A.get() : ROLLER_SPEED_DOWN_TO_SENSOR_B.get()));
 		addSequential(new MoveLimitedSubsystem(Robot.elevator, Elevator.SPEED_DOWN.get()));
 	}

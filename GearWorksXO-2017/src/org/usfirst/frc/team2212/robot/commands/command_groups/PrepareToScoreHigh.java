@@ -16,7 +16,7 @@ public class PrepareToScoreHigh extends CommandGroup {
 			.addConstantDouble("Gripper-prepare-to-score-high-speed", 0.7);
 
 	public PrepareToScoreHigh() {
-		addSequential(new RollGearWithLimits(ROLLER_MOVE_GEAR_UP_SPEED));
+		addParallel(new RollGearWithLimits(ROLLER_MOVE_GEAR_UP_SPEED));
 		addSequential(new MoveLimitedSubsystem(Robot.elevator, Elevator.SPEED_UP.get()));
 	}
 }
