@@ -23,7 +23,7 @@ public class TurnAndMoveToGear extends CommandGroup {
 	public TurnAndMoveToGear(Supplier<Double> rotateSpeedSupplier, Supplier<Double> forwardSpeedSupplier) {
 		addSequential(new RunnableCommand(() -> ImageProcessingConstants.NETWORK_TABLE.putNumber("currentCamera",
 				Robot.elevator.isMax() ? RobotMap.USB.HIGH_CAM : RobotMap.USB.LOW_CAM)));
-		addSequential(new TurnToTwoTargets(rotateSpeedSupplier));
+		addSequential(new DriverTurnToTwoTargetsCenter(rotateSpeedSupplier));
 		addSequential(new DriveArcade(Robot.drivetrain, forwardSpeedSupplier, () -> 0.0));
 	}
 	

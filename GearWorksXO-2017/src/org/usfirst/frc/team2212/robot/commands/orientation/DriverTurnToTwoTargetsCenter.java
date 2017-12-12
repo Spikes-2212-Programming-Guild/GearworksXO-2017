@@ -16,7 +16,7 @@ import edu.wpi.first.wpilibj.Timer;
  * within the TOLERANCE and WAIT_TIME specified
  *
  */
-public class TurnToTwoTargets extends DriveArcade {
+public class DriverTurnToTwoTargetsCenter extends DriveArcade {
 	private double lastTimeNotOnTarget = Timer.getFPGATimestamp();
 
 	public static final Supplier<Double> WAIT_TIME = ConstantHandler.addConstantDouble("TurnToTwoTargets-WAIT_TIME",
@@ -24,7 +24,7 @@ public class TurnToTwoTargets extends DriveArcade {
 	public static final Supplier<Double> TOLERANCE = ConstantHandler.addConstantDouble("TurnToTwoTargets-TOLERANCE",
 			0.05);
 
-	public TurnToTwoTargets(Supplier<Double> rotateSpeedSupplier) {
+	public DriverTurnToTwoTargetsCenter(Supplier<Double> rotateSpeedSupplier) {
 		super(Robot.drivetrain, () -> 0.0, rotateSpeedSupplier);
 	}
 
