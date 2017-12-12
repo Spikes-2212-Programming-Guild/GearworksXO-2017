@@ -6,7 +6,7 @@ import org.usfirst.frc.team2212.robot.commands.command_groups.PickGear;
 import org.usfirst.frc.team2212.robot.commands.command_groups.PrepareToCollectGear;
 import org.usfirst.frc.team2212.robot.commands.command_groups.PrepareToScoreHigh;
 import org.usfirst.frc.team2212.robot.commands.command_groups.PrepareToScoreLow;
-import org.usfirst.frc.team2212.robot.commands.orientation.TurnAndMoveToGear;
+import org.usfirst.frc.team2212.robot.commands.orientation.DriverTurnAndMoveToGear;
 import org.usfirst.frc.team2212.robot.subsystems.Folder;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -60,7 +60,7 @@ public class OI/* GEVALD */ {
 	private void initJoystickDriver() {
 		TurnAndMoveToGearAll = new JoystickButton(driverRight, 1);
 
-		TurnAndMoveToGearAll.whileHeld(new TurnAndMoveToGear(this::getRightX, this::getRightY));
+		TurnAndMoveToGearAll.whileHeld(new DriverTurnAndMoveToGear(this::getRightX, this::getRightY));
 
 
 	}
