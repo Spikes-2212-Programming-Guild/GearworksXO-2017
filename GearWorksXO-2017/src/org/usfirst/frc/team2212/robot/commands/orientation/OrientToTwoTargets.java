@@ -1,4 +1,4 @@
-package org.usfirst.frc.team2212.robot.orientation;
+package org.usfirst.frc.team2212.robot.commands.orientation;
 
 import java.util.function.Supplier;
 
