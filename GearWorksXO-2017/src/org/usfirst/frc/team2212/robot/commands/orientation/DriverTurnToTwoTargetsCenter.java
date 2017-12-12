@@ -17,17 +17,25 @@ import edu.wpi.first.wpilibj.Timer;
  *
  */
 public class DriverTurnToTwoTargetsCenter extends DriveArcade {
+	
+	// the last time the drivetrain faced the center of the peg
 	private double lastTimeNotOnTarget = Timer.getFPGATimestamp();
-
+	
+	// the time the drivetrain should be centered to the peg before ending this command
 	public static final Supplier<Double> WAIT_TIME = ConstantHandler.addConstantDouble("DriverTurnToTwoTargetsCenter-WAIT_TIME",
 			0.25);
+	
+	// the tolerance of the orientation to the center of the peg
 	public static final Supplier<Double> TOLERANCE = ConstantHandler.addConstantDouble("DriverTurnToTwoTargetsCenter-TOLERANCE",
 			0.05);
 
 	public DriverTurnToTwoTargetsCenter(Supplier<Double> rotateSpeedSupplier) {
 		super(Robot.drivetrain, () -> 0.0, rotateSpeedSupplier);
 	}
-
+	
+	/**
+	 * end this command when the drivetain was centered for the given waitTime
+	 */
 	@Override
 	protected boolean isFinished() {
 		// center supposed to be 0
