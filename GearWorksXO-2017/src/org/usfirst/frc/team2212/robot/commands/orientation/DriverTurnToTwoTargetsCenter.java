@@ -19,9 +19,9 @@ import edu.wpi.first.wpilibj.Timer;
 public class DriverTurnToTwoTargetsCenter extends DriveArcade {
 	private double lastTimeNotOnTarget = Timer.getFPGATimestamp();
 
-	public static final Supplier<Double> WAIT_TIME = ConstantHandler.addConstantDouble("TurnToTwoTargets-WAIT_TIME",
+	public static final Supplier<Double> WAIT_TIME = ConstantHandler.addConstantDouble("DriverTurnToTwoTargetsCenter-WAIT_TIME",
 			0.25);
-	public static final Supplier<Double> TOLERANCE = ConstantHandler.addConstantDouble("TurnToTwoTargets-TOLERANCE",
+	public static final Supplier<Double> TOLERANCE = ConstantHandler.addConstantDouble("DriverTurnToTwoTargetsCenter-TOLERANCE",
 			0.05);
 
 	public DriverTurnToTwoTargetsCenter(Supplier<Double> rotateSpeedSupplier) {
