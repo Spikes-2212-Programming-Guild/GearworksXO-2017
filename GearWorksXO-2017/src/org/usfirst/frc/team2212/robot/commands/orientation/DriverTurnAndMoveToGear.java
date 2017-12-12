@@ -18,8 +18,6 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  */
 public class DriverTurnAndMoveToGear extends CommandGroup {
 
-	// TODO - if it works, remove specific classes for high and low gears, and
-	// move the cameras values to here
 	public DriverTurnAndMoveToGear(Supplier<Double> rotateSpeedSupplier, Supplier<Double> forwardSpeedSupplier) {
 		addSequential(new RunnableCommand(() -> ImageProcessingConstants.NETWORK_TABLE.putNumber("currentCamera",
 				Robot.elevator.isMax() ? RobotMap.USB.HIGH_CAM : RobotMap.USB.LOW_CAM)));
