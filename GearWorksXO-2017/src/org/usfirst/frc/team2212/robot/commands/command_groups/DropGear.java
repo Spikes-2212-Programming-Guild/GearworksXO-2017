@@ -32,7 +32,7 @@ public class DropGear extends CommandGroup {
 	@Override
 	protected void initialize() {
 		super.initialize();
-		if (Robot.elevator.isMax()) {
+		if (!Robot.elevator.isMin()) {
 			this.rollerSpeed = ROLLER_SPEED_OUT_HIGH_PEG.get();
 			this.elevatorSpeed = Elevator.SPEED_DOWN.get();
 		} else {

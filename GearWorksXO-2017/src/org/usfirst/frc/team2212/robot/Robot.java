@@ -72,6 +72,8 @@ public class Robot extends IterativeRobot {
 		dbc.addBoolean("Top", () -> elevator.isMax());
 		dbc.addBoolean("Mid", () -> (elevator.inTargetRange(Elevator.MIDDLE_SET_POINT.get())));
 		dbc.addBoolean("Bottom", () -> elevator.isMin());
+		
+		dbc.addBoolean("folder up", folder::isMin);
 
 		dbc.addBoolean("Roller high sensor blocked", rollerGripper::getHighSensorData);
 		dbc.addBoolean("Roller low sensor blocked", rollerGripper::getLowSensorData);

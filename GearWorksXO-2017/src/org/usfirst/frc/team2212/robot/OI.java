@@ -19,12 +19,12 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 public class OI/* GEVALD */ {
 
 	// initializing joysticks
-	private Joystick driverLeft = new Joystick(2);
+//	private Joystick driverLeft = new Joystick(2);
 	private Joystick driverRight = new Joystick(1);
 	private Joystick navigator = new Joystick(0);
 
 	// driver
-    private JoystickButton TurnAndMoveToGearAll;
+	private JoystickButton TurnAndMoveToGearAll;
 
 	// navigator
 	private JoystickButton dropGear;
@@ -35,7 +35,7 @@ public class OI/* GEVALD */ {
 	private JoystickButton moveFolderUp;
 
 	public OI() {
-        initJoystickDriver();
+		initJoystickDriver();
 		initJoystickNavigator();
 	}
 
@@ -46,22 +46,21 @@ public class OI/* GEVALD */ {
 		pickGear = new JoystickButton(navigator, 9);
 		prepareToScoreLowPeg = new JoystickButton(navigator, 2);
 		prepareToScoreHighPeg = new JoystickButton(navigator, 3);
-		moveFolderUp = new JoystickButton(navigator, 6);
+		moveFolderUp = new JoystickButton(navigator, 4);
 
 		dropGear.whenPressed(new DropGear());
 		prepareToPickGear.whenPressed(new PrepareToCollectGear());
-        pickGear.toggleWhenPressed(new PickGear());
-        prepareToScoreLowPeg.toggleWhenPressed(new PrepareToScoreLow());
-        prepareToScoreHighPeg.toggleWhenPressed(new PrepareToScoreHigh());
-        moveFolderUp.toggleWhenPressed(new MoveLimitedSubsystemWithTimeSinceReachingLimit(Robot.folder, Folder.SPEED_UP,
-                Folder.WAIT_TIME.get()));
+		pickGear.toggleWhenPressed(new PickGear());
+		prepareToScoreLowPeg.toggleWhenPressed(new PrepareToScoreLow());
+		prepareToScoreHighPeg.toggleWhenPressed(new PrepareToScoreHigh());
+		moveFolderUp.toggleWhenPressed(new MoveLimitedSubsystemWithTimeSinceReachingLimit(Robot.folder, Folder.SPEED_UP,
+				Folder.WAIT_TIME.get()));
 	}
 
 	private void initJoystickDriver() {
 		TurnAndMoveToGearAll = new JoystickButton(driverRight, 1);
 
-		TurnAndMoveToGearAll.whileHeld(new TurnAndMoveToGear(this::getRightX, this::getRightY));
-
+		TurnAndMoveToGearAll.whileHeld(new TurnAndMoveToGear(this::getOrientationTurnSpeed, this::getRightY));
 
 	}
 
@@ -69,23 +68,19 @@ public class OI/* GEVALD */ {
 		return Math.abs(speed) * speed;
 	}
 
+	public double getOrientationTurnSpeed() {
+		return getRightX() / 3;
+	}
+
 	public double getRightX() {
 		return -driverRight.getX();
 	}
 
 	public double getRightY() {
-		return adjustSpeed(driverRight.getY());
-	}
-
-	public double getLeftX() {
-		return -driverLeft.getX();
-	}
-
-	public double getLeftY() {
-		return adjustSpeed(driverLeft.getY());
+		return driverRight.getY();
 	}
 
 	public double getRotation() {
-		return -adjustSpeed(driverLeft.getX());
+		return -adjustSpeed(driverRight.getX());
 	}
 }

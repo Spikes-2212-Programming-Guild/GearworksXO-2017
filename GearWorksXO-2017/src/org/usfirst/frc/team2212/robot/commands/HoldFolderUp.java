@@ -15,12 +15,14 @@ public class HoldFolderUp extends MoveLimitedSubsystem {
 
 	@Override
 	protected void execute() {
-		if (!this.isFinished())
+		if (!(Robot.folder.isMax()||Robot.folder.isMin()))
 			super.execute();
+		else
+			Robot.folder.stop();
 	}
 
 	@Override
 	protected boolean isFinished() {
-		return super.isFinished() || Robot.elevator.isMin();
+		return false;
 	}
 }
