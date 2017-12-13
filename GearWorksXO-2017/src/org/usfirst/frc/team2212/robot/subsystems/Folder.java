@@ -58,7 +58,6 @@ public class Folder extends LimitedSubsystem {
 	}
 
 	public void initDefaultCommand() {
-		// setDefaultCommand(new HoldFolderUp(this, SPEED_UP));
 		setDefaultCommand(new MoveLimitedSubsystem(this, SPEED_UP));
 	}
 }
