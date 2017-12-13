@@ -15,6 +15,11 @@ public class PickGear extends CommandGroup {
 	public static final Supplier<Double> ROLLER_SPEED_IN = ConstantHandler.addConstantDouble("Gripper-pick-speed", -1);
 
 	public PickGear() {
+
+		addSequential(new MoveLimitedSubsystemWithTimeSinceReachingLimit(Robot.folder,
+				() -> Robot.folder.isMax() ? Folder.SPEED_DOWN_A.get() : Folder.SPEED_DOWN_B.get(),
+				Folder.WAIT_TIME.get()));
+
 		addSequential(new RollGearWithLimits(ROLLER_SPEED_IN));
 		addSequential(new MoveLimitedSubsystemWithTimeSinceReachingLimit(Robot.folder, Folder.SPEED_UP,
 				Folder.WAIT_TIME.get()));

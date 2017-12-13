@@ -15,9 +15,16 @@ public class CrossAutoLine extends CommandGroup {
 			.addConstantDouble("crossLineAuto - crossingSpeed", -0.7);
 	public static final Supplier<Double> CROSSING_TIME = ConstantHandler
 			.addConstantDouble("crossLineAuto - crossingTime", 2.7);
+	public static final Supplier<Double> SETTLE_SPEED = ConstantHandler.addConstantDouble("crossLineAuto - sattleSpeed",
+			0.2);
+	public static final Supplier<Double> SETTLE_TIME = ConstantHandler.addConstantDouble("crossLineAuto - sattleTime",
+			0.4);
 
 	public CrossAutoLine() {
+
 		addSequential(new DriveArcade(Robot.drivetrain, CROSSING_SPEED, () -> 0.0), CROSSING_TIME.get());
+		// addSequential(new DriveArcade(Robot.drivetrain, SETTLE_SPEED, () ->
+		// 0.0), SETTLE_TIME.get());
 	}
 
 }
