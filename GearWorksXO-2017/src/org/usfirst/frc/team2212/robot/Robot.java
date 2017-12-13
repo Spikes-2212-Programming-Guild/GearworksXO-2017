@@ -3,6 +3,8 @@ package org.usfirst.frc.team2212.robot;
 
 import org.usfirst.frc.team2212.robot.commands.MoveElevatorUpSlowly;
 import org.usfirst.frc.team2212.robot.commands.MoveLimitedSubsystemWithTimeSinceReachingLimit;
+import org.usfirst.frc.team2212.robot.commands.auto.CrossAutoLine;
+import org.usfirst.frc.team2212.robot.commands.auto.CrossAutoLineAndControlSquare;
 import org.usfirst.frc.team2212.robot.commands.auto.StartingPreparation;
 import org.usfirst.frc.team2212.robot.commands.command_groups.DropGear;
 import org.usfirst.frc.team2212.robot.commands.command_groups.PickGear;
@@ -21,8 +23,10 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.VictorSP;
+import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Robot extends IterativeRobot {
@@ -34,7 +38,7 @@ public class Robot extends IterativeRobot {
 	public static RollerGripper rollerGripper;
 	public static DashBoardController dbc;
 	public static CamerasHandler camerasHandler;
-
+	public static SendableChooser<Command> chooser;
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
@@ -59,9 +63,13 @@ public class Robot extends IterativeRobot {
 
 		folder = new Folder(new CANTalon(RobotMap.CAN.FOLDER), new DigitalInput(RobotMap.DIO.FOLDER_DOWN),
 				new DigitalInput(RobotMap.DIO.FOLDER_UP));
+		
 		camerasHandler = new CamerasHandler(160 * 2, 120 * 2, 0);
 		camerasHandler.setExposure(47);
-
+		
+		chooser = new SendableChooser<>();
+		chooser.addObject("pass line", new CrossAutoLine());
+		chooser.addObject("pass line and controll square", new CrossAutoLineAndControlSquare());
 		oi = new OI();
 
 		initDashboard();
@@ -100,6 +108,8 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putData("Move ele up while ignoring the limit", new MoveElevatorUpSlowly());
 		
 		SmartDashboard.putData(new StartingPreparation());
+	
+		SmartDashboard.putData("auto chooser", chooser);
 	}
 
 	/**
@@ -131,6 +141,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousInit() {
 		new StartingPreparation().start();
+		chooser.getSelected().start();
 	}
 
 	/**
