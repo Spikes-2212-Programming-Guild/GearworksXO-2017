@@ -1,3 +1,4 @@
+
 package org.usfirst.frc.team2212.robot;
 
 import org.usfirst.frc.team2212.robot.commands.MoveLimitedSubsystemWithTimeSinceReachingLimit;
@@ -19,8 +20,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 public class OI/* GEVALD */ {
 
 	// initializing joysticks
-	private Joystick driverLeft = new Joystick(2);
-	private Joystick driverRight = new Joystick(1);
+	private Joystick driver = new Joystick(1);
 	private Joystick navigator = new Joystick(0);
 
 	// driver
@@ -58,9 +58,9 @@ public class OI/* GEVALD */ {
 	}
 
 	private void initJoystickDriver() {
-		TurnAndMoveToGearAll = new JoystickButton(driverRight, 1);
+		TurnAndMoveToGearAll = new JoystickButton(driver, 1);
 
-		TurnAndMoveToGearAll.whileHeld(new TurnAndMoveToGear(this::getRightX, this::getRightY));
+		TurnAndMoveToGearAll.whileHeld(new TurnAndMoveToGear(this::getDriverX, this::getDriverY));
 
 	}
 
@@ -68,23 +68,15 @@ public class OI/* GEVALD */ {
 		return Math.abs(speed) * speed;
 	}
 
-	public double getRightX() {
-		return driverRight.getX();
+	public double getDriverX() {
+		return driver.getX();
 	}
 
-	public double getRightY() {
-		return -adjustSpeed(driverRight.getY());
-	}
-
-	public double getLeftX() {
-		return driverLeft.getX();
-	}
-
-	public double getLeftY() {
-		return -adjustSpeed(driverLeft.getY());
+	public double getDriverY() {
+		return -adjustSpeed(driver.getY());
 	}
 
 	public double getRotation() {
-		return adjustSpeed(driverLeft.getX());
+		return driver.getX();
 	}
 }
