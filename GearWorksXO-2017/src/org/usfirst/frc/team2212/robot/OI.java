@@ -24,9 +24,9 @@ public class OI/* GEVALD */ {
 	private Joystick navigator = new Joystick(0);
 
 	// driver
-    private JoystickButton TurnAndMoveToGearAll;
+	private JoystickButton TurnAndMoveToGearAll;
 
-	// navigator
+	// navigator joystick
 	private JoystickButton dropGear;
 	private JoystickButton prepareToPickGear;
 	private JoystickButton pickGear;
@@ -35,7 +35,7 @@ public class OI/* GEVALD */ {
 	private JoystickButton moveFolderUp;
 
 	public OI() {
-        initJoystickDriver();
+		initJoystickDriver();
 		initJoystickNavigator();
 	}
 
@@ -50,18 +50,17 @@ public class OI/* GEVALD */ {
 
 		dropGear.whenPressed(new DropGear());
 		prepareToPickGear.whenPressed(new PrepareToCollectGear());
-        pickGear.toggleWhenPressed(new PickGear());
-        prepareToScoreLowPeg.toggleWhenPressed(new PrepareToScoreLow());
-        prepareToScoreHighPeg.toggleWhenPressed(new PrepareToScoreHigh());
-        moveFolderUp.toggleWhenPressed(new MoveLimitedSubsystemWithTimeSinceReachingLimit(Robot.folder, Folder.SPEED_UP,
-                Folder.WAIT_TIME.get()));
+		pickGear.toggleWhenPressed(new PickGear());
+		prepareToScoreLowPeg.toggleWhenPressed(new PrepareToScoreLow());
+		prepareToScoreHighPeg.toggleWhenPressed(new PrepareToScoreHigh());
+		moveFolderUp.toggleWhenPressed(new MoveLimitedSubsystemWithTimeSinceReachingLimit(Robot.folder, Folder.SPEED_UP,
+				Folder.WAIT_TIME.get()));
 	}
 
 	private void initJoystickDriver() {
 		TurnAndMoveToGearAll = new JoystickButton(driverRight, 1);
 
 		TurnAndMoveToGearAll.whileHeld(new TurnAndMoveToGear(this::getRightX, this::getRightY));
-
 
 	}
 
