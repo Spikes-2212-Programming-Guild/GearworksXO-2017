@@ -22,7 +22,7 @@ public class PutGearAuto extends CommandGroup {
 			.addConstantDouble("putGearAuto- right rotate speed", -0.5);
 
 	public PutGearAuto(Supplier<Double> rotateSpeed) {
-		addSequential(new DriveArcade(Robot.drivetrain, DRIVE_SPEED, () -> 0.0));
+		addSequential(new DriveArcade(Robot.drivetrain, DRIVE_SPEED, () -> 0.0), DRIVE_TIME.get());
 
 		addSequential(new OrientToLowPeg(rotateSpeed));
 
