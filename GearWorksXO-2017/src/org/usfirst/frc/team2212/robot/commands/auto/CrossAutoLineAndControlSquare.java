@@ -17,7 +17,7 @@ public class CrossAutoLineAndControlSquare extends CommandGroup {
 	public static final Supplier<Double> BACKING_SPEED = ConstantHandler
 			.addConstantDouble("crossLineAutoAndControlSquare - backingSpeed", -0.5);
 	public static final Supplier<Double> BACKING_TIME = ConstantHandler
-			.addConstantDouble("crossLineAutoAndControlSquare - backingTime", -3.5);
+			.addConstantDouble("crossLineAutoAndControlSquare - backingTime", 3.5);
 
 	public CrossAutoLineAndControlSquare() {
 		addSequential(new CrossAutoLine());
