@@ -26,7 +26,7 @@ public class Drivetrain extends TankDrivetrain {
 		this.encoderRight = encoderRight;
 
 		// inverting the right speed controller
-		rightSpeedController.setInverted(true);
+		leftSpeedController.setInverted(true);
 
 	}
 
@@ -51,6 +51,6 @@ public class Drivetrain extends TankDrivetrain {
 	}
 
 	public void initDefaultCommand() {
-		setDefaultCommand(new DriveArcade(Robot.drivetrain, Robot.oi::getRightY, Robot.oi::getRotation));
+		setDefaultCommand(new DriveArcade(Robot.drivetrain, Robot.oi::getDriverY, Robot.oi::getRotation));
 	}
 }

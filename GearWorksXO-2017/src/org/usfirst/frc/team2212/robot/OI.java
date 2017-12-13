@@ -19,12 +19,11 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 public class OI/* GEVALD */ {
 
 	// initializing joysticks
-	private Joystick driverLeft = new Joystick(2);
-	private Joystick driverRight = new Joystick(1);
+	private Joystick driver = new Joystick(1);
 	private Joystick navigator = new Joystick(0);
 
 	// driver
-    private JoystickButton TurnAndMoveToGearAll;
+	private JoystickButton TurnAndMoveToGearAll;
 
 	// navigator
 	private JoystickButton dropGear;
@@ -35,7 +34,7 @@ public class OI/* GEVALD */ {
 	private JoystickButton moveFolderUp;
 
 	public OI() {
-        initJoystickDriver();
+		initJoystickDriver();
 		initJoystickNavigator();
 	}
 
@@ -50,18 +49,17 @@ public class OI/* GEVALD */ {
 
 		dropGear.whenPressed(new DropGear());
 		prepareToPickGear.whenPressed(new PrepareToCollectGear());
-        pickGear.toggleWhenPressed(new PickGear());
-        prepareToScoreLowPeg.toggleWhenPressed(new PrepareToScoreLow());
-        prepareToScoreHighPeg.toggleWhenPressed(new PrepareToScoreHigh());
-        moveFolderUp.toggleWhenPressed(new MoveLimitedSubsystemWithTimeSinceReachingLimit(Robot.folder, Folder.SPEED_UP,
-                Folder.WAIT_TIME.get()));
+		pickGear.toggleWhenPressed(new PickGear());
+		prepareToScoreLowPeg.toggleWhenPressed(new PrepareToScoreLow());
+		prepareToScoreHighPeg.toggleWhenPressed(new PrepareToScoreHigh());
+		moveFolderUp.toggleWhenPressed(new MoveLimitedSubsystemWithTimeSinceReachingLimit(Robot.folder, Folder.SPEED_UP,
+				Folder.WAIT_TIME.get()));
 	}
 
 	private void initJoystickDriver() {
-		TurnAndMoveToGearAll = new JoystickButton(driverRight, 1);
+		TurnAndMoveToGearAll = new JoystickButton(driver, 1);
 
-		TurnAndMoveToGearAll.whileHeld(new DriverTurnAndMoveToGear(this::getRightX, this::getRightY));
-
+		TurnAndMoveToGearAll.whileHeld(new DriverTurnAndMoveToGear(this::getDriverX, this::getDriverY));
 
 	}
 
@@ -69,23 +67,15 @@ public class OI/* GEVALD */ {
 		return Math.abs(speed) * speed;
 	}
 
-	public double getRightX() {
-		return -driverRight.getX();
+	public double getDriverX() {
+		return -driver.getX();
 	}
 
-	public double getRightY() {
-		return adjustSpeed(driverRight.getY());
-	}
-
-	public double getLeftX() {
-		return -driverLeft.getX();
-	}
-
-	public double getLeftY() {
-		return adjustSpeed(driverLeft.getY());
+	public double getDriverY() {
+		return adjustSpeed(driver.getY());
 	}
 
 	public double getRotation() {
-		return -adjustSpeed(driverLeft.getX());
+		return -adjustSpeed(driver.getX());
 	}
 }
