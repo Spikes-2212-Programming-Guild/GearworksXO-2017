@@ -170,11 +170,6 @@ public class Robot extends IterativeRobot {
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
 		dbc.update();
-		int i = (int) Timer.getFPGATimestamp();
-		if (i % 7 == 0) {
-			System.out.println(oi.getRightY());
-			System.out.println(oi.getLeftY());
-		}
 	}
 
 	/**
