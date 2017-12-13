@@ -1,6 +1,8 @@
 
 package org.usfirst.frc.team2212.robot;
 
+import org.usfirst.frc.team2212.robot.commands.MoveElevator;
+import org.usfirst.frc.team2212.robot.commands.MoveElevatorUpSlowly;
 import org.usfirst.frc.team2212.robot.commands.MoveLimitedSubsystemWithTimeSinceReachingLimit;
 import org.usfirst.frc.team2212.robot.commands.auto.PutGearAuto;
 import org.usfirst.frc.team2212.robot.commands.command_groups.DropGear;
@@ -36,6 +38,7 @@ public class Robot extends IterativeRobot {
 	public static DashBoardController dbc;
 	public static CamerasHandler camerasHandler;
 	public static SendableChooser<Command> chooser;
+
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
@@ -100,6 +103,9 @@ public class Robot extends IterativeRobot {
 				new MoveLimitedSubsystem(rollerGripper, DropGear.ROLLER_SPEED_OUT_LOW_PEG));
 		SmartDashboard.putData("Roll-Gear-Up",
 				new MoveLimitedSubsystem(rollerGripper, DropGear.ROLLER_SPEED_OUT_HIGH_PEG));
+
+		SmartDashboard.putData("move elevator ignoring limit", new MoveElevatorUpSlowly());
+		SmartDashboard.putData("auto chooser", chooser);
 	}
 
 	/**
