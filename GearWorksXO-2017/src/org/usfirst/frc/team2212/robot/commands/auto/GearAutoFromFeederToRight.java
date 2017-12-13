@@ -13,18 +13,18 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class GearAutoFromFeederToRight extends CommandGroup {
 
 	public static final Supplier<Double> DRIVE_SPEED_START = ConstantHandler
-			.addConstantDouble("putGearAuto- start driving speed", /*-*/ 0.6);
+			.addConstantDouble("putGearAuto- start driving speed", 0.5);
 	public static final Supplier<Double> DRIVE_TIME = ConstantHandler.addConstantDouble("putGearAuto- start driving time",
-			2.0);
+			2.2);
 	public static final Supplier<Double> LEFT_ROTATE_SPEED = ConstantHandler
-			.addConstantDouble("putGearAuto- left rotate speed", 0.5);
+			.addConstantDouble("putGearAuto- left rotate speed", 0.4);
 	public static final Supplier<Double> RIGHT_ROTATE_SPEED = ConstantHandler
-			.addConstantDouble("putGearAuto- right rotate speed", -0.5);
+			.addConstantDouble("putGearAuto- right rotate speed", -0.4);
 	
 	public static final Supplier<Double> DRIVE_TO_GEAR_SPEED = ConstantHandler
 			.addConstantDouble("putGearAuto - drive speed to gear", 0.3);
 	public static final Supplier<Double> DRIVE_TO_GEAR_TIME = ConstantHandler
-			.addConstantDouble("putGearAuto- drive time to gear", 3);
+			.addConstantDouble("putGearAuto- drive time to gear", 2);
 
 	public GearAutoFromFeederToRight() {
 		addSequential(new DriveArcade(Robot.drivetrain, DRIVE_SPEED_START, () -> 0.0), DRIVE_TIME.get());

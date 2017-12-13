@@ -15,7 +15,7 @@ public class Folder extends LimitedSubsystem {
 	public static final Supplier<Double> WAIT_TIME = ConstantHandler.addConstantDouble("Folder- WaitTime", 0.5);
 
 	// defining subsystem constants
-	public static final Supplier<Double> SPEED_UP = ConstantHandler.addConstantDouble("Folder - UpSpeed", 0.4);
+	public static final Supplier<Double> SPEED_UP = ConstantHandler.addConstantDouble("Folder - UpSpeed", 0.5);
 	/*
 	 * SPEED_DOWN_A: the speed with which the folder needs to move just for the
 	 * first 'pulse' SPEED_DOWN_B: the stable speed with which the folder needs
