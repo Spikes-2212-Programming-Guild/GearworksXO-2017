@@ -68,7 +68,7 @@ public class Robot extends IterativeRobot {
 		camerasHandler = new CamerasHandler(160 * 2, 120 * 2, 0);
 		camerasHandler.setExposure(47);
 
-		chooser.addObject("pass line", new CrossAutoLine());
+		chooser.addDefault("pass line", new CrossAutoLine());
 		chooser.addObject("pass line and controll square", new CrossAutoLineAndControlSquare());
 		oi = new OI();
 
