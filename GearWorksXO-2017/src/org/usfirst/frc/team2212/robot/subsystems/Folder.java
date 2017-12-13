@@ -2,10 +2,9 @@ package org.usfirst.frc.team2212.robot.subsystems;
 
 import java.util.function.Supplier;
 
-import org.usfirst.frc.team2212.robot.commands.HoldFolderUp;
-
 import com.spikes2212.dashboard.ConstantHandler;
 import com.spikes2212.genericsubsystems.LimitedSubsystem;
+import com.spikes2212.genericsubsystems.commands.MoveLimitedSubsystem;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.PIDSource;
@@ -59,6 +58,6 @@ public class Folder extends LimitedSubsystem {
 	}
 
 	public void initDefaultCommand() {
-		setDefaultCommand(new HoldFolderUp(this, SPEED_UP));
+		setDefaultCommand(new MoveLimitedSubsystem(this, SPEED_UP));
 	}
 }
