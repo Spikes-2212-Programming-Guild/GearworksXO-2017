@@ -10,7 +10,7 @@ import com.spikes2212.genericsubsystems.drivetrains.commands.DriveArcade;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
-public class PutGearAutoLeft extends CommandGroup {
+public class GearAutoFromFeederToRight extends CommandGroup {
 
 	public static final Supplier<Double> DRIVE_SPEED_START = ConstantHandler
 			.addConstantDouble("putGearAuto- start driving speed", 0.5);
@@ -24,7 +24,7 @@ public class PutGearAutoLeft extends CommandGroup {
 	public static final Supplier<Double> DRIVE_TO_GEAR_TIME = ConstantHandler
 			.addConstantDouble("putGearAutoLeft - drive time to gear", 3);
 
-	public PutGearAutoLeft() {
+	public GearAutoFromFeederToRight() {
 		addSequential(new DriveArcade(Robot.drivetrain, DRIVE_SPEED_START, () -> 0.0), DRIVE_TIME.get());
 
 		addSequential(new OrientToLowPeg(LEFT_ROTATE_SPEED));
