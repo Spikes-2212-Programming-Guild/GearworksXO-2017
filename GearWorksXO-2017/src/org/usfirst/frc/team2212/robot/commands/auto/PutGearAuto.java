@@ -14,14 +14,12 @@ public class PutGearAuto extends CommandGroup {
 
 	public static final Supplier<Double> DRIVE_SPEED = ConstantHandler.addConstantDouble("putGearAuto- driving speed",
 			0.5);
-	public static final Supplier<Double> DRIVE_TIME = ConstantHandler.addConstantDouble("putGearAuto- driving speed",
-			2.5);
+	public static final Supplier<Double> DRIVE_TIME = ConstantHandler.addConstantDouble("putGearAuto- driving time",
+			2);
 	public static final Supplier<Double> LEFT_ROTATE_SPEED = ConstantHandler
-			.addConstantDouble("putGearAuto- driving speed", 0.5);
+			.addConstantDouble("putGearAuto- left rotate speed", 0.5);
 	public static final Supplier<Double> RIGHT_ROTATE_SPEED = ConstantHandler
-			.addConstantDouble("putGearAuto- driving speed", 0.5);
-	public static final Supplier<Double> DRIVE_SPEED1 = ConstantHandler.addConstantDouble("putGearAuto- driving speed",
-			0.5);
+			.addConstantDouble("putGearAuto- right rotate speed", -0.5);
 
 	public PutGearAuto(Supplier<Double> rotateSpeed) {
 		addSequential(new DriveArcade(Robot.drivetrain, DRIVE_SPEED, () -> 0.0));
