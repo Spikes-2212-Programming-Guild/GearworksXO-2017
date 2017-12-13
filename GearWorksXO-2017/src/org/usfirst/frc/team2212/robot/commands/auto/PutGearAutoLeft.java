@@ -10,26 +10,24 @@ import com.spikes2212.genericsubsystems.drivetrains.commands.DriveArcade;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
-public class PutGearAuto extends CommandGroup {
+public class PutGearAutoLeft extends CommandGroup {
 
 	public static final Supplier<Double> DRIVE_SPEED_START = ConstantHandler
-			.addConstantDouble("putGearAuto- start driving speed", 0.3);
+			.addConstantDouble("putGearAuto- start driving speed", 0.5);
 	public static final Supplier<Double> DRIVE_TIME = ConstantHandler.addConstantDouble("putGearAuto- driving time",
-			0.5);
+			2.0);
 	public static final Supplier<Double> LEFT_ROTATE_SPEED = ConstantHandler
 			.addConstantDouble("putGearAuto- left rotate speed", 0.5);
-	public static final Supplier<Double> RIGHT_ROTATE_SPEED = ConstantHandler
-			.addConstantDouble("putGearAuto- right rotate speed", -0.5);
-
+	
 	public static final Supplier<Double> DRIVE_TO_GEAR_SPEED = ConstantHandler
-			.addConstantDouble("putGearAuto - drive speed to gear", 0.5);
+			.addConstantDouble("putGearAutoLeft - drive speed to gear", 0.3);
 	public static final Supplier<Double> DRIVE_TO_GEAR_TIME = ConstantHandler
-			.addConstantDouble("putGearAuto - drive time to gear", 0.5);
+			.addConstantDouble("putGearAutoLeft - drive time to gear", 3);
 
-	public PutGearAuto(Supplier<Double> rotateSpeed) {
+	public PutGearAutoLeft() {
 		addSequential(new DriveArcade(Robot.drivetrain, DRIVE_SPEED_START, () -> 0.0), DRIVE_TIME.get());
 
-		addSequential(new OrientToLowPeg(rotateSpeed));
+		addSequential(new OrientToLowPeg(LEFT_ROTATE_SPEED));
 
 		addSequential(new DriveArcade(Robot.drivetrain, DRIVE_TO_GEAR_SPEED, () -> 0.0), DRIVE_TO_GEAR_TIME.get());
 	}

@@ -4,7 +4,8 @@ package org.usfirst.frc.team2212.robot;
 import org.usfirst.frc.team2212.robot.commands.MoveElevator;
 import org.usfirst.frc.team2212.robot.commands.MoveElevatorUpSlowly;
 import org.usfirst.frc.team2212.robot.commands.MoveLimitedSubsystemWithTimeSinceReachingLimit;
-import org.usfirst.frc.team2212.robot.commands.auto.PutGearAuto;
+import org.usfirst.frc.team2212.robot.commands.auto.PutGearAutoLeft;
+import org.usfirst.frc.team2212.robot.commands.auto.PutGearAutoRight;
 import org.usfirst.frc.team2212.robot.commands.command_groups.DropGear;
 import org.usfirst.frc.team2212.robot.commands.command_groups.PickGear;
 import org.usfirst.frc.team2212.robot.subsystems.Drivetrain;
@@ -67,8 +68,8 @@ public class Robot extends IterativeRobot {
 		camerasHandler.setExposure(47);
 
 		chooser = new SendableChooser<>();
-		chooser.addObject("PutGearLeft", new PutGearAuto(PutGearAuto.LEFT_ROTATE_SPEED));
-		chooser.addObject("putGearRight", new PutGearAuto(PutGearAuto.RIGHT_ROTATE_SPEED));
+		chooser.addObject("PutGearLeft", new PutGearAutoLeft());
+		chooser.addObject("PutGearRight", new PutGearAutoRight());
 		oi = new OI();
 
 		initDashboard();
