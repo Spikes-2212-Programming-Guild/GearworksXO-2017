@@ -40,6 +40,7 @@ public class Robot extends IterativeRobot {
 	public static DashBoardController dbc;
 	public static CamerasHandler camerasHandler;
 	public static SendableChooser<Command> chooser;
+
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
@@ -64,10 +65,10 @@ public class Robot extends IterativeRobot {
 
 		folder = new Folder(new CANTalon(RobotMap.CAN.FOLDER), new DigitalInput(RobotMap.DIO.FOLDER_DOWN),
 				new DigitalInput(RobotMap.DIO.FOLDER_UP));
-		
+
 		camerasHandler = new CamerasHandler(160 * 2, 120 * 2, 0);
 		camerasHandler.setExposure(47);
-		
+
 		chooser = new SendableChooser<>();
 		chooser.addObject("pass line", new CrossAutoLine());
 		chooser.addObject("pass line and controll square", new CrossAutoLineAndControlSquare());
@@ -105,11 +106,11 @@ public class Robot extends IterativeRobot {
 				new MoveLimitedSubsystem(rollerGripper, DropGear.ROLLER_SPEED_OUT_LOW_PEG));
 		SmartDashboard.putData("Roll-Gear-Up",
 				new MoveLimitedSubsystem(rollerGripper, DropGear.ROLLER_SPEED_OUT_HIGH_PEG));
-		
+
 		SmartDashboard.putData("Move ele up while ignoring the limit", new MoveElevatorUpSlowly());
-		
+
 		SmartDashboard.putData(new StartingPreparation());
-	
+
 		SmartDashboard.putData("auto chooser", chooser);
 	}
 
@@ -169,10 +170,11 @@ public class Robot extends IterativeRobot {
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
 		dbc.update();
-//		int i = (int)Timer.getFPGATimestamp();
-//		if (i %7 ==0){
-//			System.out.println(oi.getRightY());
-//		}
+		int i = (int) Timer.getFPGATimestamp();
+		if (i % 7 == 0) {
+			System.out.println(oi.getRightY());
+			System.out.println(oi.getLeftY());
+		}
 	}
 
 	/**

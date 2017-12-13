@@ -69,22 +69,22 @@ public class OI/* GEVALD */ {
 	}
 
 	public double getRightX() {
-		return -driverRight.getX();
+		return driverRight.getX();
 	}
 
 	public double getRightY() {
-		return adjustSpeed(driverRight.getY());
+		return -adjustSpeed(driverRight.getY());
 	}
 
 	public double getLeftX() {
-		return -driverLeft.getX();
+		return driverLeft.getX();
 	}
 
 	public double getLeftY() {
-		return adjustSpeed(driverLeft.getY());
+		return -adjustSpeed(driverLeft.getY());
 	}
 
 	public double getRotation() {
-		return -adjustSpeed(driverLeft.getX());
+		return adjustSpeed(driverLeft.getX());
 	}
 }

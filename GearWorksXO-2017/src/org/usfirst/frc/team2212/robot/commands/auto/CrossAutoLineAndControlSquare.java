@@ -13,11 +13,11 @@ import edu.wpi.first.wpilibj.command.WaitCommand;
 public class CrossAutoLineAndControlSquare extends CommandGroup {
 
 	public static final Supplier<Double> WAIT_TIME = ConstantHandler
-			.addConstantDouble("crossLineAutoAndControlSquare - waitTime", 2.0);
+			.addConstantDouble("crossLineAutoAndControlSquare - waitTime", 1.5);
 	public static final Supplier<Double> BACKING_SPEED = ConstantHandler
-			.addConstantDouble("crossLineAutoAndControlSquare - backingSpeed", 0.5);
+			.addConstantDouble("crossLineAutoAndControlSquare - backingSpeed", -0.5);
 	public static final Supplier<Double> BACKING_TIME = ConstantHandler
-			.addConstantDouble("crossLineAutoAndControlSquare - backingTime", 3.5);
+			.addConstantDouble("crossLineAutoAndControlSquare - backingTime", -3.5);
 
 	public CrossAutoLineAndControlSquare() {
 		addSequential(new CrossAutoLine());
