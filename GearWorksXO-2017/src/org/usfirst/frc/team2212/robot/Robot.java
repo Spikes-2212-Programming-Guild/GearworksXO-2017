@@ -39,7 +39,7 @@ public class Robot extends IterativeRobot {
 	public static RollerGripper rollerGripper;
 	public static DashBoardController dbc;
 	public static CamerasHandler camerasHandler;
-	public static SendableChooser<Command> chooser;
+	public static SendableChooser<Command> chooser = new SendableChooser<>();
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -69,7 +69,6 @@ public class Robot extends IterativeRobot {
 		camerasHandler = new CamerasHandler(160 * 2, 120 * 2, 0);
 		camerasHandler.setExposure(47);
 
-		chooser = new SendableChooser<>();
 		chooser.addObject("pass line", new CrossAutoLine());
 		chooser.addObject("pass line and controll square", new CrossAutoLineAndControlSquare());
 		oi = new OI();
