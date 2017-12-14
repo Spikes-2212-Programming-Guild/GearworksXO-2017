@@ -16,15 +16,18 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  * high and the low
  *
  */
-public class TurnAndMoveToGear extends CommandGroup {
+public class DriverTurnAndMoveToGear extends CommandGroup {
 
-	// TODO - if it works, remove specific classes for high and low gears, and
-	// move the cameras values to here
-	public TurnAndMoveToGear(Supplier<Double> rotateSpeedSupplier, Supplier<Double> forwardSpeedSupplier) {
+	public DriverTurnAndMoveToGear(Supplier<Double> rotateSpeedSupplier, Supplier<Double> forwardSpeedSupplier) {
+		
+		// choose the correct camera according to the elevator's position
 		addSequential(new RunnableCommand(() -> ImageProcessingConstants.NETWORK_TABLE.putNumber("currentCamera",
 				Robot.elevator.isMax() ? RobotMap.USB.HIGH_CAM : RobotMap.USB.LOW_CAM)));
-		addSequential(new TurnToTwoTargets(rotateSpeedSupplier));
+		
+		// turn until the peg is in the center of the robot's view range
+		addSequential(new DriverTurnToTwoTargetsCenter(rotateSpeedSupplier));
+		// drive forward towards the peg
 		addSequential(new DriveArcade(Robot.drivetrain, forwardSpeedSupplier, () -> 0.0));
 	}
-	
+
 }

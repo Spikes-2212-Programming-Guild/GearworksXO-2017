@@ -1,4 +1,3 @@
-
 package org.usfirst.frc.team2212.robot;
 
 import org.usfirst.frc.team2212.robot.commands.MoveLimitedSubsystemWithTimeSinceReachingLimit;
@@ -7,7 +6,7 @@ import org.usfirst.frc.team2212.robot.commands.command_groups.PickGear;
 import org.usfirst.frc.team2212.robot.commands.command_groups.PrepareToCollectGear;
 import org.usfirst.frc.team2212.robot.commands.command_groups.PrepareToScoreHigh;
 import org.usfirst.frc.team2212.robot.commands.command_groups.PrepareToScoreLow;
-import org.usfirst.frc.team2212.robot.commands.orientation.TurnAndMoveToGear;
+import org.usfirst.frc.team2212.robot.commands.orientation.DriverTurnAndMoveToGear;
 import org.usfirst.frc.team2212.robot.subsystems.Folder;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -26,7 +25,7 @@ public class OI/* GEVALD */ {
 	// driver
 	private JoystickButton TurnAndMoveToGearAll;
 
-	// navigator joystick
+	// navigator
 	private JoystickButton dropGear;
 	private JoystickButton prepareToPickGear;
 	private JoystickButton pickGear;
@@ -60,7 +59,7 @@ public class OI/* GEVALD */ {
 	private void initJoystickDriver() {
 		TurnAndMoveToGearAll = new JoystickButton(driver, 1);
 
-		TurnAndMoveToGearAll.whileHeld(new TurnAndMoveToGear(this::getDriverX, this::getDriverY));
+		TurnAndMoveToGearAll.whileHeld(new DriverTurnAndMoveToGear(this::getDriverX, this::getDriverY));
 
 	}
 

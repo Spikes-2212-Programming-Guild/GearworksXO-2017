@@ -3,11 +3,13 @@ package org.usfirst.frc.team2212.robot;
 
 import org.usfirst.frc.team2212.robot.commands.MoveElevatorUpSlowly;
 import org.usfirst.frc.team2212.robot.commands.MoveLimitedSubsystemWithTimeSinceReachingLimit;
+import org.usfirst.frc.team2212.robot.commands.auto.GearAutoFromFeeder;
+import org.usfirst.frc.team2212.robot.commands.auto.StartingPreparation;
 import org.usfirst.frc.team2212.robot.commands.auto.CrossAutoLine;
 import org.usfirst.frc.team2212.robot.commands.auto.CrossAutoLineAndControlSquare;
-import org.usfirst.frc.team2212.robot.commands.auto.StartingPreparation;
 import org.usfirst.frc.team2212.robot.commands.command_groups.DropGear;
 import org.usfirst.frc.team2212.robot.commands.command_groups.PickGear;
+import org.usfirst.frc.team2212.robot.commands.orientation.OrientToTwoTargets;
 import org.usfirst.frc.team2212.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team2212.robot.subsystems.Elevator;
 import org.usfirst.frc.team2212.robot.subsystems.Folder;
@@ -24,6 +26,7 @@ import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -70,6 +73,10 @@ public class Robot extends IterativeRobot {
 
 		chooser.addDefault("pass line", new CrossAutoLine());
 		chooser.addObject("pass line and controll square", new CrossAutoLineAndControlSquare());
+		chooser.addDefault("GearAutoFromFeederToLeft",
+				new GearAutoFromFeeder(GearAutoFromFeeder.LEFT_ROTATE_SPEED));
+		chooser.addObject("GearAutoFromFeederToRight",
+				new GearAutoFromFeeder(GearAutoFromFeeder.RIGHT_ROTATE_SPEED));
 		oi = new OI();
 
 		initDashboard();
@@ -105,11 +112,9 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putData("Roll-Gear-Up",
 				new MoveLimitedSubsystem(rollerGripper, DropGear.ROLLER_SPEED_OUT_HIGH_PEG));
 
-		SmartDashboard.putData("Move ele up while ignoring the limit", new MoveElevatorUpSlowly());
-
-		SmartDashboard.putData(new StartingPreparation());
-
+		SmartDashboard.putData("move elevator ignoring limit", new MoveElevatorUpSlowly());
 		SmartDashboard.putData("auto chooser", chooser);
+
 	}
 
 	/**
@@ -140,7 +145,6 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-		new StartingPreparation().start();
 		chooser.getSelected().start();
 	}
 

@@ -9,13 +9,14 @@ import com.spikes2212.genericsubsystems.commands.MoveLimitedSubsystem;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
+/**
+ * initialize the robot's subsystems
+ *
+ */
 public class StartingPreparation extends CommandGroup {
 
 	public StartingPreparation() {
-
-		addSequential(new MoveLimitedSubsystemWithTimeSinceReachingLimit(Robot.folder, Folder.SPEED_UP,
-				Folder.WAIT_TIME.get()));
-		// lower elevetor
 		addSequential(new MoveLimitedSubsystem(Robot.elevator, Elevator.SPEED_DOWN));
 	}
+
 }
