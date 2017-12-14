@@ -53,7 +53,7 @@ public class OI/* GEVALD */ {
 
 		dropGear.whenPressed(new DropGear());
 		prepareToPickGear.whenPressed(new PrepareToCollectGear());
-		pickGear.toggleWhenPressed(new PickGear());
+		pickGear.whenPressed(new PickGear());
 		prepareToScoreLowPeg.toggleWhenPressed(new PrepareToScoreLow());
 		prepareToScoreHighPeg.toggleWhenPressed(new PrepareToScoreHigh());
 		moveFolderUp.toggleWhenPressed(new MoveLimitedSubsystemWithTimeSinceReachingLimit(Robot.folder, Folder.SPEED_UP,
