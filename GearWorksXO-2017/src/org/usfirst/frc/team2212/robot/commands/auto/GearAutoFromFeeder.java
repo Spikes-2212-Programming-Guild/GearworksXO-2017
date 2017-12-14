@@ -11,28 +11,33 @@ import com.spikes2212.genericsubsystems.drivetrains.commands.DriveArcade;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
-public class GearAutoFromFeederToRight extends CommandGroup {
-
+public class GearAutoFromFeeder extends CommandGroup {
+	
+	// driving straight
 	public static final Supplier<Double> DRIVE_SPEED_START = ConstantHandler
 			.addConstantDouble("putGearAuto- start driving speed", 0.5);
 	public static final Supplier<Double> DRIVE_TIME = ConstantHandler
 			.addConstantDouble("putGearAuto- start driving time", 2.2);
+	
+	// rotating
 	public static final Supplier<Double> LEFT_ROTATE_SPEED = ConstantHandler
 			.addConstantDouble("putGearAuto- left rotate speed", -0.4);
 	public static final Supplier<Double> RIGHT_ROTATE_SPEED = ConstantHandler
 			.addConstantDouble("putGearAuto- right rotate speed", 0.4);
-
+	
+	// driving to peg
 	public static final Supplier<Double> DRIVE_TO_GEAR_SPEED = ConstantHandler
 			.addConstantDouble("putGearAuto - drive speed to gear", 0.3);
 	public static final Supplier<Double> DRIVE_TO_GEAR_TIME = ConstantHandler
 			.addConstantDouble("putGearAuto- drive time to gear", 2.5);
-
+	
+	// driving away from peg
 	public static final Supplier<Double> DRIVE_AFTER_GEAR_SPEED = ConstantHandler
 			.addConstantDouble("putGearAuto - drive speed after gear", -0.4);
 	public static final Supplier<Double> DRIVE_AFTER_GEAR_TIME = ConstantHandler
 			.addConstantDouble("putGearAuto- drive time after gear", 1);
 
-	public GearAutoFromFeederToRight() {
+	public GearAutoFromFeeder(double rotationSpeed) {
 		addParallel(new StartingPreparation());
 		
 		addSequential(new DriveArcade(Robot.drivetrain, DRIVE_SPEED_START, () -> 0.0), DRIVE_TIME.get());
