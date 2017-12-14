@@ -37,12 +37,12 @@ public class GearAutoFromFeeder extends CommandGroup {
 	public static final Supplier<Double> DRIVE_AFTER_GEAR_TIME = ConstantHandler
 			.addConstantDouble("putGearAuto- drive time after gear", 1);
 
-	public GearAutoFromFeeder(double rotationSpeed) {
+	public GearAutoFromFeeder(Supplier<Double> rotationSpeedSupplier) {
 		addParallel(new StartingPreparation());
 		
 		addSequential(new DriveArcade(Robot.drivetrain, DRIVE_SPEED_START, () -> 0.0), DRIVE_TIME.get());
 
-		addSequential(new OrientToLowPeg(RIGHT_ROTATE_SPEED));
+		addSequential(new OrientToLowPeg(rotationSpeedSupplier));
 
 		addSequential(new DriveArcade(Robot.drivetrain, DRIVE_TO_GEAR_SPEED, () -> 0.0), DRIVE_TO_GEAR_TIME.get());
 
