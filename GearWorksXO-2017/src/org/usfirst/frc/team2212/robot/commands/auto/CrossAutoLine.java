@@ -17,6 +17,7 @@ public class CrossAutoLine extends CommandGroup {
 			.addConstantDouble("crossLineAuto - crossingTime", 2.7);
 
 	public CrossAutoLine() {
+		addParallel(new StartingPreparation());
 		addSequential(new DriveArcade(Robot.drivetrain, CROSSING_SPEED, () -> 0.0), CROSSING_TIME.get());
 	}
 
