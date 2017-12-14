@@ -135,7 +135,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-		new StartingPreparation();
+		new StartingPreparation().start();
 		chooser.getSelected().start();
 	}
 
