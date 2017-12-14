@@ -4,8 +4,10 @@ package org.usfirst.frc.team2212.robot;
 import org.usfirst.frc.team2212.robot.commands.MoveElevatorUpSlowly;
 import org.usfirst.frc.team2212.robot.commands.MoveLimitedSubsystemWithTimeSinceReachingLimit;
 import org.usfirst.frc.team2212.robot.commands.auto.GearAutoFromFeederToRight;
+import org.usfirst.frc.team2212.robot.commands.auto.StartingPreparation;
 import org.usfirst.frc.team2212.robot.commands.command_groups.DropGear;
 import org.usfirst.frc.team2212.robot.commands.command_groups.PickGear;
+import org.usfirst.frc.team2212.robot.commands.orientation.OrientToTwoTargets;
 import org.usfirst.frc.team2212.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team2212.robot.subsystems.Elevator;
 import org.usfirst.frc.team2212.robot.subsystems.Folder;
@@ -133,6 +135,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
+		new StartingPreparation();
 		chooser.getSelected().start();
 	}
 
