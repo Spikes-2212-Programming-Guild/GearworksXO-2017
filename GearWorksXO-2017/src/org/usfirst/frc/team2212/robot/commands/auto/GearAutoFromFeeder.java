@@ -21,9 +21,9 @@ public class GearAutoFromFeeder extends CommandGroup {
 	
 	// rotating
 	public static final Supplier<Double> LEFT_ROTATE_SPEED = ConstantHandler
-			.addConstantDouble("putGearAuto- left rotate speed", -0.4);
+			.addConstantDouble("putGearAuto- left rotate speed", -0.35);
 	public static final Supplier<Double> RIGHT_ROTATE_SPEED = ConstantHandler
-			.addConstantDouble("putGearAuto- right rotate speed", 0.4);
+			.addConstantDouble("putGearAuto- right rotate speed", 0.35);
 	
 	// driving to peg
 	public static final Supplier<Double> DRIVE_TO_GEAR_SPEED = ConstantHandler
