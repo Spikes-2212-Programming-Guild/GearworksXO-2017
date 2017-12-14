@@ -37,7 +37,7 @@ public class OrientToTwoTargets extends CommandGroup {
 
 		@Override
 		public double pidGet() {
-			return -ImageProcessingConstants.TWO_OBJECTS_CENTER.get();
+			return ImageProcessingConstants.TWO_OBJECTS_CENTER.get();
 		}
 
 		@Override
@@ -53,7 +53,7 @@ public class OrientToTwoTargets extends CommandGroup {
 
 		@Override
 		public double pidGet() {
-			return ImageProcessingConstants.TWO_OBJECTS_CENTER.get();
+			return -ImageProcessingConstants.TWO_OBJECTS_CENTER.get();
 		}
 
 		@Override
