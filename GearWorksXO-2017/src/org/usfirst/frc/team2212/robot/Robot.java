@@ -69,9 +69,9 @@ public class Robot extends IterativeRobot {
 		camerasHandler.setExposure(47);
 
 		chooser.addDefault("GearAutoFromFeederToLeft",
-				new GearAutoFromFeeder(GearAutoFromFeeder.LEFT_ROTATE_SPEED.get()));
+				new GearAutoFromFeeder(GearAutoFromFeeder.LEFT_ROTATE_SPEED));
 		chooser.addObject("GearAutoFromFeederToRight",
-				new GearAutoFromFeeder(GearAutoFromFeeder.RIGHT_ROTATE_SPEED.get()));
+				new GearAutoFromFeeder(GearAutoFromFeeder.RIGHT_ROTATE_SPEED));
 		oi = new OI();
 
 		initDashboard();
