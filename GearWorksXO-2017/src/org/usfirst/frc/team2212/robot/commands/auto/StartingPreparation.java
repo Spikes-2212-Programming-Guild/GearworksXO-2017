@@ -16,9 +16,6 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class StartingPreparation extends CommandGroup {
 
 	public StartingPreparation() {
-		addSequential(new MoveLimitedSubsystemWithTimeSinceReachingLimit(Robot.folder, Folder.SPEED_UP,
-				Folder.WAIT_TIME.get()));
-
 		addSequential(new MoveLimitedSubsystem(Robot.elevator, Elevator.SPEED_DOWN));
 	}
 
