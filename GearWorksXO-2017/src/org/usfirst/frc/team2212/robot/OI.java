@@ -9,7 +9,10 @@ import org.usfirst.frc.team2212.robot.commands.command_groups.PrepareToScoreHigh
 import org.usfirst.frc.team2212.robot.commands.command_groups.PrepareToScoreLow;
 import org.usfirst.frc.team2212.robot.commands.command_groups.StopEverything;
 import org.usfirst.frc.team2212.robot.commands.orientation.TurnAndMoveToGear;
+import org.usfirst.frc.team2212.robot.subsystems.Elevator;
 import org.usfirst.frc.team2212.robot.subsystems.Folder;
+
+import com.spikes2212.genericsubsystems.commands.MoveLimitedSubsystem;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -55,7 +58,7 @@ public class OI/* GEVALD */ {
 		prepareToPickGear.whenPressed(new PrepareToCollectGear());
 		pickGear.whenPressed(new PickGear());
 		prepareToScoreLowPeg.toggleWhenPressed(new PrepareToScoreLow());
-		prepareToScoreHighPeg.toggleWhenPressed(new PrepareToScoreHigh());
+		prepareToScoreHighPeg.toggleWhenPressed(new MoveLimitedSubsystem(Robot.elevator, Elevator.SPEED_UP));
 		moveFolderUp.toggleWhenPressed(new MoveLimitedSubsystemWithTimeSinceReachingLimit(Robot.folder, Folder.SPEED_UP,
 				Folder.WAIT_TIME.get()));
 		stopEverything.whileHeld(new StopEverything());
