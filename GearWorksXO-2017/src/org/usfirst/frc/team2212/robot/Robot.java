@@ -3,7 +3,7 @@ package org.usfirst.frc.team2212.robot;
 
 import org.usfirst.frc.team2212.robot.commands.MoveElevatorUpSlowly;
 import org.usfirst.frc.team2212.robot.commands.MoveLimitedSubsystemWithTimeSinceReachingLimit;
-import org.usfirst.frc.team2212.robot.commands.auto.GearAutoFromFeederToRight;
+import org.usfirst.frc.team2212.robot.commands.auto.GearAutoFromFeeder;
 import org.usfirst.frc.team2212.robot.commands.auto.StartingPreparation;
 import org.usfirst.frc.team2212.robot.commands.command_groups.DropGear;
 import org.usfirst.frc.team2212.robot.commands.command_groups.PickGear;
@@ -68,7 +68,8 @@ public class Robot extends IterativeRobot {
 		camerasHandler = new CamerasHandler(160 * 2, 120 * 2, 0);
 		camerasHandler.setExposure(47);
 
-		chooser.addDefault("GearAutoFromFeederToRight", new GearAutoFromFeederToRight());
+		chooser.addDefault("GearAutoFromFeederToRight", new GearAutoFromFeeder(GearAutoFromFeeder.RIGHT_ROTATE_SPEED.get()));
+		chooser.addDefault("GearAutoFromFeederToLeft", new GearAutoFromFeeder(GearAutoFromFeeder.LEFT_ROTATE_SPEED.get()));
 		oi = new OI();
 
 		initDashboard();
