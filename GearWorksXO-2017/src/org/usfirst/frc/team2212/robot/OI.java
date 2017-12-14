@@ -1,3 +1,4 @@
+
 package org.usfirst.frc.team2212.robot;
 
 import org.usfirst.frc.team2212.robot.commands.MoveLimitedSubsystemWithTimeSinceReachingLimit;
@@ -7,7 +8,11 @@ import org.usfirst.frc.team2212.robot.commands.command_groups.PrepareToCollectGe
 import org.usfirst.frc.team2212.robot.commands.command_groups.PrepareToScoreHigh;
 import org.usfirst.frc.team2212.robot.commands.command_groups.PrepareToScoreLow;
 import org.usfirst.frc.team2212.robot.commands.orientation.DriverTurnAndMoveToGear;
+import org.usfirst.frc.team2212.robot.commands.command_groups.StopEverything;
+import org.usfirst.frc.team2212.robot.subsystems.Elevator;
 import org.usfirst.frc.team2212.robot.subsystems.Folder;
+
+import com.spikes2212.genericsubsystems.commands.MoveLimitedSubsystem;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -32,6 +37,7 @@ public class OI/* GEVALD */ {
 	private JoystickButton prepareToScoreLowPeg;
 	private JoystickButton prepareToScoreHighPeg;
 	private JoystickButton moveFolderUp;
+	private JoystickButton stopEverything;
 
 	public OI() {
 		initJoystickDriver();
@@ -45,15 +51,18 @@ public class OI/* GEVALD */ {
 		pickGear = new JoystickButton(navigator, 9);
 		prepareToScoreLowPeg = new JoystickButton(navigator, 2);
 		prepareToScoreHighPeg = new JoystickButton(navigator, 3);
-		moveFolderUp = new JoystickButton(navigator, 6);
+		moveFolderUp = new JoystickButton(navigator, 4);
+		stopEverything = new JoystickButton(navigator, 5);
 
 		dropGear.whenPressed(new DropGear());
 		prepareToPickGear.whenPressed(new PrepareToCollectGear());
-		pickGear.toggleWhenPressed(new PickGear());
+		pickGear.whenPressed(new PickGear());
 		prepareToScoreLowPeg.toggleWhenPressed(new PrepareToScoreLow());
-		prepareToScoreHighPeg.toggleWhenPressed(new PrepareToScoreHigh());
+		// only move limited because the mechanical system can't move the gear up
+		prepareToScoreHighPeg.toggleWhenPressed(new MoveLimitedSubsystem(Robot.elevator, Elevator.SPEED_UP));
 		moveFolderUp.toggleWhenPressed(new MoveLimitedSubsystemWithTimeSinceReachingLimit(Robot.folder, Folder.SPEED_UP,
 				Folder.WAIT_TIME.get()));
+		stopEverything.whileHeld(new StopEverything());
 	}
 
 	private void initJoystickDriver() {
