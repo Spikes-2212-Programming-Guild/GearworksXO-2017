@@ -24,6 +24,7 @@ import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -105,6 +106,7 @@ public class Robot extends IterativeRobot {
 
 		SmartDashboard.putData("move elevator ignoring limit", new MoveElevatorUpSlowly());
 		SmartDashboard.putData("auto chooser", chooser);
+		
 	}
 
 	/**
@@ -135,7 +137,6 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-		new StartingPreparation().start();
 		chooser.getSelected().start();
 	}
 
