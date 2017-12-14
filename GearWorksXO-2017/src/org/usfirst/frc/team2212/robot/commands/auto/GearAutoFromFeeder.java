@@ -29,7 +29,7 @@ public class GearAutoFromFeeder extends CommandGroup {
 	public static final Supplier<Double> DRIVE_TO_GEAR_SPEED = ConstantHandler
 			.addConstantDouble("putGearAuto - drive speed to gear", 0.3);
 	public static final Supplier<Double> DRIVE_TO_GEAR_TIME = ConstantHandler
-			.addConstantDouble("putGearAuto- drive time to gear", 2.5);
+			.addConstantDouble("putGearAuto- drive time to gear", 3);
 	
 	// driving away from peg
 	public static final Supplier<Double> DRIVE_AFTER_GEAR_SPEED = ConstantHandler
