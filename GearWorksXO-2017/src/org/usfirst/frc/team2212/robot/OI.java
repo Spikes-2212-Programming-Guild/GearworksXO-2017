@@ -7,6 +7,7 @@ import org.usfirst.frc.team2212.robot.commands.command_groups.PickGear;
 import org.usfirst.frc.team2212.robot.commands.command_groups.PrepareToCollectGear;
 import org.usfirst.frc.team2212.robot.commands.command_groups.PrepareToScoreHigh;
 import org.usfirst.frc.team2212.robot.commands.command_groups.PrepareToScoreLow;
+import org.usfirst.frc.team2212.robot.commands.command_groups.StopEverything;
 import org.usfirst.frc.team2212.robot.commands.orientation.TurnAndMoveToGear;
 import org.usfirst.frc.team2212.robot.subsystems.Folder;
 
@@ -33,6 +34,7 @@ public class OI/* GEVALD */ {
 	private JoystickButton prepareToScoreLowPeg;
 	private JoystickButton prepareToScoreHighPeg;
 	private JoystickButton moveFolderUp;
+	private JoystickButton stopEverything;
 
 	public OI() {
 		initJoystickDriver();
@@ -47,6 +49,7 @@ public class OI/* GEVALD */ {
 		prepareToScoreLowPeg = new JoystickButton(navigator, 2);
 		prepareToScoreHighPeg = new JoystickButton(navigator, 3);
 		moveFolderUp = new JoystickButton(navigator, 4);
+		stopEverything = new JoystickButton(navigator, 5);
 
 		dropGear.whenPressed(new DropGear());
 		prepareToPickGear.whenPressed(new PrepareToCollectGear());
@@ -55,6 +58,7 @@ public class OI/* GEVALD */ {
 		prepareToScoreHighPeg.toggleWhenPressed(new PrepareToScoreHigh());
 		moveFolderUp.toggleWhenPressed(new MoveLimitedSubsystemWithTimeSinceReachingLimit(Robot.folder, Folder.SPEED_UP,
 				Folder.WAIT_TIME.get()));
+		stopEverything.whileHeld(new StopEverything());
 	}
 
 	private void initJoystickDriver() {
