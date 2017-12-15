@@ -52,15 +52,15 @@ public class OI/* GEVALD */ {
 		prepareToScoreLowPeg = new JoystickButton(navigator, 2);
 		prepareToScoreHighPeg = new JoystickButton(navigator, 3);
 		moveFolderUp = new JoystickButton(navigator, 4);
-		stopEverything = new JoystickButton(navigator, 5);
+		stopEverything = new JoystickButton(navigator, 10);
 
 		dropGear.whenPressed(new DropGear());
 		prepareToPickGear.whenPressed(new PrepareToCollectGear());
 		pickGear.whenPressed(new PickGear());
-		prepareToScoreLowPeg.toggleWhenPressed(new PrepareToScoreLow());
+		prepareToScoreLowPeg.whenPressed(new PrepareToScoreLow());
 		// only move limited because the mechanical system can't move the gear up
-		prepareToScoreHighPeg.toggleWhenPressed(new MoveLimitedSubsystem(Robot.elevator, Elevator.SPEED_UP));
-		moveFolderUp.toggleWhenPressed(new MoveLimitedSubsystemWithTimeSinceReachingLimit(Robot.folder, Folder.SPEED_UP,
+		prepareToScoreHighPeg.whenPressed(new MoveLimitedSubsystem(Robot.elevator, Elevator.SPEED_UP));
+		moveFolderUp.whenPressed(new MoveLimitedSubsystemWithTimeSinceReachingLimit(Robot.folder, Folder.SPEED_UP,
 				Folder.WAIT_TIME.get()));
 		stopEverything.whileHeld(new StopEverything());
 	}
