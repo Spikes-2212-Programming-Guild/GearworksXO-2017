@@ -68,7 +68,7 @@ public class Robot extends IterativeRobot {
 		folder = new Folder(new CANTalon(RobotMap.CAN.FOLDER), new DigitalInput(RobotMap.DIO.FOLDER_DOWN),
 				new DigitalInput(RobotMap.DIO.FOLDER_UP));
 
-		camerasHandler = new CamerasHandler(160 * 2, 120 * 2, 0);
+		camerasHandler = new CamerasHandler(160 * 2, 120 * 2, 0, 1);
 		camerasHandler.setExposure(47);
 
 		chooser.addDefault("pass line", new CrossAutoLine());
