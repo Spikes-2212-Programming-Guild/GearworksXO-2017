@@ -73,10 +73,8 @@ public class Robot extends IterativeRobot {
 
 		chooser.addDefault("pass line", new CrossAutoLine());
 		chooser.addObject("pass line and controll square", new CrossAutoLineAndControlSquare());
-		chooser.addDefault("GearAutoFromFeederToLeft",
-				new GearAutoFromFeeder(GearAutoFromFeeder.LEFT_ROTATE_SPEED));
-		chooser.addObject("GearAutoFromFeederToRight",
-				new GearAutoFromFeeder(GearAutoFromFeeder.RIGHT_ROTATE_SPEED));
+		chooser.addDefault("GearAutoFromFeederToLeft", new GearAutoFromFeeder(GearAutoFromFeeder.LEFT_ROTATE_SPEED));
+		chooser.addObject("GearAutoFromFeederToRight", new GearAutoFromFeeder(GearAutoFromFeeder.RIGHT_ROTATE_SPEED));
 		oi = new OI();
 
 		initDashboard();
@@ -92,6 +90,8 @@ public class Robot extends IterativeRobot {
 
 		dbc.addBoolean("Roller high sensor blocked", rollerGripper::getHighSensorData);
 		dbc.addBoolean("Roller low sensor blocked", rollerGripper::getLowSensorData);
+
+		dbc.addDouble("Elevator Encoder", () -> (double) elevator.getPosition());
 
 		SmartDashboard.putData("Gripper - RollGearIn",
 				new MoveLimitedSubsystem(Robot.rollerGripper, PickGear.ROLLER_SPEED_IN));
