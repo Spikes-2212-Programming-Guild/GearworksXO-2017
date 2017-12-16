@@ -5,10 +5,9 @@ import org.usfirst.frc.team2212.robot.commands.MoveLimitedSubsystemWithTimeSince
 import org.usfirst.frc.team2212.robot.commands.command_groups.DropGear;
 import org.usfirst.frc.team2212.robot.commands.command_groups.PickGear;
 import org.usfirst.frc.team2212.robot.commands.command_groups.PrepareToCollectGear;
-import org.usfirst.frc.team2212.robot.commands.command_groups.PrepareToScoreHigh;
 import org.usfirst.frc.team2212.robot.commands.command_groups.PrepareToScoreLow;
-import org.usfirst.frc.team2212.robot.commands.orientation.DriverTurnAndMoveToGear;
 import org.usfirst.frc.team2212.robot.commands.command_groups.StopEverything;
+import org.usfirst.frc.team2212.robot.commands.orientation.DriverTurnAndMoveToGear;
 import org.usfirst.frc.team2212.robot.subsystems.Elevator;
 import org.usfirst.frc.team2212.robot.subsystems.Folder;
 
