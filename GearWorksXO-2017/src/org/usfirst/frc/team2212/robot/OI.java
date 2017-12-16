@@ -54,7 +54,7 @@ public class OI/* GEVALD */ {
 		moveFolderUp = new JoystickButton(navigator, 4);
 		stopEverything = new JoystickButton(navigator, 10);
 
-		dropGear.whenPressed(new DropGear());
+		dropGear.toggleWhenPressed(new DropGear());
 		prepareToPickGear.whenPressed(new PrepareToCollectGear());
 		pickGear.whenPressed(new PickGear());
 		prepareToScoreLowPeg.whenPressed(new PrepareToScoreLow());
